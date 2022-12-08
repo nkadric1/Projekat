@@ -1,9 +1,5 @@
 package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Attendance;
-import ba.unsa.etf.rpr.domain.Departments;
-import ba.unsa.etf.rpr.domain.Employee;
-import ba.unsa.etf.rpr.domain.Project;
-import org.apache.maven.shared.invoker.SystemOutHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +17,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
     private int getMaxId(){
         int id=1;
         try {
-            PreparedStatement tmp = this.con.prepareStatement("SELECT MAX(Id_att)+1 FROM Attendance");
+            PreparedStatement tmp = this.con.prepareStatement("SELECT MAX(ID_att)+1 FROM Attendance");
             ResultSet r= tmp.executeQuery();
             if(r.next()) {
                 id = r.getInt(1);
@@ -54,7 +50,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
 
     @Override
     public Attendance getById(int ID) {
-        String q="SELECT * FROM Attendance WHERE ID = ?";
+        String q="SELECT * FROM Attendance WHERE ID_att = ?";
         try{
             PreparedStatement s=this.con.prepareStatement(q);
             s.setInt(1,ID);
