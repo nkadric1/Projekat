@@ -6,7 +6,7 @@ import ba.unsa.etf.rpr.domain.Project;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Date;
 public class EmployeeDAOSQLImpl implements EmployeeDao {
     private Connection con;
     public EmployeeDAOSQLImpl(){
@@ -121,7 +121,30 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
     }
 
     @Override
-    public List<Employee> searchByEducation(String ed) {
+    public List<Employee> getByHireDate(Date d) {
+    String q="SELCET * FROM employee WHERE Hire_date = ?";
+    try{
+        PreparedStatement tmp=this.con.prepareStatement(q);
+        tmp.setDate(5, (java.sql.Date) d);
+        ResultSet r=tmp.executeQuery();
+        ArrayList<Employee> DateList = new ArrayList<>();
+        if(r.next()){
+            Employee e=new Employee();
+            e.setID(r.getInt(1));
+            e.setFirst_name(r.getString(2));
+            e.setLast_name(r.getString(3));
+            e.setAddress(r.getString(4));
+            e.setHire_date(d);
+            e.setProject_id(r.getInt(6));
+            e.setEdu(r.getString(7));
+            e.setPayoff(r.getInt("payoff"));
+            DateList.add(e);
+        }
+        return DateList;
+    }
+    catch(SQLException e){
+        e.printStackTrace();
+        }
         return null;
     }
 }
