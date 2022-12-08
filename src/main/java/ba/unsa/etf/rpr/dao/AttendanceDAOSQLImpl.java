@@ -3,6 +3,7 @@ import ba.unsa.etf.rpr.domain.Attendance;
 import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
+import org.apache.maven.shared.invoker.SystemOutHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,8 +20,21 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
     }
 
     @Override
-    public List<Attendance> getByWorkHours(int hours) {
-        return null;
+    public int getMaxAttendance() {
+           int h=1;
+           try{
+               PreparedStatement tmp=this.con.prepareStatement("SELECT  MAX(Workhours) FROM Attendance");
+               ResultSet r=tmp.executeQuery();
+               if(r.next()){
+                   h=r.getInt(2);
+                   r.close();
+                   return h;
+               }
+           }catch(SQLException e){
+               System.out.println("Problem with DB");
+               System.out.println(e.getMessage());
+           }
+        return h;
     }
 
     @Override
