@@ -90,9 +90,16 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
 
     @Override
     public void delete(int ID) {
-
+        String insert = "DELETE FROM Employee WHERE ID_emp = ?";
+        try{
+            PreparedStatement stmt = this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, ID);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
-
+//implementirati ovu metodu
     @Override
     public List<Employee> getAll() {
         return null;
