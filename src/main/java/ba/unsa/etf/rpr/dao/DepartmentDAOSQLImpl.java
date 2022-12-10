@@ -1,10 +1,8 @@
 package ba.unsa.etf.rpr.dao;
-import ba.unsa.etf.rpr.domain.Attendance;
 import ba.unsa.etf.rpr.domain.Departments;
-import ba.unsa.etf.rpr.domain.Employee;
-import ba.unsa.etf.rpr.domain.Project;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentDAOSQLImpl implements  DepartmentDao{
@@ -102,11 +100,43 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
 
     @Override
     public List<Departments> getAll() {
-        return null;
+        List<Departments> d = new ArrayList<>();
+        try{
+            PreparedStatement tmp= this.con.prepareStatement("SELECT * FROM Departments");
+            ResultSet r = tmp.executeQuery();
+            while (r.next()){
+                Departments a=new Departments();
+                a.setID(r.getInt(1));
+                //kako ovo popraviti??
+                  // a.setDepname(new DepartmentDAOSQLImpl().getD(r.getString(2)));
+                d.add(a);
+            }
+            r.close();
+        }catch (SQLException e){
+            System.out.println("Problem with DB");
+            System.out.println(e.getMessage());}
+        return d;
     }
 
     @Override
-    public List<Departments> searchByDepID(int id) {
+    public Departments ReturnDepartmentForId(int id) {
+        String q = "SELECT * FROM Departments WHERE ID_dep = ?";
+        try {
+            PreparedStatement tmp = this.con.prepareStatement(q);
+            tmp.setInt(1, id);
+            ResultSet r = tmp.executeQuery();
+            if (r.next()) {
+
+                Departments c = new Departments();
+                c.setID(r.getInt(1));
+                c.setDepname(r.getString(2));
+                c.setHourlypay(r.getInt(3));
+                return c;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }
