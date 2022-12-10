@@ -74,16 +74,20 @@ public class ProjectDAOSQLImpl implements ProjectDao{
 
     @Override
     public void delete(int ID) {
-
+        String insert = "DELETE FROM Project WHERE ID_pro = ?";
+        try{
+            PreparedStatement stmt = this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, ID);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
-
+//dodati ovu metodu
     @Override
     public List<Project> getAll() {
         return null;
     }
 
-    @Override
-    public List<Project> getByProjectName(String name) {
-        return null;
-    }
+
 }

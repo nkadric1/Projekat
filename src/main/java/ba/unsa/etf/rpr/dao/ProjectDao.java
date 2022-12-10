@@ -7,5 +7,5 @@ import java.util.List;
 
  */
 public interface ProjectDao  extends Dao<Project>{
-    List<Project> getByProjectName(String name);
+
 }
