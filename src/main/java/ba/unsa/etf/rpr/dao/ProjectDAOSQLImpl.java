@@ -1,9 +1,9 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.List;
 
 public class ProjectDAOSQLImpl implements ProjectDao{
@@ -20,6 +20,23 @@ public class ProjectDAOSQLImpl implements ProjectDao{
 
     @Override
     public Project getById(int ID) {
+        String q="SELECT * FROM Project WHERE ID_pro = ?";
+        try{
+            PreparedStatement s=this.con.prepareStatement(q);
+            s.setInt(1,ID);
+            ResultSet r=s.executeQuery();
+            if(r.next()){
+                Project p=new Project();
+                p.setID(r.getInt("ID_pro"));
+               p.setProject_name(r.getString(2));
+                r.close();
+                return p;
+            } else{ return null;}
+
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
