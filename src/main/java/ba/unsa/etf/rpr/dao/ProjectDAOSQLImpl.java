@@ -60,6 +60,15 @@ public class ProjectDAOSQLImpl implements ProjectDao{
 
     @Override
     public Project update(Project x) {
+        String insert = "UPDATE Project SET Project_name = ? WHERE ID_pro = ?";
+        try{
+            PreparedStatement tmp = this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            tmp.setObject(1, x.getProject_name());
+
+            tmp.executeUpdate();
+            return x;
+        }catch (SQLException e){
+            e.printStackTrace();}
         return null;
     }
 
