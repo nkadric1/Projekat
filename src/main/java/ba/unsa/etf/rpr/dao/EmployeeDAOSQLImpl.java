@@ -50,12 +50,42 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
 
     @Override
     public Employee add(Employee x) {
+        String insert = "INSERT INTO Employee(First_name) VALUES(?)";
+        try{
+            PreparedStatement tmp= this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            tmp.setString(1, x.getFirst_name());
+            //zasto samo ime ovdje
+            tmp.executeUpdate();
+
+            ResultSet r= tmp.getGeneratedKeys();
+            r.next();
+            x.setID(r.getInt(1));
+            return x;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public Employee update(Employee x) {
-        return null;
+
+        String insert = "UPDATE Employee SET First_name = ?, Last_name=?, Address= ? ,Hire_date=?,Education=?, payoff=? WHERE ID_emp = ?";
+        try{
+            PreparedStatement tmp = this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            tmp.setObject(1, x.getFirst_name());
+            tmp.setObject(2, x.getLast_name());
+            tmp.setObject(3, x.getAddress());
+            tmp.setObject(4, x.getHire_date());
+            tmp.setObject(5, x.getEdu());
+            tmp.setObject(6, x.getPayoff());
+
+            tmp.executeUpdate();
+            return x;
+        }catch (SQLException e){
+            e.printStackTrace();}
+            return null;
+
     }
 
     @Override
