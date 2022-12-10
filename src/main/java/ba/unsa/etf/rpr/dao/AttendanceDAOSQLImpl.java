@@ -123,7 +123,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
             while (r.next()){
                 Attendance a=new Attendance();
                 a.setID(r.getInt(1));
-                //kako ovo popraviti??
+                //kako ovo popraviti???
              //   a.setHours(new AttendanceDAOSQLImpl().getHours(r.getInt(2)));
                 att.add(a);
             }
