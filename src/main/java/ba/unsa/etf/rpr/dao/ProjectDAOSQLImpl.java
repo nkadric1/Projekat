@@ -42,6 +42,19 @@ public class ProjectDAOSQLImpl implements ProjectDao{
 
     @Override
     public Project add(Project x) {
+        String insert = "INSERT INTO Project(Project_name) VALUES(?)";
+        try{
+            PreparedStatement tmp= this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            tmp.setString(1, x.getProject_name());
+            tmp.executeUpdate();
+
+            ResultSet r= tmp.getGeneratedKeys();
+            r.next();
+            x.setID(r.getInt(1));
+            return x;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
