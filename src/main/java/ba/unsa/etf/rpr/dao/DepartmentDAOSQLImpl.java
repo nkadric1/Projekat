@@ -5,6 +5,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** @author Kadrić Nerma
+ * class where is implementation of methods we will use to manipulate the departments
+ */
 public class DepartmentDAOSQLImpl implements  DepartmentDao{
     private Connection con;
     public DepartmentDAOSQLImpl() {
@@ -15,6 +18,11 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
             ex.printStackTrace();
         }
     }
+
+    /**
+     * method that works with id
+     * @return maxId+1 for a new row in which we can put a new object
+     */
     private int getMaxId(){
         int id=1;
         try {
@@ -31,6 +39,12 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
         }
         return id;
     }
+
+    /**
+     *
+     * @param ID
+     * @return department of Id which we passed as parameter
+     */
     @Override
     public Departments getById(int ID) {
         String q="SELECT * FROM Departments WHERE ID_dep = ?";
@@ -55,10 +69,15 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
         return null;
     }
 
+    /**
+     * this method add new department into the base
+     * @param x
+     * @return new department
+     */
     @Override
     public Departments add(Departments x) {
         int id = getMaxId();
-        try {                                          //zasto se ne uzima metoda iz deps
+        try {
             PreparedStatement tmp= this.con.prepareStatement("INSERT INTO Departments VALUES (id, x.getHourlypay(), x.getDepname())");
             tmp.executeUpdate();
             x.setID(id);
@@ -70,6 +89,11 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
         return null;
     }
 
+    /**
+     * this method updates the database with the parameter we passed to it
+     * @param x
+     * @return updated department
+     */
     @Override
     public Departments update(Departments x) {
         try{
@@ -86,6 +110,10 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
         return null;
     }
 
+    /**
+     * this method deletes the department whose id is passed
+     * @param ID
+     */
     @Override
     public void delete(int ID) {
         try{
@@ -98,6 +126,10 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
         }
     }
 
+    /**
+     *
+     * @return list of departments
+     */
     @Override
     public List<Departments> getAll() {
         List<Departments> d = new ArrayList<>();
@@ -107,8 +139,8 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
             while (r.next()){
                 Departments a=new Departments();
                 a.setID(r.getInt(1));
-                //kako ovo popraviti??
-                  // a.setDepname(new DepartmentDAOSQLImpl().getD(r.getString(2)));
+                a.setDepname(r.getString(3));
+                a.setHourlypay(r.getInt(2));
                 d.add(a);
             }
             r.close();
@@ -118,6 +150,11 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
         return d;
     }
 
+    /**
+     * this method return Department whose ID is passed
+     * @param id
+     * @return
+     */
     @Override
     public Departments ReturnDepartmentForId(int id) {
         String q = "SELECT * FROM Departments WHERE ID_dep = ?";
@@ -129,8 +166,8 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
 
                 Departments c = new Departments();
                 c.setID(r.getInt(1));
-                c.setDepname(r.getString(2));
-                c.setHourlypay(r.getInt(3));
+                c.setDepname(r.getString(3));
+                c.setHourlypay(r.getInt(2));
                 return c;
             }
         } catch (SQLException e) {
