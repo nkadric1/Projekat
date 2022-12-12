@@ -83,7 +83,7 @@ public class Employee {
     }
 
     public java.sql.Date getHire_date() {
-        return hire_date;
+        return (java.sql.Date) hire_date;
     }
 
     public int getDepartment_id() {
