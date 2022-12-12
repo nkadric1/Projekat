@@ -153,7 +153,7 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
     /**
      * this method return Department whose ID is passed
      * @param id
-     * @return
+     * @return department
      */
     @Override
     public Departments ReturnDepartmentForId(int id) {

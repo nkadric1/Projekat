@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+/** @author Kadrić Nerma
+ * class where is implementation of methods we will use to manipulate the employees
+ */
 public class EmployeeDAOSQLImpl implements EmployeeDao {
     private Connection con;
     public EmployeeDAOSQLImpl(){

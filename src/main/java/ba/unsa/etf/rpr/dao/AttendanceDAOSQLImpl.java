@@ -4,6 +4,9 @@ import ba.unsa.etf.rpr.domain.Attendance;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+/** @author Kadrić Nerma
+ * class where is implementation of methods we will use to manipulate the attendances
+ */
 public class AttendanceDAOSQLImpl implements AttendanceDao{
     private Connection con;
     public AttendanceDAOSQLImpl() {
@@ -14,6 +17,12 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
                 ex.printStackTrace();
             }
     }
+
+    /**
+     * method that works with id
+     *   @return maxId+1 for a new row in which we can put a new object
+
+     */
     private int getMaxId(){
         int id=1;
         try {
@@ -30,6 +39,11 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
         }
         return id;
     }
+
+    /**
+     * this method returns Attendance that is the biggest
+     * @return
+     */
     @Override
     public int getMaxAttendance() {
            int h=1;
@@ -37,7 +51,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
                PreparedStatement tmp=this.con.prepareStatement("SELECT  MAX(Workhours) FROM Attendance");
                ResultSet r=tmp.executeQuery();
                if(r.next()){
-                   h=r.getInt(2);
+                   h=r.getInt(1);
                    r.close();
                    return h;
                }
@@ -48,6 +62,11 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
         return h;
     }
 
+    /**
+     *
+     * @param ID
+     * @return department of Id which we passed as parameter
+     */
     @Override
     public Attendance getById(int ID) {
         String q="SELECT * FROM Attendance WHERE ID_att = ?";
@@ -71,6 +90,11 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
         return null;
     }
 
+    /**
+     * this method add new attendance into the base
+     * @param x
+     * @return added attendance
+     */
     @Override
     public Attendance add(Attendance x) {
         int id = getMaxId();
@@ -86,6 +110,11 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
         return null;
     }
 
+    /**
+     * this method updates the database with the parameter we passed to it
+     * @param x
+     * @return updated attendance
+     */
     @Override
     public Attendance update(Attendance x) {
         try{
@@ -101,7 +130,9 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
         }
         return null;
     }
-
+/**
+ * this method deletes the department whose id is passed
+ */
     @Override
     public void delete(int ID) {
         try{
@@ -114,6 +145,10 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
         }
     }
 
+    /**
+     *
+     * @return list of attendance
+     */
     @Override
     public List<Attendance> getAll() {
         List<Attendance> att = new ArrayList<>();
@@ -123,8 +158,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
             while (r.next()){
                 Attendance a=new Attendance();
                 a.setID(r.getInt(1));
-                //kako ovo popraviti???
-             //   a.setHours(new AttendanceDAOSQLImpl().getHours(r.getInt(2)));
+               a.setHours(r.getInt(2));
                 att.add(a);
             }
             r.close();
