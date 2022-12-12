@@ -18,5 +18,5 @@ import java.util.List;
 public interface EmployeeDao extends Dao<Employee> {
     List<Employee> searchByDepartment(Departments dep);
     List<Employee> searchByProject(Project p);
-    List<Employee> getByHireDate(Date d);
+    List<Employee> getByHireDate();
 }

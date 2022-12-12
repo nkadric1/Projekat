@@ -18,6 +18,11 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
         }
     }
 
+    /**
+     *
+     * @param ID
+     * @return employee of Id which we passed as parameter
+     */
     @Override
     public Employee getById(int ID) {
         String q="SELECT * FROM Employee WHERE ID_emp = ?";
@@ -48,13 +53,21 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
         return null;
     }
 
+    /**
+     * this method add new employee into the base
+     * @param x
+     * @return added employee
+     */
     @Override
     public Employee add(Employee x) {
-        String insert = "INSERT INTO Employee(First_name) VALUES(?)";
+        String insert = "INSERT INTO Employee(First_name,Last_name,Address,Hire_date,Education) VALUES(?,?,?,?,?)";
         try{
             PreparedStatement tmp= this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             tmp.setString(1, x.getFirst_name());
-            //zasto samo ime ovdje
+           tmp.setString(2,x.getLast_name());
+           tmp.setString(3,x.getAddress());
+           tmp.setDate(4,x.getHire_date());
+           tmp.setString(5,x.getEdu());
             tmp.executeUpdate();
 
             ResultSet r= tmp.getGeneratedKeys();
@@ -67,6 +80,11 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
         return null;
     }
 
+    /**
+     *  this method updates the database with the parameter we passed to it
+     * @param x
+     * @return updated employee
+     */
     @Override
     public Employee update(Employee x) {
 
@@ -88,6 +106,10 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
 
     }
 
+    /**
+     * deletes employee whose id is passed
+     * @param ID
+     */
     @Override
     public void delete(int ID) {
         String insert = "DELETE FROM Employee WHERE ID_emp = ?";
@@ -99,15 +121,43 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
             e.printStackTrace();
         }
     }
-//implementirati ovu metodu
+
+    /**
+     * this method returns list of all employees which are registered in the database
+     * @return lis of employees
+     */
     @Override
     public List<Employee> getAll() {
-        return null;
+        List<Employee> e= new ArrayList<>();
+        try{
+            PreparedStatement tmp= this.con.prepareStatement("SELECT * FROM Employee");
+            ResultSet r = tmp.executeQuery();
+            while (r.next()){
+               Employee a=new Employee();
+                a.setID(r.getInt(1));
+                a.setFirst_name(r.getString(2));
+                a.setLast_name(r.getString(3));
+                a.setAddress(r.getString(4));
+                a.setHire_date(r.getDate(5));
+                a.setEdu(r.getString(7));
+                a.setPayoff(r.getInt(10));
+                e.add(a);
+            }
+            r.close();
+        }catch (SQLException exception){
+            System.out.println("Problem with DB");
+            System.out.println(exception.getMessage());}
+        return e;
     }
 
+    /**
+     * this method returns list of employees that works in department that is passed as parameter
+     * @param dep
+     * @return list of employees
+     */
     @Override
     public List<Employee> searchByDepartment(Departments dep) {
-        String q="SELECT * FROM Employee WHERE dep.department_id= ?";
+        String q="SELECT * FROM Employee WHERE department_id= ?";
         try{
             PreparedStatement s=this.con.prepareStatement(q);
             s.setInt(1,dep.getID());
@@ -119,8 +169,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
                 e.setFirst_name(r.getString(2));
                 e.setLast_name(r.getString(3));
                 e.setAddress(r.getString(4));
-                e.setHire_date(r.getDate("Hire_date"));
-                e.setDepartment_id(dep.getID());
+                e.setHire_date(r.getDate(5));
                 e.setEdu(r.getString(7));
                 e.setPayoff(r.getInt("payoff"));
             }
@@ -131,9 +180,14 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
         return null;
     }
 
+    /**
+     * this method returns list of employees that works on project that is passed as parameter
+     * @param p
+     * @return list of employees
+     */
     @Override
     public List<Employee> searchByProject(Project p) {
-        String q="SELECT * FROM employee WHERE p.project_id = ?";
+        String q="SELECT * FROM Employee WHERE project_id = ?";
         try{
             PreparedStatement s=this.con.prepareStatement(q);
             s.setInt(1, p.getID());
@@ -145,8 +199,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
                 e.setFirst_name(r.getString(2));
                 e.setLast_name(r.getString(3));
                 e.setAddress(r.getString(4));
-                e.setHire_date(r.getDate("Hire_date"));
-                e.setProject_id(p.getID());
+                e.setHire_date(r.getDate(5));
                 e.setEdu(r.getString(7));
                 e.setPayoff(r.getInt("payoff"));
             }
@@ -157,12 +210,15 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
         return null;
     }
 
+    /**
+     * this method returns list of employees ordered by hire dates
+     * @return list of employees
+     */
     @Override
-    public List<Employee> getByHireDate(Date d) {
-    String q="SELCET * FROM employee WHERE d.Hire_date = ?";
+    public List<Employee> getByHireDate() {
+    String q="SELECT * FROM Employee ORDER BY Hire_date";
     try{
         PreparedStatement tmp=this.con.prepareStatement(q);
-        tmp.setDate(5, (java.sql.Date) d);
         ResultSet r=tmp.executeQuery();
         ArrayList<Employee> DateList = new ArrayList<>();
         if(r.next()){
@@ -171,8 +227,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
             e.setFirst_name(r.getString(2));
             e.setLast_name(r.getString(3));
             e.setAddress(r.getString(4));
-            e.setHire_date(d);
-            e.setProject_id(r.getInt(6));
+            e.setHire_date(r.getDate(5));
             e.setEdu(r.getString(7));
             e.setPayoff(r.getInt("payoff"));
             DateList.add(e);

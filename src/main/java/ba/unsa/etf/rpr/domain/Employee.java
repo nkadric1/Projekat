@@ -82,7 +82,7 @@ public class Employee {
         return address;
     }
 
-    public Date getHire_date() {
+    public java.sql.Date getHire_date() {
         return hire_date;
     }
 
