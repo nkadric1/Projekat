@@ -1,11 +1,15 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
-
+/** @author Kadrić Nerma
+ * class where is implementation of methods we will use to manipulate the projects
+ */
 public class ProjectDAOSQLImpl implements ProjectDao{
     private Connection con;
     public ProjectDAOSQLImpl(){
@@ -18,6 +22,11 @@ public class ProjectDAOSQLImpl implements ProjectDao{
     }
 
 
+    /**
+     *
+     * @param ID
+     * @return department of Id which we passed as parameter
+     */
     @Override
     public Project getById(int ID) {
         String q="SELECT * FROM Project WHERE ID_pro = ?";
@@ -39,7 +48,11 @@ public class ProjectDAOSQLImpl implements ProjectDao{
         }
         return null;
     }
-
+/**
+        * this method add new project into the base
+     * @param x
+     * @return new project
+     */
     @Override
     public Project add(Project x) {
         String insert = "INSERT INTO Project(Project_name) VALUES(?)";
@@ -57,13 +70,18 @@ public class ProjectDAOSQLImpl implements ProjectDao{
         }
         return null;
     }
-
+    /**
+     * this method updates the database with the parameter we passed to it
+     * @param x
+     * @return updated project
+     */
     @Override
     public Project update(Project x) {
         String insert = "UPDATE Project SET Project_name = ? WHERE ID_pro = ?";
         try{
             PreparedStatement tmp = this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            tmp.setObject(1, x.getProject_name());
+            tmp.setInt(1, x.getID());
+            tmp.setString(2, x.getProject_name());
 
             tmp.executeUpdate();
             return x;
@@ -71,6 +89,10 @@ public class ProjectDAOSQLImpl implements ProjectDao{
             e.printStackTrace();}
         return null;
     }
+    /**
+     * this method deletes the project whose id is passed
+     * @param ID
+     */
 
     @Override
     public void delete(int ID) {
@@ -83,10 +105,28 @@ public class ProjectDAOSQLImpl implements ProjectDao{
             e.printStackTrace();
         }
     }
-//dodati ovu metodu
+    /**
+     *
+     * @return list of departments
+     */
     @Override
     public List<Project> getAll() {
-        return null;
+        List<Project> p = new ArrayList<>();
+        try{
+            PreparedStatement tmp= this.con.prepareStatement("SELECT * FROM Project");
+            ResultSet r = tmp.executeQuery();
+            while (r.next()){
+           Project a=new Project();
+                a.setID(r.getInt(1));
+                a.setProject_name(r.getString(2));
+
+                p.add(a);
+            }
+            r.close();
+        }catch (SQLException e){
+            System.out.println("Problem with DB");
+            System.out.println(e.getMessage());}
+        return p;
     }
 
 
