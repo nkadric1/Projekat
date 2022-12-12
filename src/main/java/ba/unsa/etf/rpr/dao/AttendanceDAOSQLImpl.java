@@ -89,7 +89,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
     @Override
     public Attendance update(Attendance x) {
         try{
-            PreparedStatement tmp = this.con.prepareStatement("UPDATE Attendance SET Hours=? WHERE ID=?");
+            PreparedStatement tmp = this.con.prepareStatement("UPDATE Attendance SET Workhours=? WHERE ID_att=?");
             tmp.setInt(1, x.getID());
             tmp.setInt(2, x.getHours());
 
@@ -105,7 +105,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
     @Override
     public void delete(int ID) {
         try{
-            PreparedStatement tmp = this.con.prepareStatement("DELETE FROM Attendance WHERE ID = ?");
+            PreparedStatement tmp = this.con.prepareStatement("DELETE FROM Attendance WHERE ID_att = ?");
             tmp.setInt(1, ID);
             tmp.executeUpdate();
         }catch (SQLException e){

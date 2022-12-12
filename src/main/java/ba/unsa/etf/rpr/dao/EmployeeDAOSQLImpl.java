@@ -20,7 +20,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
 
     @Override
     public Employee getById(int ID) {
-        String q="SELECT * FROM employee WHERE ID = ?";
+        String q="SELECT * FROM Employee WHERE ID_emp = ?";
         try{
          PreparedStatement s=this.con.prepareStatement(q);
          s.setInt(1,ID);
@@ -70,7 +70,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
     @Override
     public Employee update(Employee x) {
 
-        String insert = "UPDATE Employee SET First_name = ?, Last_name=?, Address= ? ,Hire_date=?,Education=?, payoff=? WHERE ID_emp = ?";
+        String insert = "UPDATE Employee SET First_name = ?, Last_name=?, Address= ? ,Hire_date=?, Education=?, payoff=? WHERE ID_emp = ?";
         try{
             PreparedStatement tmp = this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             tmp.setObject(1, x.getFirst_name());
@@ -107,7 +107,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
 
     @Override
     public List<Employee> searchByDepartment(Departments dep) {
-        String q="SELECT * FROM employee WHERE dep= ?";
+        String q="SELECT * FROM Employee WHERE dep.department_id= ?";
         try{
             PreparedStatement s=this.con.prepareStatement(q);
             s.setInt(1,dep.getID());
@@ -133,7 +133,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
 
     @Override
     public List<Employee> searchByProject(Project p) {
-        String q="SELECT * FROM employee WHERE p = ?";
+        String q="SELECT * FROM employee WHERE p.project_id = ?";
         try{
             PreparedStatement s=this.con.prepareStatement(q);
             s.setInt(1, p.getID());
@@ -159,7 +159,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
 
     @Override
     public List<Employee> getByHireDate(Date d) {
-    String q="SELCET * FROM employee WHERE Hire_date = ?";
+    String q="SELCET * FROM employee WHERE d.Hire_date = ?";
     try{
         PreparedStatement tmp=this.con.prepareStatement(q);
         tmp.setDate(5, (java.sql.Date) d);
