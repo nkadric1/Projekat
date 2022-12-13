@@ -15,7 +15,7 @@ public class MainFX extends Application {
             Controller controller = new Controller();
             fl.setController(controller);
             Parent root = fl.load();
-            primarystage.setTitle("Administrator login");
+            primarystage.setTitle("Login into the base");
             primarystage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
          //   primarystage.setResizable(false); //iskljucivo se stavlja za dijaloske prozore
            primarystage.setMinHeight(150);
@@ -27,5 +27,6 @@ public class MainFX extends Application {
         }
     }
     public static void main(String[] args){
-    launch(args);}
+    launch(args);
+    }
 }
