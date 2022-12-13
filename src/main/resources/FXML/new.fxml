@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="FXML.New"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.New">
+   <children>
+      <Button layoutX="114.0" layoutY="200.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="50.0" layoutY="102.0" prefHeight="18.0" prefWidth="194.0" text="NEW WINDOW" textAlignment="CENTER" />
+   </children>
 </AnchorPane>
