@@ -1,50 +1,61 @@
 package ba.unsa.etf.rpr;
 
-import java.awt.*;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+
+import java.io.IOException;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class Controller {
     public TextField fieldUser;
-@FXML
-public void initialize(){
-    fieldUser.getStyleClass().add("fieldisnotOK");
-    fieldUser.textProperty().addListener(new ChangeListener<String>() {
-        @Override
-        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-            if(fieldUser.getText().trim().isEmpty()){
-                fieldUser.getStyleClass().removeAll("fieldisOK");
-                fieldUser.getStyleClass().add("fieldisnotOK");
-            }
-            else {
-                fieldUser.getStyleClass().removeAll("fieldisnotOK");
-                fieldUser.getStyleClass().add("fieldisOK");
-            }
-        }
-    });
-}
- public void Click(ActionEvent actionEvent){
-     //if usernamefield is empty then show an error
-     if(fieldUser.getText().isEmpty()){
-         fieldUser.getStyleClass().add("fieldisnotOK");
-        /* Alert alert = new Alert(Alert.
-        AlertType.ERROR);
-         alert.setTitle("Error!");
-         alert.setHeaderText("Username is not recognized");
-         alert.setContentText("You must enter username to get into the database!");
+    public Button bBtn;
 
-         alert.showAndWait();*/
-         return;
-     }
- Alert x=new Alert(Alert.AlertType.INFORMATION);
- x.setTitle("Hello");
- x.setHeaderText("Hi");
- x.setContentText("Username is: "+fieldUser.getText());
- x.show();
-     System.out.println("Dialog closed");
- }
-}
+    @FXML
+    public void initialize() {
+        fieldUser.getStyleClass().add("fieldisnotOK");
+        fieldUser.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if (fieldUser.getText().trim().isEmpty()) {
+                    fieldUser.getStyleClass().removeAll("fieldisOK");
+                    fieldUser.getStyleClass().add("fieldisnotOK");
+                } else {
+                    fieldUser.getStyleClass().removeAll("fieldisnotOK");
+                    fieldUser.getStyleClass().add("fieldisOK");
+                }
+            }
+        });
+    }
+
+    public void Click(ActionEvent actionEvent) throws IOException {
+        //if usernamefield is empty then show an error
+        if (fieldUser.getText().isEmpty()) {
+            return;
+        }
+
+
+
+  /*  FXMLLoader fl = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
+
+    Parent root = fl.load();
+        stage.setTitle("Query");
+     stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+*/
+    // zasto ovdje ne mozemo na ovaj nacin postaviti novu scenu nego moramona Vedranov
+  Stage stage=new Stage();
+    Parent root=FXMLLoader.load(getClass().getResource("/FXML/new.fxml"));
+     stage.setTitle("Query");
+     stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+     stage.show();
+
+}}
