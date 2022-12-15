@@ -20,6 +20,14 @@ public class Project {
         this.project_name = project_name;
     }
 
+    public Project(int ID, String project_name) {
+        this.ID = ID;
+        this.project_name = project_name;
+    }
+
+    public Project() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

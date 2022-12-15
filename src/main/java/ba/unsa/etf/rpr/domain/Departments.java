@@ -3,6 +3,15 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Objects;
 
 public class Departments {
+    public Departments(int ID, String depname, int hourlypay) {
+        this.ID = ID;
+        this.depname = depname;
+        this.hourlypay = hourlypay;
+    }
+
+    public Departments() {
+    }
+
     private int ID;
     private String depname;
     private int hourlypay;

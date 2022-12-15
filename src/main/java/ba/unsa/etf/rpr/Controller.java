@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -44,18 +45,21 @@ public class Controller {
         }
 
 
+        Stage stage=new Stage();
+ /*  FXMLLoader fl = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
 
-  /*  FXMLLoader fl = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
 
     Parent root = fl.load();
+       // NewWindow novi=fl.getController();
+      //  novi.labela.setText(novi.labela.getText()+fieldUser.getText());
         stage.setTitle("Query");
      stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+   // zasto ovdje ne mozemo na ovaj nacin postaviti novu scenu nego moramona Vedranov
+
 */
-    // zasto ovdje ne mozemo na ovaj nacin postaviti novu scenu nego moramona Vedranov
-  Stage stage=new Stage();
-    Parent root=FXMLLoader.load(getClass().getResource("/FXML/new.fxml"));
+
+    Parent root=FXMLLoader.load((getClass().getResource("/FXML/new.fxml")));
      stage.setTitle("Query");
      stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
      stage.show();
-
 }}

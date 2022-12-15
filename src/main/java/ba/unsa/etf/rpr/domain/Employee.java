@@ -7,6 +7,22 @@ import java.util.Objects;
  * this is the bean for employee
  */
 public class Employee {
+    public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, int att_id, String edu, int payoff) {
+        this.ID = ID;
+        this.first_name = first_name;
+        Last_name = last_name;
+        this.address = address;
+        this.hire_date = hire_date;
+        this.department_id = department_id;
+        this.project_id = project_id;
+        this.att_id = att_id;
+        this.edu = edu;
+        this.payoff = payoff;
+    }
+
+    public Employee() {
+    }
+
     private int ID;
     private String first_name;
     private String Last_name;

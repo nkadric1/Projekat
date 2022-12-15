@@ -1,6 +1,11 @@
 package ba.unsa.etf.rpr.domain;
 import java.util.Objects;
 public class Attendance {
+    public Attendance(int ID, int hours) {
+        this.ID = ID;
+        this.hours = hours;
+    }
+public Attendance(){}
     private int ID;
     private int hours;
 

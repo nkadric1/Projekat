@@ -1,9 +1,12 @@
 package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Attendance;
 
+import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
 /** @author Kadrić Nerma
  * class where is implementation of methods we will use to manipulate the attendances
  */
@@ -12,7 +15,13 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
     public AttendanceDAOSQLImpl() {
 
             try {
-                this.con = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582729", "sql7582729", "7F1FfHWIiY");
+                FileReader reader=new FileReader("");
+                Properties p=new Properties();
+                p.load(reader);
+                String url=p.getProperty("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582729");
+                String username=p.getProperty("sql7582729");
+                String password="7F1FfHWIiY";
+                this.con = DriverManager.getConnection(url,username , password);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
