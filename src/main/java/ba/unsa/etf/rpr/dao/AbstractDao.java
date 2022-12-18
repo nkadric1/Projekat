@@ -1,8 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Idable;
-import sun.jvm.hotspot.compiler.OopMapStream;
-
 import java.sql.*;
 import java.util.*;
 

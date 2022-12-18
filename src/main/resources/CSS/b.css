@@ -1,7 +1,7 @@
 #bBtn{
--fx-background-color: lightskyblue;
+-fx-background-color: darkseagreen;
 }
 .fieldisnotOK{
--fx-background-color: lightpink;}
+-fx-background-color: bisque;}
 .fieldisOK{
--fx-background-color: yellowgreen;}
+-fx-background-color: azure;}

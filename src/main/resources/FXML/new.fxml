@@ -1,11 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"  >
+<BorderPane prefHeight="288.0" prefWidth="341.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="114.0" layoutY="200.0" mnemonicParsing="false" text="Button" />
       <Label layoutX="50.0" layoutY="102.0" prefHeight="18.0" prefWidth="194.0" text="NEW WINDOW" textAlignment="CENTER" />
    </children>
-</AnchorPane>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu text="_Projects">
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="P" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Project 1" />
+                  <MenuItem mnemonicParsing="false" text="Project 2" />
+                  <MenuItem mnemonicParsing="false" text="Project 3" />
+                  <MenuItem mnemonicParsing="false" text="_New project" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="_Close">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Departments">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Digital Manager" />
+                  <MenuItem mnemonicParsing="false" text="UI Developer" />
+                  <MenuItem mnemonicParsing="false" text="Data Scientist" />
+                  <MenuItem mnemonicParsing="false" text="Fullstack Developer" />
+                  <MenuItem mnemonicParsing="false" text="F-B-end Developer" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#addnew" prefHeight="38.0" prefWidth="144.0" text="Add new employee" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

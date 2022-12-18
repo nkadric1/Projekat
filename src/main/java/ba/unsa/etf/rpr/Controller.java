@@ -23,6 +23,7 @@ public class Controller {
 
     @FXML
     public void initialize() {
+
         fieldUser.getStyleClass().add("fieldisnotOK");
         fieldUser.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -43,23 +44,12 @@ public class Controller {
         if (fieldUser.getText().isEmpty()) {
             return;
         }
-
-
         Stage stage=new Stage();
- /*  FXMLLoader fl = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
-
-
-    Parent root = fl.load();
-       // NewWindow novi=fl.getController();
-      //  novi.labela.setText(novi.labela.getText()+fieldUser.getText());
-        stage.setTitle("Query");
-     stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-   // zasto ovdje ne mozemo na ovaj nacin postaviti novu scenu nego moramona Vedranov
-
-*/
-
     Parent root=FXMLLoader.load((getClass().getResource("/FXML/new.fxml")));
-     stage.setTitle("Query");
+     stage.setTitle("Welcome, search it!");
      stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
      stage.show();
-}}
+}
+//kako pozvati funkciju za dodavanje novog zap
+//public void addnew(ActionEvent actionEvent) throws IOException{}
+}

@@ -20,6 +20,10 @@ public class Employee implements Idable {
     private int att_id;
     private String edu;
     private int payoff;
+
+
+    public Employee() {
+    }
     public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, int att_id, String edu, int payoff) {
         this.ID = ID;
         this.first_name = first_name;
@@ -32,10 +36,6 @@ public class Employee implements Idable {
         this.edu = edu;
         this.payoff = payoff;
     }
-
-    public Employee() {
-    }
-
     public void setId(int id) {
         this.ID=id;
     }

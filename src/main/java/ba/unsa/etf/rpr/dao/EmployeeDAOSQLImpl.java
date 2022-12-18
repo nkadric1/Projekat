@@ -2,9 +2,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Department;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
-import sun.reflect.generics.tree.Tree;
 
-import java.io.FileReader;
 
 import java.sql.*;
 import java.util.*;
@@ -21,15 +19,15 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
 
     /**
      * this method returns list of employees that works in department that is passed as parameter
-     * @param dep
+     * @param
      * @return list of employees
      */
     @Override
-    public List<Employee> searchByDepartment(Department dep) {
-        String q="SELECT * FROM Employee WHERE department_id= ?";
+    public List<Employee> searchByDepartment(int Id) {
+        String q="SELECT * FROM Employee WHERE department_id = ?";
         try{
             PreparedStatement s=getConnection().prepareStatement(q);
-            s.setInt(1,dep.getId());
+            s.setInt(1,Id);
             ResultSet r=s.executeQuery();
             ArrayList<Employee> list=new ArrayList<>();
             while(r.next()){
@@ -41,6 +39,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
                 e.setHire_date(r.getDate(5));
                 e.setEdu(r.getString(7));
                 e.setPayoff(r.getInt("payoff"));
+                list.add(e);
             }
             return list;
         } catch (SQLException e) {
@@ -51,15 +50,15 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
 
     /**
      * this method returns list of employees that works on project that is passed as parameter
-     * @param p
+     * @param id
      * @return list of employees
      */
     @Override
-    public List<Employee> searchByProject(Project p) {
+    public List<Employee> searchByProject(int id) {
         String q="SELECT * FROM Employee WHERE project_id = ?";
         try{
             PreparedStatement s=getConnection().prepareStatement(q);
-            s.setInt(1, p.getId());
+            s.setInt(1, id);
             ResultSet r=s.executeQuery();
             ArrayList<Employee> list=new ArrayList<>();
             while(r.next()){
@@ -70,7 +69,10 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
                 e.setAddress(r.getString(4));
                 e.setHire_date(r.getDate(5));
                 e.setEdu(r.getString(7));
+                e.setDepartment_id(r.getInt(8));
+                e.setAtt_id(r.getInt(9));
                 e.setPayoff(r.getInt("payoff"));
+                list.add(e);
             }
             return list;
         } catch (SQLException e) {
@@ -90,7 +92,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
         PreparedStatement tmp=getConnection().prepareStatement(q);
         ResultSet r=tmp.executeQuery();
         ArrayList<Employee> DateList = new ArrayList<>();
-        if(r.next()){
+        while(r.next()){
             Employee e=new Employee();
             e.setId(r.getInt(1));
             e.setFirst_name(r.getString(2));
