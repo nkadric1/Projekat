@@ -1,5 +1,5 @@
 package ba.unsa.etf.rpr.dao;
-import ba.unsa.etf.rpr.domain.Departments;
+import ba.unsa.etf.rpr.domain.Department;
 
 import java.io.FileReader;
 import java.sql.*;
@@ -12,15 +12,19 @@ import java.util.Properties;
  */
 public class DepartmentDAOSQLImpl implements  DepartmentDao{
     private Connection con;
+
+
+
     public DepartmentDAOSQLImpl() {
 
         try {
-            FileReader reader=new FileReader("");
+            FileReader reader=new FileReader("src/main/resources/database.properties");
             Properties p=new Properties();
             p.load(reader);
-            String url=p.getProperty("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582729");
-            String username=p.getProperty("sql7582729");
-            String password="7F1FfHWIiY";
+            String url=p.getProperty("url");
+            String username=p.getProperty("username");
+            String password=p.getProperty("password");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             this.con = DriverManager.getConnection(url,username , password);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -34,7 +38,7 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
     private int getMaxId(){
         int id=1;
         try {
-            PreparedStatement tmp = this.con.prepareStatement("SELECT MAX(ID_dep)+1 FROM Departments");
+            PreparedStatement tmp = this.con.prepareStatement("SELECT MAX(ID_dep)+1 FROM Department");
             ResultSet r= tmp.executeQuery();
             if(r.next()) {
                 id = r.getInt(1);
@@ -54,15 +58,15 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
      * @return department of Id which we passed as parameter
      */
     @Override
-    public Departments getById(int ID) {
-        String q="SELECT * FROM Departments WHERE ID_dep = ?";
+    public Department getById(int ID) {
+        String q="SELECT * FROM Department WHERE ID_dep = ?";
         try{
             PreparedStatement s=this.con.prepareStatement(q);
             s.setInt(1,ID);
             ResultSet r=s.executeQuery();
             if(r.next()){
-               Departments d=new Departments();
-                d.setID(r.getInt(1));
+               Department d=new Department();
+                d.setId(r.getInt(1));
                 d.setHourlypay(r.getInt(2));
                 d.setDepname(r.getString(3));
                 r.close();
@@ -83,12 +87,12 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
      * @return new department
      */
     @Override
-    public Departments add(Departments x) {
+    public Department add(Department x) {
         int id = getMaxId();
         try {
-            PreparedStatement tmp= this.con.prepareStatement("INSERT INTO Departments VALUES (id, x.getHourlypay(), x.getDepname())");
+            PreparedStatement tmp= this.con.prepareStatement("INSERT INTO Department VALUES (id, x.getHourlypay(), x.getDepname())");
             tmp.executeUpdate();
-            x.setID(id);
+            x.setId(id);
             return x;
         } catch (SQLException e) {
             System.out.println("Problem with DB");
@@ -103,10 +107,10 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
      * @return updated department
      */
     @Override
-    public Departments update(Departments x) {
+    public Department update(Department x) {
         try{
-            PreparedStatement tmp = this.con.prepareStatement("UPDATE Departments SET Hourly_pay=?, Department_name=? WHERE ID_dep=?");
-            tmp.setInt(1, x.getID());
+            PreparedStatement tmp = this.con.prepareStatement("UPDATE Department SET Hourly_pay=?, Department_name=? WHERE ID_dep=?");
+            tmp.setInt(1, x.getId());
             tmp.setInt(2, x.getHourlypay());
                 tmp.setString(3, x.getDepname());
             tmp.executeUpdate();
@@ -125,7 +129,7 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
     @Override
     public void delete(int ID) {
         try{
-            PreparedStatement tmp = this.con.prepareStatement("DELETE FROM Departments WHERE ID_dep = ?");
+            PreparedStatement tmp = this.con.prepareStatement("DELETE FROM Department WHERE ID_dep = ?");
             tmp.setInt(1, ID);
             tmp.executeUpdate();
         }catch (SQLException e){
@@ -139,14 +143,14 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
      * @return list of departments
      */
     @Override
-    public List<Departments> getAll() {
-        List<Departments> d = new ArrayList<>();
+    public List<Department> getAll() {
+        List<Department> d = new ArrayList<>();
         try{
-            PreparedStatement tmp= this.con.prepareStatement("SELECT * FROM Departments");
+            PreparedStatement tmp= this.con.prepareStatement("SELECT * FROM Department");
             ResultSet r = tmp.executeQuery();
             while (r.next()){
-                Departments a=new Departments();
-                a.setID(r.getInt(1));
+                Department a=new Department();
+                a.setId(r.getInt(1));
                 a.setDepname(r.getString(3));
                 a.setHourlypay(r.getInt(2));
                 d.add(a);
@@ -164,16 +168,16 @@ public class DepartmentDAOSQLImpl implements  DepartmentDao{
      * @return department
      */
     @Override
-    public Departments ReturnDepartmentForId(int id) {
-        String q = "SELECT * FROM Departments WHERE ID_dep = ?";
+    public Department ReturnDepartmentForId(int id) {
+        String q = "SELECT * FROM Department WHERE ID_dep = ?";
         try {
             PreparedStatement tmp = this.con.prepareStatement(q);
             tmp.setInt(1, id);
             ResultSet r = tmp.executeQuery();
             if (r.next()) {
 
-                Departments c = new Departments();
-                c.setID(r.getInt(1));
+                Department c = new Department();
+                c.setId(r.getInt(1));
                 c.setDepname(r.getString(3));
                 c.setHourlypay(r.getInt(2));
                 return c;

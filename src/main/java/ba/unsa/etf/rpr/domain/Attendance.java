@@ -1,25 +1,31 @@
 package ba.unsa.etf.rpr.domain;
+import ba.unsa.etf.rpr.dao.AttendanceDAOSQLImpl;
+import ba.unsa.etf.rpr.dao.AttendanceDao;
+
 import java.util.Objects;
-public class Attendance {
+public class Attendance implements Idable{
+
+    private int ID;
+    private int hours;
     public Attendance(int ID, int hours) {
         this.ID = ID;
         this.hours = hours;
     }
-public Attendance(){}
-    private int ID;
-    private int hours;
+    public Attendance(){}
+    public void setId(int id) {
+this.ID=id;
+    }
 
-    public int getID() {
+
+    public int getId() {
         return ID;
     }
+
 
     public int getHours() {
         return hours;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public void setHours(int hours) {
         this.hours = hours;
@@ -45,5 +51,7 @@ public Attendance(){}
     public int hashCode() {
         return Objects.hash(ID, hours);
     }
+
+
 
 }

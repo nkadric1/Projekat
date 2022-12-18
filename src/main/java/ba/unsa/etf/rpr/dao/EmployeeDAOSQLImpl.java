@@ -1,13 +1,13 @@
 package ba.unsa.etf.rpr.dao;
-import ba.unsa.etf.rpr.domain.Departments;
+import ba.unsa.etf.rpr.domain.Department;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
 
 import java.io.FileReader;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import java.util.Properties;
 
 /** @author Kadrić Nerma
@@ -17,12 +17,12 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
     private Connection con;
     public EmployeeDAOSQLImpl(){
         try {
-            FileReader reader=new FileReader("");
+            FileReader reader=new FileReader("src/main/resources/database.properties");
             Properties p=new Properties();
             p.load(reader);
-            String url=p.getProperty("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582729");
-            String username=p.getProperty("sql7582729");
-            String password="7F1FfHWIiY";
+            String url=p.getProperty("url");
+            String username=p.getProperty("username");
+            String password=p.getProperty("password");
             this.con = DriverManager.getConnection(url,username , password);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -43,7 +43,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
          ResultSet r=s.executeQuery();
          if(r.next()){
              Employee emp=new Employee();
-             emp.setID(r.getInt("ID_emp"));
+             emp.setId(r.getInt("ID_emp"));
              emp.setFirst_name(r.getString("First_name"));
              emp.setLast_name(r.getString("Last_name"));
              emp.setAddress(r.getString("Address"));
@@ -77,13 +77,13 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
             tmp.setString(1, x.getFirst_name());
            tmp.setString(2,x.getLast_name());
            tmp.setString(3,x.getAddress());
-           tmp.setDate(4,x.getHire_date());
+           tmp.setDate(4, (Date) x.getHire_date());
            tmp.setString(5,x.getEdu());
             tmp.executeUpdate();
 
             ResultSet r= tmp.getGeneratedKeys();
             r.next();
-            x.setID(r.getInt(1));
+            x.setId(r.getInt(1));
             return x;
         }catch (SQLException e){
             e.printStackTrace();
@@ -141,11 +141,12 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
     public List<Employee> getAll() {
         List<Employee> e= new ArrayList<>();
         try{
-            PreparedStatement tmp= this.con.prepareStatement("SELECT * FROM Employee");
+            String q="SELECT * FROM Employee";
+            PreparedStatement tmp= this.con.prepareStatement(q);
             ResultSet r = tmp.executeQuery();
             while (r.next()){
                Employee a=new Employee();
-                a.setID(r.getInt(1));
+                a.setId(r.getInt(1));
                 a.setFirst_name(r.getString(2));
                 a.setLast_name(r.getString(3));
                 a.setAddress(r.getString(4));
@@ -155,11 +156,12 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
                 e.add(a);
             }
             r.close();
-        }catch (SQLException exception){
-            System.out.println("Problem with DB");
-            System.out.println(exception.getMessage());}
+        }catch (SQLException exception){ exception.printStackTrace();}
+           // System.out.println("Problem with DB");
+          //  System.out.println(exception.getMessage());}
         return e;
     }
+
 
     /**
      * this method returns list of employees that works in department that is passed as parameter
@@ -167,7 +169,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
      * @return list of employees
      */
     @Override
-    public List<Employee> searchByDepartment(Departments dep) {
+    public List<Employee> searchByDepartment(Department dep) {
         String q="SELECT * FROM Employee WHERE department_id= ?";
         try{
             PreparedStatement s=this.con.prepareStatement(q);
@@ -176,7 +178,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
             ArrayList<Employee> list=new ArrayList<>();
             while(r.next()){
                 Employee e=new Employee();
-                e.setID(r.getInt(1));
+                e.setId(r.getInt(1));
                 e.setFirst_name(r.getString(2));
                 e.setLast_name(r.getString(3));
                 e.setAddress(r.getString(4));
@@ -206,7 +208,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
             ArrayList<Employee> list=new ArrayList<>();
             while(r.next()){
                 Employee e=new Employee();
-                e.setID(r.getInt(1));
+                e.setId(r.getInt(1));
                 e.setFirst_name(r.getString(2));
                 e.setLast_name(r.getString(3));
                 e.setAddress(r.getString(4));
@@ -234,7 +236,7 @@ public class EmployeeDAOSQLImpl implements EmployeeDao {
         ArrayList<Employee> DateList = new ArrayList<>();
         if(r.next()){
             Employee e=new Employee();
-            e.setID(r.getInt(1));
+            e.setId(r.getInt(1));
             e.setFirst_name(r.getString(2));
             e.setLast_name(r.getString(3));
             e.setAddress(r.getString(4));

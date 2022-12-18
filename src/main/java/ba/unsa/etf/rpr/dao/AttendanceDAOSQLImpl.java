@@ -15,12 +15,12 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
     public AttendanceDAOSQLImpl() {
 
             try {
-                FileReader reader=new FileReader("");
+                FileReader reader=new FileReader("src/main/resources/database.properties");
                 Properties p=new Properties();
                 p.load(reader);
-                String url=p.getProperty("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582729");
-                String username=p.getProperty("sql7582729");
-                String password="7F1FfHWIiY";
+                String url=p.getProperty("url");
+                String username=p.getProperty("username");
+                String password=p.getProperty("password");
                 this.con = DriverManager.getConnection(url,username , password);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -85,7 +85,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
             ResultSet r=s.executeQuery();
             if(r.next()){
                Attendance a=new Attendance();
-                a.setID(r.getInt(1));
+                a.setId(r.getInt(1));
                a.setHours(r.getInt(2));
                 r.close();
                 return a;
@@ -110,7 +110,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
         try {
             PreparedStatement tmp= this.con.prepareStatement("INSERT INTO Attendance VALUES (id, x.getHours())");
             tmp.executeUpdate();
-            x.setID(id);
+            x.setId(id);
             return x;
         } catch (SQLException e) {
             System.out.println("Problem with DB");
@@ -128,7 +128,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
     public Attendance update(Attendance x) {
         try{
             PreparedStatement tmp = this.con.prepareStatement("UPDATE Attendance SET Workhours=? WHERE ID_att=?");
-            tmp.setInt(1, x.getID());
+            tmp.setInt(1, x.getId());
             tmp.setInt(2, x.getHours());
 
             tmp.executeUpdate();
@@ -166,7 +166,7 @@ public class AttendanceDAOSQLImpl implements AttendanceDao{
             ResultSet r = tmp.executeQuery();
             while (r.next()){
                 Attendance a=new Attendance();
-                a.setID(r.getInt(1));
+                a.setId(r.getInt(1));
                a.setHours(r.getInt(2));
                 att.add(a);
             }

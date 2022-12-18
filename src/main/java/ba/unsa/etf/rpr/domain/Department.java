@@ -1,27 +1,31 @@
 package ba.unsa.etf.rpr.domain;
 
+import ba.unsa.etf.rpr.dao.DepartmentDAOSQLImpl;
+
 import java.util.Objects;
 
-public class Departments {
-    public Departments(int ID, String depname, int hourlypay) {
+public class Department implements Idable{
+
+
+
+    private int ID;
+    private String depname;
+    private int hourlypay;
+    public Department() {
+    }
+    public Department(int ID, String depname, int hourlypay) {
         this.ID = ID;
         this.depname = depname;
         this.hourlypay = hourlypay;
     }
 
-    public Departments() {
+    public void setId(int id) {
+      this.ID=id;
     }
 
-    private int ID;
-    private String depname;
-    private int hourlypay;
 
-    public int getID() {
+    public int getId() {
         return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getDepname() {
@@ -42,7 +46,7 @@ public class Departments {
 
     @Override
     public String toString() {
-        return "Departments{" +
+        return "Department{" +
                 "ID=" + ID +
                 ", depname='" + depname + '\'' +
                 ", hourlypay=" + hourlypay +
@@ -52,8 +56,8 @@ public class Departments {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Departments)) return false;
-        Departments that = (Departments) o;
+        if (!(o instanceof Department)) return false;
+        Department that = (Department) o;
         return ID == that.ID && hourlypay == that.hourlypay && depname.equals(that.depname);
     }
 
@@ -61,4 +65,6 @@ public class Departments {
     public int hashCode() {
         return Objects.hash(ID, depname, hourlypay);
     }
+
+
 }

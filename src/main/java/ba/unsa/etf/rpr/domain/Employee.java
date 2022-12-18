@@ -1,4 +1,6 @@
 package ba.unsa.etf.rpr.domain;
+import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -6,11 +8,22 @@ import java.util.Objects;
  * @author Kadrić Nerma
  * this is the bean for employee
  */
-public class Employee {
+public class Employee implements Idable {
+
+    private int ID;
+    private String first_name;
+    private String Last_name;
+    private String address;
+    private Date hire_date;
+    private int department_id;
+    private int project_id;
+    private int att_id;
+    private String edu;
+    private int payoff;
     public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, int att_id, String edu, int payoff) {
         this.ID = ID;
         this.first_name = first_name;
-        Last_name = last_name;
+        this.Last_name = last_name;
         this.address = address;
         this.hire_date = hire_date;
         this.department_id = department_id;
@@ -23,17 +36,14 @@ public class Employee {
     public Employee() {
     }
 
-    private int ID;
-    private String first_name;
-    private String Last_name;
-    private String address;
-    private Date hire_date;
-    private int department_id;
-    private int project_id;
-    private int att_id;
-    private String edu;
-    private int payoff;
+    public void setId(int id) {
+        this.ID=id;
+    }
 
+
+    public int getId() {
+        return ID;
+    }
     public int getProject_id() {
         return project_id;
     }
@@ -50,20 +60,13 @@ public class Employee {
         this.att_id = att_id;
     }
 
-    public int getID(){
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
 
     public void setLast_name(String last_name) {
-        Last_name = last_name;
+        this.Last_name = last_name;
     }
 
     public void setAddress(String address) {
@@ -98,8 +101,8 @@ public class Employee {
         return address;
     }
 
-    public java.sql.Date getHire_date() {
-        return (java.sql.Date) hire_date;
+    public Date getHire_date() {
+        return  hire_date;
     }
 
     public int getDepartment_id() {
@@ -142,4 +145,7 @@ public class Employee {
                 ", payoff=" + payoff +
                 '}';
     }
+
+
+
 }

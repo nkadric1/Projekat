@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Departments;
-import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
 
 import java.io.FileReader;
@@ -17,12 +15,12 @@ public class ProjectDAOSQLImpl implements ProjectDao{
     private Connection con;
     public ProjectDAOSQLImpl(){
         try {
-            FileReader reader=new FileReader("");
+            FileReader reader=new FileReader("src/main/resources/database.properties");
             Properties p=new Properties();
             p.load(reader);
-            String url=p.getProperty("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7582729");
-            String username=p.getProperty("sql7582729");
-            String password="7F1FfHWIiY";
+            String url=p.getProperty("url");
+            String username=p.getProperty("username");
+            String password=p.getProperty("password");
             this.con = DriverManager.getConnection(url,username , password);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -44,7 +42,7 @@ public class ProjectDAOSQLImpl implements ProjectDao{
             ResultSet r=s.executeQuery();
             if(r.next()){
                 Project p=new Project();
-                p.setID(r.getInt("ID_pro"));
+                p.setId(r.getInt("ID_pro"));
                p.setProject_name(r.getString(2));
                 r.close();
                 return p;
@@ -71,7 +69,7 @@ public class ProjectDAOSQLImpl implements ProjectDao{
 
             ResultSet r= tmp.getGeneratedKeys();
             r.next();
-            x.setID(r.getInt(1));
+            x.setId(r.getInt(1));
             return x;
         }catch (SQLException e){
             e.printStackTrace();
@@ -88,7 +86,7 @@ public class ProjectDAOSQLImpl implements ProjectDao{
         String insert = "UPDATE Project SET Project_name = ? WHERE ID_pro = ?";
         try{
             PreparedStatement tmp = this.con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            tmp.setInt(1, x.getID());
+            tmp.setInt(1, x.getId());
             tmp.setString(2, x.getProject_name());
 
             tmp.executeUpdate();
@@ -125,7 +123,7 @@ public class ProjectDAOSQLImpl implements ProjectDao{
             ResultSet r = tmp.executeQuery();
             while (r.next()){
            Project a=new Project();
-                a.setID(r.getInt(1));
+                a.setId(r.getInt(1));
                 a.setProject_name(r.getString(2));
 
                 p.add(a);

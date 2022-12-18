@@ -10,5 +10,5 @@ import java.util.List;
  * method getMaxAttendance actually gives to user  work hours of employee that spends the most time on work
  */
 public interface AttendanceDao extends Dao<Attendance> {
-    int getMaxAttendance();
+  public  int getMaxAttendance();
 }
