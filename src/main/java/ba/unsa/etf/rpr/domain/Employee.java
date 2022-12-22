@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.domain;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
+import javafx.scene.control.TextField;
 
 import java.util.Date;
 import java.util.Objects;
@@ -38,6 +39,9 @@ public class Employee implements Idable {
         this.d1=d1;
         this.d2=d2;
     }
+
+
+
     public void setId(int id) {
         this.ID=id;
     }

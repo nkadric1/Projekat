@@ -50,8 +50,8 @@ public class Controller {
         }
         Stage stage=new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
-        ProjectChooserController projectChooserController = new ProjectChooserController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
-        fxmlLoader.setController(projectChooserController);
+        PageController p = new PageController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
+        fxmlLoader.setController(p);
         Parent root = fxmlLoader.load();
          stage.setTitle("Welcome, search it!");
          stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

@@ -94,6 +94,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
        return sal;
     }
 
+
     /**
      * this method returns list of employees ordered by hire dates
      * @return list of employees
@@ -123,6 +124,37 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
     }
     catch(SQLException e){
         e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+    @Override
+    public Employee getfromID(int id) {
+        String q="SELECT * FROM Employee WHERE id = ?";
+        try{
+            PreparedStatement s=getConnection().prepareStatement(q);
+            s.setInt(1, id);
+            ResultSet r=s.executeQuery();
+            Employee e=new Employee();
+            while(r.next()){
+
+                e.setId(r.getInt("id"));
+                e.setFirst_name(r.getString("First_name"));
+                e.setLast_name(r.getString("Last_name"));
+                e.setAddress(r.getString("Address"));
+                e.setHire_date(r.getDate("Hire_date"));
+                e.setEdu(r.getString("Education"));
+                e.setDepartment_id(r.getInt("department_id"));
+                e.setPayoff(r.getInt("payoff"));
+                e.setDateF(r.getDate("DateBegin"));
+                e.setDateS(r.getDate("DateEnd"));
+
+            }
+            return e;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
