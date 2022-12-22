@@ -19,4 +19,5 @@ public interface EmployeeDao extends Dao<Employee> {
   public  List<Employee> searchByDepartment(int Id);
  public   List<Employee> searchByProject(int id);
   public  List<Employee> getByHireDate();
+  public int returnSalary(int sal);
 }

@@ -68,7 +68,7 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         return null;
     }
     public void delete(int id){
-        String sq="DELETE FROM "+name+"WHERE id = ?";
+        String sq="DELETE FROM "+name+" WHERE id = ?";
         try{
             PreparedStatement s=getConnection().prepareStatement(sq,Statement.RETURN_GENERATED_KEYS);
             s.setObject(1,id);

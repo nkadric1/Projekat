@@ -17,14 +17,15 @@ public class Employee implements Idable {
     private Date hire_date;
     private int department_id;
     private int project_id;
-    private int att_id;
     private String edu;
     private int payoff;
+    private Date d1;
+    private Date d2;
 
 
     public Employee() {
     }
-    public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, int att_id, String edu, int payoff) {
+    public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, String edu, int payoff, Date d1, Date d2) {
         this.ID = ID;
         this.first_name = first_name;
         this.Last_name = last_name;
@@ -32,9 +33,10 @@ public class Employee implements Idable {
         this.hire_date = hire_date;
         this.department_id = department_id;
         this.project_id = project_id;
-        this.att_id = att_id;
         this.edu = edu;
         this.payoff = payoff;
+        this.d1=d1;
+        this.d2=d2;
     }
     public void setId(int id) {
         this.ID=id;
@@ -52,12 +54,20 @@ public class Employee implements Idable {
         this.project_id = project_id;
     }
 
-    public int getAtt_id() {
-        return att_id;
+    public Date getDateF() {
+        return d1;
     }
 
-    public void setAtt_id(int att_id) {
-        this.att_id = att_id;
+    public void setDateF(Date d) {
+        this.d1=d;
+    }
+
+    public Date getDateS() {
+        return d2;
+    }
+
+    public void setDateS(Date d) {
+        this.d2=d;
     }
 
 
@@ -122,12 +132,7 @@ public class Employee implements Idable {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return ID == employee.ID && department_id == employee.department_id && project_id == employee.project_id && att_id == employee.att_id && payoff == employee.payoff && Objects.equals(first_name, employee.first_name) && Objects.equals(Last_name, employee.Last_name) && Objects.equals(address, employee.address) && Objects.equals(hire_date, employee.hire_date) && Objects.equals(edu, employee.edu);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID, first_name, Last_name, address, hire_date, department_id, project_id, att_id, edu, payoff);
+        return ID == employee.ID && department_id == employee.department_id && project_id == employee.project_id && payoff == employee.payoff && first_name.equals(employee.first_name) && Last_name.equals(employee.Last_name) && address.equals(employee.address) && hire_date.equals(employee.hire_date) && edu.equals(employee.edu) && d1.equals(employee.d1) && d2.equals(employee.d2);
     }
 
     @Override
@@ -140,12 +145,15 @@ public class Employee implements Idable {
                 ", hire_date=" + hire_date +
                 ", department_id=" + department_id +
                 ", project_id=" + project_id +
-                ", att_id=" + att_id +
                 ", edu='" + edu + '\'' +
                 ", payoff=" + payoff +
+                ", d1=" + d1 +
+                ", d2=" + d2 +
                 '}';
     }
 
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, first_name, Last_name, address, hire_date, department_id, project_id, edu, payoff, d1, d2);
+    }
 }

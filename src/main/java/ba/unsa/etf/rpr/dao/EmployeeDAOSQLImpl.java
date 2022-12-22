@@ -12,6 +12,8 @@ import java.util.*;
  */
 public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements EmployeeDao {
 
+    private int sal;
+
     public EmployeeDAOSQLImpl(){
         super("Employee");
     }
@@ -32,13 +34,15 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
             ArrayList<Employee> list=new ArrayList<>();
             while(r.next()){
                 Employee e=new Employee();
-                e.setId(r.getInt(1));
-                e.setFirst_name(r.getString(2));
-                e.setLast_name(r.getString(3));
-                e.setAddress(r.getString(4));
-                e.setHire_date(r.getDate(5));
-                e.setEdu(r.getString(7));
+                e.setId(r.getInt("id"));
+                e.setFirst_name(r.getString("First_name"));
+                e.setLast_name(r.getString("Last_name"));
+                e.setAddress(r.getString("Address"));
+                e.setHire_date(r.getDate("Hire_date"));
+                e.setEdu(r.getString("Education"));
                 e.setPayoff(r.getInt("payoff"));
+                e.setDateF(r.getDate("DateBegin"));
+                e.setDateS(r.getDate("DateEnd"));
                 list.add(e);
             }
             return list;
@@ -63,15 +67,17 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
             ArrayList<Employee> list=new ArrayList<>();
             while(r.next()){
                 Employee e=new Employee();
-                e.setId(r.getInt(1));
-                e.setFirst_name(r.getString(2));
-                e.setLast_name(r.getString(3));
-                e.setAddress(r.getString(4));
-                e.setHire_date(r.getDate(5));
-                e.setEdu(r.getString(7));
-                e.setDepartment_id(r.getInt(8));
-                e.setAtt_id(r.getInt(9));
+                e.setId(r.getInt("id"));
+                e.setFirst_name(r.getString("First_name"));
+                e.setLast_name(r.getString("Last_name"));
+                e.setAddress(r.getString("Address"));
+                e.setHire_date(r.getDate("Hire_date"));
+                e.setEdu(r.getString("Education"));
+                e.setDepartment_id(r.getInt("department_id"));
                 e.setPayoff(r.getInt("payoff"));
+                e.setDateF(r.getDate("DateBegin"));
+                e.setDateS(r.getDate("DateEnd"));
+
                 list.add(e);
             }
             return list;
@@ -79,6 +85,13 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
             e.printStackTrace();
         }
         return null;
+    }
+
+   @Override
+    public int returnSalary(int sal) {
+
+       //String q=" ";
+       return sal;
     }
 
     /**
@@ -94,13 +107,16 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
         ArrayList<Employee> DateList = new ArrayList<>();
         while(r.next()){
             Employee e=new Employee();
-            e.setId(r.getInt(1));
-            e.setFirst_name(r.getString(2));
-            e.setLast_name(r.getString(3));
-            e.setAddress(r.getString(4));
-            e.setHire_date(r.getDate(5));
-            e.setEdu(r.getString(7));
+            e.setId(r.getInt("id"));
+            e.setFirst_name(r.getString("First_name"));
+            e.setLast_name(r.getString("Last_name"));
+            e.setAddress(r.getString("Address"));
+            e.setHire_date(r.getDate("Hire_date"));
+            e.setEdu(r.getString("Education"));
+            e.setProject_id(r.getInt("project_id"));
             e.setPayoff(r.getInt("payoff"));
+            e.setDateF(r.getDate("DateBegin"));
+            e.setDateS(r.getDate("DateEnd"));
             DateList.add(e);
         }
         return DateList;
@@ -110,6 +126,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
         }
         return null;
     }
+
 
     @Override
     public Employee rowtoobject(ResultSet r) {
@@ -123,8 +140,9 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
             emp.setDepartment_id(r.getInt("department_id"));
             emp.setEdu(r.getString("Education"));
             emp.setProject_id(r.getInt("project_id"));
-            emp.setAtt_id(r.getInt("att_id"));
             emp.setPayoff(r.getInt("payoff"));
+            emp.setDateF(r.getDate("DateBegin"));
+            emp.setDateS(r.getDate("DateEnd"));
             return emp;
         }catch(SQLException e){
             e.printStackTrace();
@@ -143,8 +161,9 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
         r.put("department_id",object.getDepartment_id());
         r.put("Education", object.getEdu());
         r.put("project_id", object.getProject_id());
-        r.put("att_id", object.getAtt_id());
         r.put("payoff", object.getPayoff());
+        r.put("DateBegin", object.getDateF());
+        r.put("DateEnd",object.getDateS());
         return r;
 
     }

@@ -5,4 +5,5 @@ public interface DepartmentDao extends Dao<Department> {
 
 
    public Department ReturnDepartmentForId(int id);
+
 }

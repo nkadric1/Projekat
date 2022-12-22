@@ -1,5 +1,7 @@
-package ba.unsa.etf.rpr;
+package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.DaoFactory;
+import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -8,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -19,6 +22,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class Controller {
     public TextField fieldUser;
+    public PasswordField fieldPassword;
     public Button bBtn;
 
     @FXML
@@ -45,11 +49,15 @@ public class Controller {
             return;
         }
         Stage stage=new Stage();
-    Parent root=FXMLLoader.load((getClass().getResource("/FXML/new.fxml")));
-     stage.setTitle("Welcome, search it!");
-     stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-     stage.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
+        ProjectChooserController projectChooserController = new ProjectChooserController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
+        fxmlLoader.setController(projectChooserController);
+        Parent root = fxmlLoader.load();
+         stage.setTitle("Welcome, search it!");
+         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+         stage.show();
 }
 //kako pozvati funkciju za dodavanje novog zap
-//public void addnew(ActionEvent actionEvent) throws IOException{}
+//public void addnew(ActionEvent actionEvent) throws IOException{
+// }
 }
