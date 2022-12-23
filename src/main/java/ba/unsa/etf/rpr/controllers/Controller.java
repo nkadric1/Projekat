@@ -48,16 +48,15 @@ public class Controller {
         if (fieldUser.getText().isEmpty()) {
             return;
         }
-        Stage stage=new Stage();
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
         PageController p = new PageController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
         fxmlLoader.setController(p);
         Parent root = fxmlLoader.load();
-         stage.setTitle("Welcome, search it!");
+        Stage stage=new Stage();
          stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setTitle("Company report!");
          stage.show();
 }
-//kako pozvati funkciju za dodavanje novog zap
-//public void addnew(ActionEvent actionEvent) throws IOException{
-// }
+
 }

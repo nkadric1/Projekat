@@ -138,7 +138,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
             s.setInt(1, id);
             ResultSet r=s.executeQuery();
             Employee e=new Employee();
-            while(r.next()){
+            if (r.next()){
 
                 e.setId(r.getInt("id"));
                 e.setFirst_name(r.getString("First_name"));
