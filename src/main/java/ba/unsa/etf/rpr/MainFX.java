@@ -16,11 +16,12 @@ public class MainFX extends Application {
             Controller controller = new Controller();
             fl.setController(controller);
             Parent root = fl.load();
-            primarystage.setTitle("Login");
+            primarystage.setTitle("Welcome to Develoop, please log in.");
             primarystage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-         //   primarystage.setResizable(false); //iskljucivo se stavlja za dijaloske prozore
-           primarystage.setMinHeight(150);
-            primarystage.setMinWidth(250);
+            //primarystage.setResizable(false); //iskljucivo se stavlja za dijaloske prozore
+            primarystage.setMinWidth(500);
+           primarystage.setMinHeight(215);
+
 
             primarystage.show();
         } catch (Exception e) {
