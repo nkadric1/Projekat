@@ -1,22 +1,31 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
 import ba.unsa.etf.rpr.dao.EmployeeDao;
 import ba.unsa.etf.rpr.domain.Employee;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class PageController {
     public TextField empidfield;
@@ -33,6 +42,36 @@ public class PageController {
     public TableColumn<Employee,Integer> depemp;
     public TableColumn<Employee, String> empNamecol;
     public TableColumn<Employee, Date> emphdatecol;
+    public MenuItem close;
+    @FXML
+    public void closeIt(ActionEvent actionEvent){
+        Platform.exit();
+        System.exit(0);
+    }
+   // @FXML
+ /*   public void saveIt(ActionEvent actionEvent){
+
+        final String sampleText =null;
+        for ( Employee e: employeeDAOSQL.getAll()){
+            sampleText=e.toString();
+        }
+
+        Text sample = new Text(sampleText);
+
+            FileChooser fileChooser = new FileChooser();
+
+            //Set extension filter for text files
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            //Show save file dialog
+            File file = fileChooser.showSaveDialog();
+
+            if (file != null) {
+                saveTextToFile(sampleText, file);
+            }
+
+    }*/
     @FXML
     public void initialize(){
         empIdcol.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("id"));
@@ -53,7 +92,7 @@ public class PageController {
         e.setLast_name(lnamefield.getText());
          e.setAddress(addressfield.getText());
          //iz koje biblioteke je valueof
-       // if(hdatefield==null) e.setHire_date(LocalDate.now());
+      // if(hdatefield==null) e.setHire_date(Date.valueOf(LocalDate.now()));
        // else e.setHire_date(hdatefield.getValue());
        e.setEdu(edufield.getText());
       employeeDAOSQL.add(e);
@@ -75,5 +114,16 @@ public void updateAdd(ActionEvent actionEvent){
 }
     public PageController(EmployeeDAOSQLImpl employeeDAOSQL) {
         this.employeeDAOSQL = employeeDAOSQL;
+    }
+    @FXML
+    public void Click2Project(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/pro.fxml"));
+      projectController p = new projectController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
+        fxmlLoader.setController(p);
+        Parent root = fxmlLoader.load();
+        Stage stage=new Stage();
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setTitle("Develoop's projects");
+        stage.show();
     }
 }

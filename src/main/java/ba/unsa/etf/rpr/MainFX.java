@@ -12,7 +12,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class MainFX extends Application {
     public void start(Stage primarystage) throws Exception {
         try {
-            FXMLLoader fl = new FXMLLoader(getClass().getResource("/FXML/project.fxml"));
+            FXMLLoader fl = new FXMLLoader(getClass().getResource("/FXML/first.fxml"));
             Controller controller = new Controller();
             fl.setController(controller);
             Parent root = fl.load();
