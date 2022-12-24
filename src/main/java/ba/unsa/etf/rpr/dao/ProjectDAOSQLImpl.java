@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
 import org.apache.commons.collections.map.TransformedSortedMap;
 
@@ -15,6 +16,7 @@ public class ProjectDAOSQLImpl extends AbstractDao<Project> implements ProjectDa
     public ProjectDAOSQLImpl(){
        super("Project");
     }
+
 
 
     @Override
