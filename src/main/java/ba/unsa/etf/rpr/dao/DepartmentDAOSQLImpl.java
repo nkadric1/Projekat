@@ -59,7 +59,7 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
         }catch(SQLException e){
            throw new EmployeeException(e.getMessage(),e);
         }
-        return null;
+
     }
 
     @Override

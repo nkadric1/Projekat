@@ -4,7 +4,7 @@ import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
 
 import java.util.List;
-
+import ba.unsa.etf.rpr.exceptions.EmployeeException;
 /**
  * @Kadrić Nerma
  * Interface for Employee domain bean as Dao
@@ -16,10 +16,10 @@ import java.util.List;
  */
 public interface EmployeeDao extends Dao<Employee> {
 
-  public  List<Employee> searchByDepartment(int Id);
- public   List<Employee> searchByProject(int id);
-  public  List<Employee> getByHireDate();
+  public  List<Employee> searchByDepartment(int Id) throws EmployeeException;
+ public   List<Employee> searchByProject(int id)throws EmployeeException;
+  public  List<Employee> getByHireDate() throws EmployeeException;
 
-  public Employee getfromID(int id);
-  public int returnSalary(int sal);
+  public Employee getfromID(int id) throws EmployeeException;
+
 }

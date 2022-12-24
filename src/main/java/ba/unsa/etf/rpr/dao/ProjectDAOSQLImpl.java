@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
+import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import org.apache.commons.collections.map.TransformedSortedMap;
 
 import java.io.FileReader;
@@ -20,7 +21,7 @@ public class ProjectDAOSQLImpl extends AbstractDao<Project> implements ProjectDa
 
 
     @Override
-    public Project rowtoobject(ResultSet r) {
+    public Project rowtoobject(ResultSet r) throws EmployeeException {
         try{
             Project p=new Project();
             p.setId(r.getInt("id"));

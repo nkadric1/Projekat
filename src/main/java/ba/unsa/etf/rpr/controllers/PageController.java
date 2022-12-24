@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
 import ba.unsa.etf.rpr.dao.EmployeeDao;
 import ba.unsa.etf.rpr.domain.Employee;
+import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -86,7 +87,7 @@ public class PageController {
         }
     }
     @FXML
-    public void addNew(ActionEvent actionEvent){
+    public void addNew(ActionEvent actionEvent) throws EmployeeException {
         Employee e = new Employee();
         e.setFirst_name(fnamefield.getText());
         e.setLast_name(lnamefield.getText());
@@ -98,7 +99,7 @@ public class PageController {
       employeeDAOSQL.add(e);
     }
 @FXML
-public void searchEmp(ActionEvent actionEvent){
+public void searchEmp(ActionEvent actionEvent) throws EmployeeException {
   Employee e=employeeDAOSQL.getfromID(Integer.parseInt(empidfield.getText()));
     ObservableList<Employee> emp=FXCollections.observableArrayList();
     emp.add(e);
@@ -106,7 +107,7 @@ public void searchEmp(ActionEvent actionEvent){
 }
 //sta uraditi za update adrese
 @FXML
-public void updateAdd(ActionEvent actionEvent){
+public void updateAdd(ActionEvent actionEvent) throws EmployeeException {
         Employee e=new Employee();
         e.setId(Integer.parseInt(empidfield.getText()));
         e.setAddress(adr.getText());

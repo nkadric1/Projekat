@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Idable;
+import ba.unsa.etf.rpr.exceptions.EmployeeException;
+
 import java.sql.*;
 import java.util.*;
 
@@ -27,11 +29,11 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         return this.con;
     }
 
-    public abstract tt rowtoobject(ResultSet r);
+    public abstract tt rowtoobject(ResultSet r) throws EmployeeException;
 
     public abstract Map<String, Object> objecttorow(tt object);
 
-    public tt getById(int id) {
+    public tt getById(int id) throws EmployeeException{
         String q = "SELECT * FROM" + this.name + " id = ?";
         try {
             PreparedStatement s = this.con.prepareStatement(q);
@@ -46,12 +48,12 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             }
 
 
-        } catch (SQLException e) { //dodati svoj exc
-            e.printStackTrace();
+        } catch (SQLException e) {
+          throw new EmployeeException(e.getMessage(),e);
         }
-        return null;
+
     }
-    public List<tt> getAll(){
+    public List<tt> getAll() throws EmployeeException{
         String q="SELECT * FROM "+ name;
         List<tt> res=new ArrayList<tt>();
         try{
@@ -64,20 +66,20 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             r.close();
             return  res;
         }catch(SQLException e) {
-            e.printStackTrace();}
-        return null;
+          throw new EmployeeException(e.getMessage(),e);}
+
     }
-    public void delete(int id){
+    public void delete(int id) throws EmployeeException{
         String sq="DELETE FROM "+name+" WHERE id = ?";
         try{
             PreparedStatement s=getConnection().prepareStatement(sq,Statement.RETURN_GENERATED_KEYS);
             s.setObject(1,id);
             s.executeUpdate();
         }catch (SQLException e){
-            e.printStackTrace();
+           throw new EmployeeException(e.getMessage(),e);
         }
     }
-    public tt update(tt i){
+    public tt update(tt i) throws EmployeeException{
         Map<String, Object> r=objecttorow(i);
         String ucol=prepareUpdateParts(r);
         StringBuilder build=new StringBuilder();
@@ -93,11 +95,10 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             s.executeUpdate();
             return i;
         }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return null;
+            throw new EmployeeException(e.getMessage(),e);}
+
     }
-    public tt add(tt i){
+    public tt add(tt i) throws EmployeeException{
         Map<String,Object> r=objecttorow(i);
         Map.Entry<String,String> col=prepareInsertParts(r);
         StringBuilder build=new StringBuilder();
@@ -117,9 +118,9 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             i.setId(rset.getInt(1));
             return i;
         }catch(SQLException e){
-            e.printStackTrace();
+           throw new EmployeeException(e.getMessage(),e);
         }
-        return null;
+
     }
 
 

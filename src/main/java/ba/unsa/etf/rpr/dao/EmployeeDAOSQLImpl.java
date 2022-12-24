@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Department;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
-
+import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
 import java.sql.*;
 import java.util.*;
@@ -25,7 +25,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
      * @return list of employees
      */
     @Override
-    public List<Employee> searchByDepartment(int Id) {
+    public List<Employee> searchByDepartment(int Id) throws EmployeeException {
         String q="SELECT * FROM Employee WHERE department_id = ?";
         try{
             PreparedStatement s=getConnection().prepareStatement(q);
@@ -58,7 +58,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
      * @return list of employees
      */
     @Override
-    public List<Employee> searchByProject(int id) {
+    public List<Employee> searchByProject(int id) throws EmployeeException {
         String q="SELECT * FROM Employee WHERE project_id = ?";
         try{
             PreparedStatement s=getConnection().prepareStatement(q);
@@ -87,12 +87,6 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
         return null;
     }
 
-   @Override
-    public int returnSalary(int sal) {
-
-       //String q=" ";
-       return sal;
-    }
 
 
     /**
@@ -100,7 +94,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
      * @return list of employees
      */
     @Override
-    public List<Employee> getByHireDate() {
+    public List<Employee> getByHireDate() throws EmployeeException{
     String q="SELECT * FROM Employee ORDER BY Hire_date";
     try{
         PreparedStatement tmp=getConnection().prepareStatement(q);
@@ -131,7 +125,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
 
 
     @Override
-    public Employee getfromID(int id) {
+    public Employee getfromID(int id) throws EmployeeException {
         String q="SELECT * FROM Employee WHERE id = ?";
         try{
             PreparedStatement s=getConnection().prepareStatement(q);
@@ -161,7 +155,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
 
 
     @Override
-    public Employee rowtoobject(ResultSet r) {
+    public Employee rowtoobject(ResultSet r) throws EmployeeException{
         try{
             Employee emp=new Employee();
             emp.setId(r.getInt("id"));
