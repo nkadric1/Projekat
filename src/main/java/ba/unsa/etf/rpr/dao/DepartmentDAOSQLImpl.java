@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Department;
+import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
 import java.io.FileReader;
 import java.sql.*;
@@ -18,26 +19,7 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
        super("Departments");
     }
 
-    /**
-     * method that works with id
-     * @return maxId+1 for a new row in which we can put a new object
-     */
-    private int getMaxId(){
-        int id=1;
-        try {
-            PreparedStatement tmp = getConnection().prepareStatement("SELECT MAX(id)+1 FROM Department");
-            ResultSet r= tmp.executeQuery();
-            if(r.next()) {
-                id = r.getInt(1);
-                r.close();
-                return id;
-            }
-        } catch (SQLException e) {
-            System.out.println("Problem with DB");
-            System.out.println(e.getMessage());
-        }
-        return id;
-    }
+
 
 
     /**
@@ -46,7 +28,7 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
      * @return department
      */
     @Override
-    public Department ReturnDepartmentForId(int id) {
+    public Department ReturnDepartmentForId(int id) throws EmployeeException {
         String q = "SELECT * FROM Department WHERE id = ?";
         try {
             PreparedStatement tmp = getConnection().prepareStatement(q);
@@ -60,14 +42,14 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
                 return c;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new EmployeeException(e.getMessage(),e);
         }
 
         return null;
     }
 
     @Override
-    public Department rowtoobject(ResultSet r) {
+    public Department rowtoobject(ResultSet r)  throws EmployeeException {
         try{
             Department d=new Department();
             d.setId(r.getInt("id"));
@@ -75,7 +57,7 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
             d.setDepname(r.getString("Department_name"));
             return d;
         }catch(SQLException e){
-            e.printStackTrace();
+           throw new EmployeeException(e.getMessage(),e);
         }
         return null;
     }
