@@ -30,6 +30,7 @@ public class PageController {
     private EmployeeDAOSQLImpl employeeDAOSQL=new EmployeeDAOSQLImpl();
     public TableView emptab;
     public TableColumn<Employee, Integer> empIdcol;
+    public TableColumn<Employee,Integer> depemp;
     public TableColumn<Employee, String> empNamecol;
     public TableColumn<Employee, Date> emphdatecol;
     @FXML
@@ -37,6 +38,7 @@ public class PageController {
         empIdcol.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("id"));
         empNamecol.setCellValueFactory(new PropertyValueFactory<Employee,String>("First_name"));
         emphdatecol.setCellValueFactory(new PropertyValueFactory<Employee,Date>("Hire_date"));
+        depemp.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("department_id"));
         try {
             emptab.setItems(FXCollections.observableList(employeeDAOSQL.getAll()));
             emptab.refresh();

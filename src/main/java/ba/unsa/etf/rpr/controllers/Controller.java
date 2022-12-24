@@ -30,10 +30,10 @@ public class Controller {
     @FXML
     public void initialize() {
 
-        fieldUser.getStyleClass().add("fieldisnotOK");
+     /*   fieldUser.getStyleClass().add("fieldisnotOK");
         fieldUser.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+           public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 if (fieldUser.getText().trim().isEmpty() || passfield.getText().trim().isEmpty()) {
                     fieldUser.getStyleClass().removeAll("fieldisOK");
                     fieldUser.getStyleClass().add("fieldisnotOK");
@@ -46,14 +46,18 @@ public class Controller {
                     passfield.getStyleClass().add("fieldisOK");
                 }
             }
-        });
+        });*/
     }
 //kako popraviti ove boje da odmah oba textfielda budu crveni i da pozelene kada je sve tacno
 
     public void Click(ActionEvent actionEvent) throws IOException {
         //if usernamefield is empty then show an error
-      //  if (fieldUser.getText().isEmpty()) {return;
-       // }
+       if (fieldUser.getText().isEmpty() ) {
+           infobox("Please, enter username!", null, "Field is empty.");
+       }
+       else if ( passfield.getText().isEmpty()){
+           infobox("Please, enter password!", null, "Field is empty.");
+       }
 String us=fieldUser.getText();
         String pas=passfield.getText();
    UsersDAOSQLImpl u=new UsersDAOSQLImpl();
