@@ -12,12 +12,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.image.Image?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints />
@@ -60,6 +60,7 @@
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="95.0" />
+            <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="100.4" minHeight="10.0" prefHeight="30.4" vgrow="SOMETIMES" />
@@ -109,7 +110,7 @@
                <GridPane.margin>
                   <Insets bottom="8.0" left="2.0" />
                </GridPane.margin>
-                <Image fx:id="img2" url="@/IMAGES/R.png"/>
+                <Image fx:id="img2" url="@/IMAGES/R.png" />
             </ImageView>
          </children>
          <padding>
