@@ -22,51 +22,55 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         } catch (Exception e) {
             System.out.println("Problem with DB");
             e.printStackTrace();
+            System.exit(0);
         }
     }
 
     public Connection getConnection() {
         return this.con;
     }
+    public void setConnection(Connection c){ this.con=c;}
 
     public abstract tt rowtoobject(ResultSet r) throws EmployeeException;
 
     public abstract Map<String, Object> objecttorow(tt object);
 
     public tt getById(int id) throws EmployeeException{
-        String q = "SELECT * FROM" + this.name + " id = ?";
-        try {
-            PreparedStatement s = this.con.prepareStatement(q);
-            s.setInt(1, id);
-            ResultSet r = s.executeQuery();
-            if (r.next()) {
-                tt res=rowtoobject(r);
-                r.close();
-              return res;
-            } else { //dodati svoj exc
-                return null;
-            }
 
-
-        } catch (SQLException e) {
-          throw new EmployeeException(e.getMessage(),e);
-        }
+        return executeQUq("SELECT * FROM" + this.name + " WHERE id = ?",new Object[]{id});
+//        try {
+//            PreparedStatement s = this.con.prepareStatement(q);
+//            s.setInt(1, id);
+//            ResultSet r = s.executeQuery();
+//            if (r.next()) {
+//                tt res=rowtoobject(r);
+//                r.close();
+//              return res;
+//            } else { //dodati svoj exc
+//                return null;
+//            }
+//
+//
+//        } catch (SQLException e) {
+//          throw new EmployeeException(e.getMessage(),e);
+//        }
 
     }
     public List<tt> getAll() throws EmployeeException{
-        String q="SELECT * FROM "+ name;
-        List<tt> res=new ArrayList<tt>();
-        try{
-            PreparedStatement s=getConnection().prepareStatement(q);
-            ResultSet r=s.executeQuery();
-            while(r.next()){
-                tt obj=rowtoobject(r);
-                res.add(obj);
-            }
-            r.close();
-            return  res;
-        }catch(SQLException e) {
-          throw new EmployeeException(e.getMessage(),e);}
+
+        return executeQ("SELECT * FROM "+ name, null);
+//        List<tt> res=new ArrayList<tt>();
+//        try{
+//            PreparedStatement s=getConnection().prepareStatement(q);
+//            ResultSet r=s.executeQuery();
+//            while(r.next()){
+//                tt obj=rowtoobject(r);
+//                res.add(obj);
+//            }
+//            r.close();
+//            return  res;
+//        }catch(SQLException e) {
+//          throw new EmployeeException(e.getMessage(),e);}
 
     }
     public void delete(int id) throws EmployeeException{
@@ -152,5 +156,28 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             }
         }
        return  col.toString();
+    }
+    public List<tt> executeQ(String q, Object[] p) throws EmployeeException{
+        try{
+            PreparedStatement tmp=getConnection().prepareStatement(q);
+            if(p!=null){
+                for(int i=1;i<=p.length;i++) tmp.setObject(i,p[i-1]);
+            }
+            ResultSet r=tmp.executeQuery();
+            ArrayList<tt> rlist=new ArrayList<>();
+            while(r.next()) rlist.add(rowtoobject(r));
+            return rlist;
+        }catch(SQLException e){
+            throw new EmployeeException(e.getMessage(),e);
+        }
+    }
+    public tt executeQUq(String q, Object[] p) throws EmployeeException{
+        List<tt> r=executeQ(q,p);
+        if(r!=null && r.size()==1){
+            return r.get(0);
+        }
+        else{
+            throw new EmployeeException("Not found!");
+        }
     }
 }
