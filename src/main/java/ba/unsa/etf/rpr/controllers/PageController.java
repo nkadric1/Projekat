@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -91,7 +92,9 @@ public class PageController {
         Employee e = new Employee();
         e.setFirst_name(fnamefield.getText());
         e.setLast_name(lnamefield.getText());
-         e.setAddress(addressfield.getText());
+//         e.setAddress(addressfield.getText());
+//        e.setHire_date(new Date(hdatefield.getValue().getYear(), hdatefield.getValue().getMonthValue(), hdatefield.getValue().getDayOfMonth()));
+//
          //iz koje biblioteke je valueof
       // if(hdatefield==null) e.setHire_date(Date.valueOf(LocalDate.now()));
        // else e.setHire_date(hdatefield.getValue());

@@ -20,13 +20,12 @@ public class Employee implements Idable {
     private int project_id;
     private String edu;
     private int payoff;
-    private Date d1;
-    private Date d2;
+
 
 
     public Employee() {
     }
-    public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, String edu, int payoff, Date d1, Date d2) {
+    public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, String edu, int payoff) {
         this.ID = ID;
         this.first_name = first_name;
         this.Last_name = last_name;
@@ -36,8 +35,7 @@ public class Employee implements Idable {
         this.project_id = project_id;
         this.edu = edu;
         this.payoff = payoff;
-        this.d1=d1;
-        this.d2=d2;
+
     }
 
 
@@ -58,21 +56,7 @@ public class Employee implements Idable {
         this.project_id = project_id;
     }
 
-    public Date getDateF() {
-        return d1;
-    }
 
-    public void setDateF(Date d) {
-        this.d1=d;
-    }
-
-    public Date getDateS() {
-        return d2;
-    }
-
-    public void setDateS(Date d) {
-        this.d2=d;
-    }
 
 
     public void setFirst_name(String first_name) {
@@ -136,7 +120,7 @@ public class Employee implements Idable {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return ID == employee.ID && department_id == employee.department_id && project_id == employee.project_id && payoff == employee.payoff && first_name.equals(employee.first_name) && Last_name.equals(employee.Last_name) && address.equals(employee.address) && hire_date.equals(employee.hire_date) && edu.equals(employee.edu) && d1.equals(employee.d1) && d2.equals(employee.d2);
+        return ID == employee.ID && department_id == employee.department_id && project_id == employee.project_id && payoff == employee.payoff && first_name.equals(employee.first_name) && Last_name.equals(employee.Last_name) && address.equals(employee.address) && hire_date.equals(employee.hire_date) && edu.equals(employee.edu);
     }
 
     @Override
@@ -151,13 +135,11 @@ public class Employee implements Idable {
                 ", project_id=" + project_id +
                 ", edu='" + edu + '\'' +
                 ", payoff=" + payoff +
-                ", d1=" + d1 +
-                ", d2=" + d2 +
                 '}';
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, first_name, Last_name, address, hire_date, department_id, project_id, edu, payoff, d1, d2);
+        return Objects.hash(ID, first_name, Last_name, address, hire_date, department_id, project_id, edu, payoff);
     }
 }

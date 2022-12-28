@@ -41,8 +41,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
                 e.setHire_date(r.getDate("Hire_date"));
                 e.setEdu(r.getString("Education"));
                 e.setPayoff(r.getInt("payoff"));
-                e.setDateF(r.getDate("DateBegin"));
-                e.setDateS(r.getDate("DateEnd"));
+
                 list.add(e);
             }
             return list;
@@ -75,8 +74,6 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
                 e.setEdu(r.getString("Education"));
                 e.setDepartment_id(r.getInt("department_id"));
                 e.setPayoff(r.getInt("payoff"));
-                e.setDateF(r.getDate("DateBegin"));
-                e.setDateS(r.getDate("DateEnd"));
 
                 list.add(e);
             }
@@ -110,8 +107,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
             e.setEdu(r.getString("Education"));
             e.setProject_id(r.getInt("project_id"));
             e.setPayoff(r.getInt("payoff"));
-            e.setDateF(r.getDate("DateBegin"));
-            e.setDateS(r.getDate("DateEnd"));
+
             DateList.add(e);
         }
         return DateList;
@@ -142,8 +138,6 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
                 e.setEdu(r.getString("Education"));
                 e.setDepartment_id(r.getInt("department_id"));
                 e.setPayoff(r.getInt("payoff"));
-                e.setDateF(r.getDate("DateBegin"));
-                e.setDateS(r.getDate("DateEnd"));
 
             }
             return e;
@@ -167,8 +161,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
             emp.setEdu(r.getString("Education"));
             emp.setProject_id(r.getInt("project_id"));
             emp.setPayoff(r.getInt("payoff"));
-            emp.setDateF(r.getDate("DateBegin"));
-            emp.setDateS(r.getDate("DateEnd"));
+
             return emp;
         }catch(SQLException e){
             e.printStackTrace();
@@ -188,8 +181,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
         r.put("Education", object.getEdu());
         r.put("project_id", object.getProject_id());
         r.put("payoff", object.getPayoff());
-        r.put("DateBegin", object.getDateF());
-        r.put("DateEnd",object.getDateS());
+
         return r;
 
     }
