@@ -29,23 +29,24 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
      */
     @Override
     public Department ReturnDepartmentForId(int id) throws EmployeeException {
-        String q = "SELECT * FROM Department WHERE id = ?";
-        try {
-            PreparedStatement tmp = getConnection().prepareStatement(q);
-            tmp.setInt(1, id);
-            ResultSet r = tmp.executeQuery();
-            if (r.next()) {
-                Department c = new Department();
-                c.setId(r.getInt(1));
-                c.setDepname(r.getString(3));
-                c.setHourlypay(r.getInt(2));
-                return c;
-            }
-        } catch (SQLException e) {
-            throw new EmployeeException(e.getMessage(),e);
-        }
 
-        return null;
+        return executeQUq("SELECT * FROM Department WHERE id = ?",new Object[]{id});
+//        try {
+//            PreparedStatement tmp = getConnection().prepareStatement(q);
+//            tmp.setInt(1, id);
+//            ResultSet r = tmp.executeQuery();
+//            if (r.next()) {
+//                Department c = new Department();
+//                c.setId(r.getInt(1));
+//                c.setDepname(r.getString(3));
+//                c.setHourlypay(r.getInt(2));
+//                return c;
+//            }
+//        } catch (SQLException e) {
+//            throw new EmployeeException(e.getMessage(),e);
+//        }
+//
+//        return null;
     }
 
     @Override
