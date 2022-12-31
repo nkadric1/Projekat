@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr.dao;
-import ba.unsa.etf.rpr.domain.Department;
 import ba.unsa.etf.rpr.domain.Employee;
-import ba.unsa.etf.rpr.domain.Project;
 
 import java.util.List;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;

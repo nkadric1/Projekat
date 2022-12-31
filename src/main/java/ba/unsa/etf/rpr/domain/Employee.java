@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.domain;
-import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
-import javafx.scene.control.TextField;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,7 +14,7 @@ public class Employee implements Idable {
     private String first_name;
     private String Last_name;
     private String address;
-    private Date hire_date;
+    private LocalDate hire_date;
     private int department_id;
     private int project_id;
     private String edu;
@@ -25,7 +24,7 @@ public class Employee implements Idable {
 
     public Employee() {
     }
-    public Employee(int ID, String first_name, String last_name, String address, Date hire_date, int department_id, int project_id, String edu, int payoff) {
+    public Employee(int ID, String first_name, String last_name, String address, LocalDate hire_date, int department_id, int project_id, String edu, int payoff) {
         this.ID = ID;
         this.first_name = first_name;
         this.Last_name = last_name;
@@ -71,7 +70,7 @@ public class Employee implements Idable {
         this.address = address;
     }
 
-    public void setHire_date(Date hire_date) {
+    public void setHire_date(LocalDate hire_date) {
         this.hire_date = hire_date;
     }
 
@@ -99,7 +98,7 @@ public class Employee implements Idable {
         return address;
     }
 
-    public Date getHire_date() {
+    public LocalDate getHire_date() {
         return  hire_date;
     }
 
