@@ -1,19 +1,17 @@
 package ba.unsa.etf.rpr.domain;
 
-import ba.unsa.etf.rpr.dao.DepartmentDAOSQLImpl;
-
 import java.util.Objects;
 
-public class Department implements Idable{
+public class Departments implements Idable{
 
 
 
     private int ID;
     private String depname;
     private int hourlypay;
-    public Department() {
+    public Departments() {
     }
-    public Department(int ID, String depname, int hourlypay) {
+    public Departments(int ID, String depname, int hourlypay) {
         this.ID = ID;
         this.depname = depname;
         this.hourlypay = hourlypay;
@@ -46,7 +44,7 @@ public class Department implements Idable{
 
     @Override
     public String toString() {
-        return "Department{" +
+        return "Departments{" +
                 "ID=" + ID +
                 ", depname='" + depname + '\'' +
                 ", hourlypay=" + hourlypay +
@@ -56,8 +54,8 @@ public class Department implements Idable{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Department)) return false;
-        Department that = (Department) o;
+        if (!(o instanceof Departments)) return false;
+        Departments that = (Departments) o;
         return ID == that.ID && hourlypay == that.hourlypay && depname.equals(that.depname);
     }
 

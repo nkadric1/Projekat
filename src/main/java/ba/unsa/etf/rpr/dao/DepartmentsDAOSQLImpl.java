@@ -1,20 +1,19 @@
 package ba.unsa.etf.rpr.dao;
-import ba.unsa.etf.rpr.domain.Department;
+import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
-import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
 
 /** @author Kadrić Nerma
  * class where is implementation of methods we will use to manipulate the departments
  */
-public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  DepartmentDao{
+public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements DepartmentsDao {
 
 
 
 
-    public DepartmentDAOSQLImpl() {
+    public DepartmentsDAOSQLImpl() {
 
        super("Departments");
     }
@@ -23,20 +22,20 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
 
 
     /**
-     * this method return Department whose ID is passed
+     * this method return Departments whose ID is passed
      * @param id
      * @return department
      */
     @Override
-    public Department ReturnDepartmentForId(int id) throws EmployeeException {
+    public Departments ReturnDepartmentForId(int id) throws EmployeeException {
 
-        return executeQUq("SELECT * FROM Department WHERE id = ?",new Object[]{id});
+        return executeQUq("SELECT * FROM Departments WHERE id = ?",new Object[]{id});
 //        try {
 //            PreparedStatement tmp = getConnection().prepareStatement(q);
 //            tmp.setInt(1, id);
 //            ResultSet r = tmp.executeQuery();
 //            if (r.next()) {
-//                Department c = new Department();
+//                Departments c = new Departments();
 //                c.setId(r.getInt(1));
 //                c.setDepname(r.getString(3));
 //                c.setHourlypay(r.getInt(2));
@@ -50,9 +49,9 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
     }
 
     @Override
-    public Department rowtoobject(ResultSet r)  throws EmployeeException {
+    public Departments rowtoobject(ResultSet r)  throws EmployeeException {
         try{
-            Department d=new Department();
+            Departments d=new Departments();
             d.setId(r.getInt("id"));
             d.setHourlypay(r.getInt("Hourly_pay"));
             d.setDepname(r.getString("Department_name"));
@@ -64,7 +63,7 @@ public class DepartmentDAOSQLImpl extends AbstractDao<Department> implements  De
     }
 
     @Override
-    public Map<String, Object> objecttorow(Department object) {
+    public Map<String, Object> objecttorow(Departments object) {
        Map<String , Object> i=new TreeMap<String,Object>();
        i.put("id",object.getId());
        i.put("Hourly_pay",object.getHourlypay());
