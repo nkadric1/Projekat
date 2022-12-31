@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 import java.io.File;
@@ -45,6 +46,24 @@ public class PageController {
     public TableColumn<Employee, String> empNamecol;
     public TableColumn<Employee, Date> emphdatecol;
     public MenuItem close;
+    @FXML
+    public void openED(ActionEvent actionEvent){
+        openDialog("Manage departments", "/FXML/deps.fxml", new DepartmentController());
+    }
+    private void openDialog(String title, String file,Object controller){
+        try{
+            FXMLLoader l=new FXMLLoader(getClass().getResource(file));
+            l.setController(controller);
+            Stage s=new Stage();
+            s.setScene(new Scene(l.load(),USE_COMPUTED_SIZE,USE_COMPUTED_SIZE));
+               s.setTitle(title);
+               s.initStyle(StageStyle.UTILITY);
+               s.show();
+        }
+        catch(Exception e){
+            new Alert(Alert.AlertType.NONE,e.getMessage(),ButtonType.OK).show();
+        }
+    }
     @FXML
     public void closeIt(ActionEvent actionEvent){
         Platform.exit();
