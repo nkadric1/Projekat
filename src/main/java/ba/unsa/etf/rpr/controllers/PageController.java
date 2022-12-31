@@ -5,6 +5,9 @@ import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +22,7 @@ import javafx.stage.StageStyle;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -143,6 +147,31 @@ public void updateAdd(ActionEvent actionEvent) throws EmployeeException {
         stage.show();
     }
   public class EmployeeModel{
-        public SimpleStr
+        public SimpleStringProperty fname=new SimpleStringProperty("");
+        public SimpleStringProperty lname=new SimpleStringProperty("");
+        public SimpleStringProperty address=new SimpleStringProperty("");
+        public SimpleObjectProperty<LocalDate> hdate=new SimpleObjectProperty<LocalDate>();
+        public SimpleIntegerProperty did=new SimpleIntegerProperty();
+        public SimpleStringProperty edu=new SimpleStringProperty("");
+        //public SimpleIntegerProperty pay=new SimpleIntegerProperty();
+         public void fromEmployee(Employee e){
+             this.fname.set(e.getFirst_name());
+             this.lname.set(e.getLast_name());
+             this.address.set(e.getAddress());
+             this.hdate.set(e.getHire_date());
+             this.did.set(e.getDepartment_id());
+             this.edu.set(e.getEdu());
+          //   this.pay.set(e.getPayoff());
+         }
+         public Employee toEmployee(){
+             Employee e=new Employee();
+             e.setFirst_name(this.fname.getName());
+             e.setLast_name(this.lname.getName());
+             e.setAddress(this.address.getName());
+             e.setDepartment_id(this.did.getValue());
+             e.setHire_date(this.hdate.getValue());
+             e.setEdu(this.edu.getName());
+             return e;
+         }
   }
 }
