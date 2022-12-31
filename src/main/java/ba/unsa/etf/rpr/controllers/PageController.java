@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
-import ba.unsa.etf.rpr.dao.EmployeeDao;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import javafx.application.Platform;
@@ -15,17 +14,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-import java.io.File;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -48,9 +41,9 @@ public class PageController {
     public MenuItem close;
     @FXML
     public void openED(ActionEvent actionEvent){
-        openDialog("Manage departments", "/FXML/deps.fxml", new DepartmentController());
+        openDialog("Manage departments", "/FXML/dep.fxml", new DepartmentController());
     }
-    private void openDialog(String title, String file,Object controller){
+    private void openDialog(String title, String file, Object controller){
         try{
             FXMLLoader l=new FXMLLoader(getClass().getResource(file));
             l.setController(controller);
@@ -149,4 +142,7 @@ public void updateAdd(ActionEvent actionEvent) throws EmployeeException {
         stage.setTitle("Develoop's projects");
         stage.show();
     }
+  public class EmployeeModel{
+        public SimpleStr
+  }
 }

@@ -5,13 +5,13 @@ package ba.unsa.etf.rpr.dao;
  */
 public class DaoFactory {
 
-    private static final DepartmentDao depDao=new DepartmentDAOSQLImpl();
+    private static final DepartmentsDao depDao=new DepartmentsDAOSQLImpl();
     private static final EmployeeDao empDao=new EmployeeDAOSQLImpl();
     private static final ProjectDao proDao=new ProjectDAOSQLImpl();
     private static final UsersDao userDao=new UsersDAOSQLImpl();
     private DaoFactory(){}
 
-    public static DepartmentDao departmentDao(){
+    public static DepartmentsDao departmentDao(){
         return depDao;
     }
     public static EmployeeDao employeeDao(){
