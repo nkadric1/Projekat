@@ -45,11 +45,11 @@ public class Departments implements Idable {
 
     @Override
     public String toString() {
-        return this.depname;
-    }
-
-    public void ispisi() {
-        System.out.println("Departments{" + "ID=" + ID + ", depname='" + depname + '\'' + ", hourlypay=" + hourlypay + '}');
+        return "Departments{" +
+                "ID=" + ID +
+                ", depname='" + depname + '\'' +
+                ", hourlypay=" + hourlypay +
+                '}';
     }
 
     @Override

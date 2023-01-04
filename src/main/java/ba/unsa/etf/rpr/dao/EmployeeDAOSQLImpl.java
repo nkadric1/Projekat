@@ -35,7 +35,6 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
     @Override
     public List<Employee> searchByProject(int id) throws EmployeeException {
         return executeQ("SELECT * FROM Employee WHERE project_id = ?", new Object[]{id});
-//
     }
 
 
