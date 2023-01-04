@@ -1,0 +1,11 @@
+Zack	Kenns	street200.B
+Billie	Lars	street222.C
+Vanna	Welruck	street102.A
+Diana	Bell	street303.A
+Emily	Mick	street333.A
+Anne	Dall	street101.A
+Deen	Berg	steet222.B
+Hannah	Trace	street252.A
+Miley 	Sarah	street454.C
+Nick	Maddy	street100.B
+Mark	Twen	street112.C

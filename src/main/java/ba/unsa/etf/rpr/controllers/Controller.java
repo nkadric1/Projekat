@@ -74,7 +74,6 @@ String us=fieldUser.getText();
             Stage stage=new Stage();
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setTitle("Company report!");
-
             stage.show();
         }
 

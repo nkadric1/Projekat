@@ -57,20 +57,7 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
 
     }
     public List<tt> getAll() throws EmployeeException{
-
         return executeQ("SELECT * FROM "+ name, null);
-//        List<tt> res=new ArrayList<tt>();
-//        try{
-//            PreparedStatement s=getConnection().prepareStatement(q);
-//            ResultSet r=s.executeQuery();
-//            while(r.next()){
-//                tt obj=rowtoobject(r);
-//                res.add(obj);
-//            }
-//            r.close();
-//            return  res;
-//        }catch(SQLException e) {
-//          throw new EmployeeException(e.getMessage(),e);}
 
     }
     public void delete(int id) throws EmployeeException{
