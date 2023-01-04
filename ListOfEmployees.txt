@@ -1,11 +1,13 @@
-Zack	Kenns	street200.B
-Billie	Lars	street222.C
-Vanna	Welruck	street102.A
-Diana	Bell	street303.A
-Emily	Mick	street333.A
-Anne	Dall	street101.A
-Deen	Berg	steet222.B
-Hannah	Trace	street252.A
-Miley 	Sarah	street454.C
-Nick	Maddy	street100.B
-Mark	Twen	street112.C
+Zack	Kenns	street200.B	2001-02-20	Master	1764
+Billie	Lars	street222.C	2004-11-20	Master	2520
+Vanna	Welruck	street102.A	2005-05-20	Master	1848
+Diana	Bell	street303.A	2007-08-20	Bachelor	1764
+Emily	Mick	street333.A	2008-10-20	Bachelor	924
+Anne	Dall	street101.A	2010-05-20	Master	2520
+Deen	Berg	steet222.B	2011-03-20	Bachelor	1617
+Hannah	Trace	street252.A	2015-06-20	Master	1155
+Miley 	Sarah	street454.C	2020-09-20	Bachelor	1260
+Nick	Maddy	street100.B	2022-02-20	Bachelor	1155
+Mark	Twen	street112.C	2022-12-18	Bachelor	1035
+Zanna	Naomi	street111.C	2022-12-27	Bachelor	900
+Zanna	Naomi	street111.C	2022-12-27	Bachelor	900

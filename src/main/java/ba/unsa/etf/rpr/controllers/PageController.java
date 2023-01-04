@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.AbstractDao;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.DepartmentsDAOSQLImpl;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
@@ -13,6 +14,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,9 +53,13 @@ public class PageController {
     public TextField lnamefield;
     public TextField addressfield;
     public DatePicker hdatefield;
-    public ChoiceBox<String> choiceB;
-    public TextField adr;
+ //   public ChoiceBox<String> choiceB;
+    public TextField depfield;
+ public  TextField proid;
+ //   public TextField adr;
     public TextField edufield;
+    public TextField profield;
+    public TextField salfield;
     private EmployeeDAOSQLImpl employeeDAOSQL = new EmployeeDAOSQLImpl();
     private DepartmentsDAOSQLImpl depSql = new DepartmentsDAOSQLImpl();
     private TilePane t = new TilePane();
@@ -63,6 +69,8 @@ public class PageController {
     public TableColumn<Employee, Integer> depemp;
     public TableColumn<Employee, String> empNamecol;
     public TableColumn<Employee, Date> emphdatecol;
+    public TableColumn<Employee,Integer> procolumn;
+    public TableColumn<Employee,String> educolumn;
     public MenuItem close;
 
     @FXML
@@ -98,7 +106,7 @@ public class PageController {
             Iterator<Employee> iterator = employeeDAOSQL.getByHireDate().iterator();
             while (iterator.hasNext()) {
                 Employee temp = iterator.next();
-                bw.write(String.format("%s\t%s\t%s", temp.getFirst_name(), temp.getLast_name(), temp.getAddress()));
+                bw.write(String.format("%s\t%s\t%s\t%s\t%s\t%s", temp.getFirst_name(), temp.getLast_name(), temp.getAddress(), temp.getHire_date(),temp.getEdu(),temp.getPayoff()));
                 bw.newLine();
             }
 
@@ -132,6 +140,8 @@ public class PageController {
         empNamecol.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_name"));
         emphdatecol.setCellValueFactory(new PropertyValueFactory<Employee, Date>("Hire_date"));
         depemp.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("department_id"));
+        procolumn.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("project_id"));
+        educolumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("Education"));
         try {
             emptab.setItems(FXCollections.observableList(employeeDAOSQL.getAll()));
             emptab.refresh();
@@ -139,18 +149,18 @@ public class PageController {
             e.printStackTrace();
         }
 
-        try {
-            depList = depSql.getAll();
-//            choiceB = new ChoiceBox<>(FXCollections.observableList(depList));
-//            t = new TilePane();
-//            t.getChildren().add(choiceB);
-            choiceB = new ChoiceBox<>();
-            choiceB.getItems().addAll("item1", "item2", "item3");
-//            choiceB.setValue(depList.get(0));
-//            Scene screen = new Scene(t, 400, 300);
-        } catch (EmployeeException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            depList = depSql.getAll();
+////            choiceB = new ChoiceBox<>(FXCollections.observableList(depList));
+////            t = new TilePane();
+////            t.getChildren().add(choiceB);
+//            choiceB = new ChoiceBox<>();
+//            choiceB.getItems().addAll("item1", "item2", "item3");
+////            choiceB.setValue(depList.get(0));
+////            Scene screen = new Scene(t, 400, 300);
+//        } catch (EmployeeException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
@@ -163,13 +173,11 @@ public class PageController {
             e.setHire_date(LocalDate.now());
         } else {
             e.setHire_date(hdatefield.getValue());
-        }
-
-
-        //iz koje biblioteke je valueof
-        // if(hdatefield==null) e.setHire_date(Date.valueOf(LocalDate.now()));
-        // else e.setHire_date(hdatefield.getValue());
+        } e.setDepartment_id(Integer.parseInt(depfield.getText()));
+        e.setProject_id(Integer.parseInt(profield.getText()));
+        //dodati za choicebox
         e.setEdu(edufield.getText());
+        e.setPayoff(Integer.parseInt(salfield.getText()));
         employeeDAOSQL.add(e);
     }
 
@@ -180,15 +188,14 @@ public class PageController {
         emp.add(e);
         emptab.setItems(emp);
     }
+@FXML
+  public void getListofemp(ActionEvent actionEvent) throws EmployeeException{
+List<Employee> e=employeeDAOSQL.searchByProject(Integer.parseInt(proid.getText()));
+ObservableList<Employee> emp=FXCollections.observableArrayList();
+emp= (ObservableList<Employee>) e;
+     emptab.setItems(emp);
 
-    //sta uraditi za update adrese
-    @FXML
-    public void updateAdd(ActionEvent actionEvent) throws EmployeeException {
-        Employee e = new Employee();
-        e.setId(Integer.parseInt(empidfield.getText()));
-        e.setAddress(adr.getText());
-        employeeDAOSQL.update(e);
-    }
+  }
 
     public PageController(EmployeeDAOSQLImpl employeeDAOSQL) {
         this.employeeDAOSQL = employeeDAOSQL;
