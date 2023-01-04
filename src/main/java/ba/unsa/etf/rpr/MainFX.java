@@ -18,9 +18,9 @@ public class MainFX extends Application {
             Parent root = fl.load();
             primarystage.setTitle("Welcome to Develoop, please log in.");
             primarystage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            //primarystage.setResizable(false); //iskljucivo se stavlja za dijaloske prozore
+            primarystage.setResizable(false); //iskljucivo se stavlja za dijaloske prozore
             primarystage.setMinWidth(500);
-           primarystage.setMinHeight(215);
+            primarystage.setMinHeight(215);
 
 
             primarystage.show();

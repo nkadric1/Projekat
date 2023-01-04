@@ -10,16 +10,9 @@ import java.util.*;
  */
 public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements DepartmentsDao {
 
-
-
-
     public DepartmentsDAOSQLImpl() {
-
        super("Departments");
     }
-
-
-
 
     /**
      * this method return Departments whose ID is passed
@@ -28,24 +21,7 @@ public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements D
      */
     @Override
     public Departments ReturnDepartmentForId(int id) throws EmployeeException {
-
         return executeQUq("SELECT * FROM Departments WHERE id = ?",new Object[]{id});
-//        try {
-//            PreparedStatement tmp = getConnection().prepareStatement(q);
-//            tmp.setInt(1, id);
-//            ResultSet r = tmp.executeQuery();
-//            if (r.next()) {
-//                Departments c = new Departments();
-//                c.setId(r.getInt(1));
-//                c.setDepname(r.getString(3));
-//                c.setHourlypay(r.getInt(2));
-//                return c;
-//            }
-//        } catch (SQLException e) {
-//            throw new EmployeeException(e.getMessage(),e);
-//        }
-//
-//        return null;
     }
 
     @Override

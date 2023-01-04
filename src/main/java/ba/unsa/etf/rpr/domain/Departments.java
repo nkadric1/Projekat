@@ -2,15 +2,16 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
-public class Departments implements Idable{
-
+public class Departments implements Idable {
 
 
     private int ID;
     private String depname;
     private int hourlypay;
+
     public Departments() {
     }
+
     public Departments(int ID, String depname, int hourlypay) {
         this.ID = ID;
         this.depname = depname;
@@ -18,7 +19,7 @@ public class Departments implements Idable{
     }
 
     public void setId(int id) {
-      this.ID=id;
+        this.ID = id;
     }
 
 
@@ -44,11 +45,11 @@ public class Departments implements Idable{
 
     @Override
     public String toString() {
-        return "Departments{" +
-                "ID=" + ID +
-                ", depname='" + depname + '\'' +
-                ", hourlypay=" + hourlypay +
-                '}';
+        return this.depname;
+    }
+
+    public void ispisi() {
+        System.out.println("Departments{" + "ID=" + ID + ", depname='" + depname + '\'' + ", hourlypay=" + hourlypay + '}');
     }
 
     @Override
