@@ -7,29 +7,45 @@ import java.sql.*;
 import java.util.*;
 
 public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
-    private Connection con;
+    private static Connection con=null;
     private String name;
 
     public AbstractDao(String n) {
-        try {
-            this.name = n;
-            Properties p = new Properties();
-            p.load(ClassLoader.getSystemResource("database.properties").openStream());
-            String url = p.getProperty("url");
-            String username = p.getProperty("username");
-            String password = p.getProperty("password");
-            this.con = DriverManager.getConnection(url, username, password);
-        } catch (Exception e) {
-            System.out.println("Problem with DB");
-            e.printStackTrace();
-            System.exit(0);
+       this.name=n;
+       if(con==null) createConnection();
+    }
+    private static void createConnection(){
+        if(AbstractDao.con==null){
+            try {
+                Properties p = new Properties();
+                p.load(ClassLoader.getSystemResource("database.properties").openStream());
+                String url = p.getProperty("url");
+                String username = p.getProperty("username");
+                String password = p.getProperty("password");
+                AbstractDao.con = DriverManager.getConnection(url, username, password);
+            } catch (Exception e) {
+                System.out.println("Problem with DB");
+                e.printStackTrace();
+                System.exit(0);
+            }
+        }
+    }
+    public static void closeConnection(){
+        System.out.println("Method to close the connection has been called.");
+        if(con!=null){
+            try{
+                con.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("REMOVE CONNECTION METHOD ERROR: Unable to close this connection!");
+            }
         }
     }
 
     public Connection getConnection() {
-        return this.con;
+        return AbstractDao.con;
     }
-    public void setConnection(Connection c){ this.con=c;}
+
 
     public abstract tt rowtoobject(ResultSet r) throws EmployeeException;
 
