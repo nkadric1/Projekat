@@ -10,7 +10,14 @@ import java.util.*;
  */
 public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements EmployeeDao {
 
-
+private static EmployeeDAOSQLImpl instance=null;
+    public  static EmployeeDAOSQLImpl getInstance(){
+        if(instance==null) instance=new EmployeeDAOSQLImpl();
+        return instance;
+    }
+    public static void removeInstance(){
+        if(instance!=null) instance=null;
+    }
     public EmployeeDAOSQLImpl(){
         super("Employee");
     }

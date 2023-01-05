@@ -10,6 +10,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class UsersDAOSQLImpl extends AbstractDao<Users> implements UsersDao{
+    private static UsersDAOSQLImpl instance=null;
+    public  static UsersDAOSQLImpl getInstance(){
+        if(instance==null) instance=new UsersDAOSQLImpl();
+        return instance;
+    }
+    public static void removeInstance(){
+        if(instance!=null) instance=null;
+    }
     public UsersDAOSQLImpl(){
         super("Users");
     }

@@ -13,7 +13,14 @@ import java.util.*;
  * class where is implementation of methods we will use to manipulate the projects
  */
 public class ProjectDAOSQLImpl extends AbstractDao<Project> implements ProjectDao{
-
+    private static ProjectDAOSQLImpl instance=null;
+    public  static ProjectDAOSQLImpl getInstance(){
+        if(instance==null) instance=new ProjectDAOSQLImpl();
+        return instance;
+    }
+    public static void removeInstance(){
+        if(instance!=null) instance=null;
+    }
     public ProjectDAOSQLImpl(){
        super("Project");
     }

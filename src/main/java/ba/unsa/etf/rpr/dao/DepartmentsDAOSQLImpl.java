@@ -5,11 +5,12 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import java.sql.*;
 import java.util.*;
 
+
 /** @author Kadrić Nerma
  * class where is implementation of methods we will use to manipulate the departments
  */
 public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements DepartmentsDao {
-
+private static DepartmentsDAOSQLImpl instance=null;
     public DepartmentsDAOSQLImpl() {
        super("Departments");
     }
@@ -23,7 +24,13 @@ public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements D
     public Departments ReturnDepartmentForId(int id) throws EmployeeException {
         return executeQUq("SELECT * FROM Departments WHERE id = ?",new Object[]{id});
     }
-
+     public  static DepartmentsDAOSQLImpl getInstance(){
+        if(instance==null) instance=new DepartmentsDAOSQLImpl();
+        return instance;
+     }
+     public static void removeInstance(){
+        if(instance!=null) instance=null;
+     }
     @Override
     public Departments rowtoobject(ResultSet r)  throws EmployeeException {
         try{
