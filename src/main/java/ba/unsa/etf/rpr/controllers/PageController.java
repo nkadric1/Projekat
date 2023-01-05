@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.EmployeeManager;
 import ba.unsa.etf.rpr.dao.AbstractDao;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.DepartmentsDAOSQLImpl;
@@ -72,7 +73,7 @@ public class PageController {
     public TableColumn<Employee,Integer> procolumn;
     public TableColumn<Employee,String> educolumn;
     public MenuItem close;
-
+private EmployeeManager manager=new EmployeeManager();
     @FXML
     public void openED(ActionEvent actionEvent) {
         openDialog("Manage departments", "/FXML/dep.fxml", new DepartmentController());
@@ -174,7 +175,23 @@ public class PageController {
 
     @FXML
     public void addNew(ActionEvent actionEvent) throws EmployeeException {
-        Employee e = new Employee();
+//        Employee e = new Employee();
+//        e.setFirst_name(fnamefield.getText());
+//        e.setLast_name(lnamefield.getText());
+//        e.setAddress(addressfield.getText());
+//        if (hdatefield.getValue() == null) {
+//            e.setHire_date(LocalDate.now());
+//        } else {
+//            e.setHire_date(hdatefield.getValue());
+//        }
+//        e.setDepartment_id(Integer.parseInt(depfield.getText()));
+//        e.setProject_id(Integer.parseInt(profield.getText()));
+//        //dodati za choicebox
+//        e.setEdu(edufield.getText());
+//        e.setPayoff(Integer.parseInt(salfield.getText()));
+//        employeeDAOSQL.add(e);
+        try{
+            Employee e = new Employee();
         e.setFirst_name(fnamefield.getText());
         e.setLast_name(lnamefield.getText());
         e.setAddress(addressfield.getText());
@@ -188,17 +205,37 @@ public class PageController {
         //dodati za choicebox
         e.setEdu(edufield.getText());
         e.setPayoff(Integer.parseInt(salfield.getText()));
-        employeeDAOSQL.add(e);
-
+        e=manager.add(e);
+        emptab.getItems().add(e);
+        fnamefield.setText("");
+        lnamefield.setText("");
+        addressfield.setText("");
+        hdatefield=null;
+        depfield.setText("");
+        profield.setText("");
+        edufield.setText("");
+        salfield.setText("");
+        }catch (EmployeeException e)
+        {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
     //ispraviti metodu za update
     @FXML
     public void UpdateEmp(ActionEvent actionEvent) throws  EmployeeException{
-        Employee e=new Employee();
-        e.setAddress(addressfield.getText());
-        e.setPayoff(Integer.parseInt(salfield.getText()));
-        employeeDAOSQL.update(e);
+//        Employee e=new Employee();
+//        e.setAddress(addressfield.getText());
+//        e.setPayoff(Integer.parseInt(salfield.getText()));
+//        employeeDAOSQL.update(e);
 
+try{
+    Employee e= (Employee) emptab.getSelectionModel().getSelectedItem();
+    e.setAddress(addressfield.getText());
+    e=manager.update(e);
+    refreshEmployees();
+}catch (EmployeeException ee){
+    new Alert(Alert.AlertType.NONE, ee.getMessage(), ButtonType.OK).show();
+}
     }
 
     @FXML
@@ -208,12 +245,18 @@ public class PageController {
         emp.add(e);
         emptab.setItems(emp);
     }
-    //pogledati i delete nista ne uradi
+
 
 @FXML
 public void DeleteEmp(ActionEvent actionEvent) throws EmployeeException{
-       employeeDAOSQL.delete(Integer.parseInt(empidfield.getText()));
-
+    try {
+        Employee ee= (Employee) emptab.getSelectionModel().getSelectedItem();
+        manager.delete(ee.getId());
+        //refreshCategories();
+        emptab.getItems().remove(ee); // perf optimization
+    }catch (EmployeeException e){
+        new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+    }
 }
 @FXML
   public void getListofemp(ActionEvent actionEvent) throws EmployeeException{
@@ -226,6 +269,21 @@ emp.addAll(e);
 
     public PageController(EmployeeDAOSQLImpl employeeDAOSQL) {
         this.employeeDAOSQL = employeeDAOSQL;
+    }
+    private void refreshEmployees() throws EmployeeException{
+        try{
+            emptab.setItems(FXCollections.observableList(manager.getAll()));
+            fnamefield.setText("");
+            lnamefield.setText("");
+            addressfield.setText("");
+            hdatefield=null;
+            depfield.setText("");
+            profield.setText("");
+            edufield.setText("");
+            salfield.setText("");
+        }catch (EmployeeException e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
 
