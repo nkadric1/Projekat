@@ -15,7 +15,8 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="484.60003662109375" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="358.00000228881834" minHeight="10.0" prefHeight="354.00000228881834" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="358.00000228881834" minHeight="10.0" prefHeight="334.0000366210937" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="358.00000228881834" minHeight="10.0" prefHeight="26.799963378906227" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <ListView fx:id="listofprojects" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -42,5 +43,10 @@
             </Button>
          </children>
       </VBox>
+      <Button mnemonicParsing="false" onAction="#closeIt" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="435.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </GridPane>

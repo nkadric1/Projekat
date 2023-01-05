@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.business.ProjectManager;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Project;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,5 +60,10 @@ try{
 }catch (EmployeeException e){
  new Alert(Alert.AlertType.NONE,e.getMessage(), ButtonType.OK).show();
 }
+ }
+ @FXML
+ public void closeIt(ActionEvent actionEvent){
+  Platform.exit();
+  System.exit(0);
  }
 }
