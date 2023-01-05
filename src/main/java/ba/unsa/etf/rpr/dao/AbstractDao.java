@@ -38,22 +38,6 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
     public tt getById(int id) throws EmployeeException{
 
         return executeQUq("SELECT * FROM" + this.name + " WHERE id = ?",new Object[]{id});
-//        try {
-//            PreparedStatement s = this.con.prepareStatement(q);
-//            s.setInt(1, id);
-//            ResultSet r = s.executeQuery();
-//            if (r.next()) {
-//                tt res=rowtoobject(r);
-//                r.close();
-//              return res;
-//            } else { //dodati svoj exc
-//                return null;
-//            }
-//
-//
-//        } catch (SQLException e) {
-//          throw new EmployeeException(e.getMessage(),e);
-//        }
 
     }
     public List<tt> getAll() throws EmployeeException{

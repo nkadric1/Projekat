@@ -77,6 +77,14 @@ public class PageController {
     public void openED(ActionEvent actionEvent) {
         openDialog("Manage departments", "/FXML/dep.fxml", new DepartmentController());
     }
+    @FXML
+    public void openEP(ActionEvent actionEvent){
+        openDialog("Manage projects", "/FXML/pro.fxml", new projectController());
+    }
+    @FXML
+    public void OnAbout(ActionEvent actionEvent){
+        openDialog("About","/FXML/about.fxml",null);
+    }
 
     private void openDialog(String title, String file, Object controller) {
         try {
@@ -140,8 +148,9 @@ public class PageController {
         empNamecol.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_name"));
         emphdatecol.setCellValueFactory(new PropertyValueFactory<Employee, Date>("Hire_date"));
         depemp.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("department_id"));
+      //  educolumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("Education"));
         procolumn.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("project_id"));
-        educolumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("Education"));
+
         try {
             emptab.setItems(FXCollections.observableList(employeeDAOSQL.getAll()));
             emptab.refresh();
@@ -173,12 +182,23 @@ public class PageController {
             e.setHire_date(LocalDate.now());
         } else {
             e.setHire_date(hdatefield.getValue());
-        } e.setDepartment_id(Integer.parseInt(depfield.getText()));
+        }
+        e.setDepartment_id(Integer.parseInt(depfield.getText()));
         e.setProject_id(Integer.parseInt(profield.getText()));
         //dodati za choicebox
         e.setEdu(edufield.getText());
         e.setPayoff(Integer.parseInt(salfield.getText()));
         employeeDAOSQL.add(e);
+
+    }
+    //ispraviti metodu za update
+    @FXML
+    public void UpdateEmp(ActionEvent actionEvent) throws  EmployeeException{
+        Employee e=new Employee();
+        e.setAddress(addressfield.getText());
+        e.setPayoff(Integer.parseInt(salfield.getText()));
+        employeeDAOSQL.update(e);
+
     }
 
     @FXML
@@ -188,11 +208,18 @@ public class PageController {
         emp.add(e);
         emptab.setItems(emp);
     }
+    //pogledati i delete nista ne uradi
+
+@FXML
+public void DeleteEmp(ActionEvent actionEvent) throws EmployeeException{
+       employeeDAOSQL.delete(Integer.parseInt(empidfield.getText()));
+
+}
 @FXML
   public void getListofemp(ActionEvent actionEvent) throws EmployeeException{
 List<Employee> e=employeeDAOSQL.searchByProject(Integer.parseInt(proid.getText()));
 ObservableList<Employee> emp=FXCollections.observableArrayList();
-emp= (ObservableList<Employee>) e;
+emp.addAll(e);
      emptab.setItems(emp);
 
   }
@@ -201,17 +228,6 @@ emp= (ObservableList<Employee>) e;
         this.employeeDAOSQL = employeeDAOSQL;
     }
 
-    @FXML
-    public void Click2Project(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/pro.fxml"));
-        projectController p = new projectController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
-        fxmlLoader.setController(p);
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setTitle("Develoop's projects");
-        stage.show();
-    }
 
     public class EmployeeModel {
         public SimpleStringProperty fname = new SimpleStringProperty("");

@@ -40,12 +40,13 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#openED" text="Department" />
+                  <MenuItem mnemonicParsing="false" onAction="#openED" text="Departments" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEP" text="Projects" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#OnAbout" text="About" />
             </items>
           </Menu>
         </menus>
@@ -72,6 +73,8 @@
             <RowConstraints maxHeight="81.4" minHeight="10.0" prefHeight="34.79999999999998" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="81.4" minHeight="10.0" prefHeight="34.79999999999998" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="81.4" minHeight="10.0" prefHeight="33.599999999999966" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="81.4" minHeight="10.0" prefHeight="33.599999999999966" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="81.4" minHeight="10.0" prefHeight="33.599999999999966" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="First name:" />
@@ -96,12 +99,12 @@
             </TextField>
             <Label text="Education:" GridPane.rowIndex="5" />
             <TextField fx:id="edufield" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button fx:id="addempfield" mnemonicParsing="false" onAction="#addNew" prefHeight="37.0" prefWidth="90.0" text="Add new" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8">
+            <Button fx:id="addempfield" mnemonicParsing="false" onAction="#addNew" prefHeight="27.0" prefWidth="84.0" text="Add new" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8">
                <padding>
-                  <Insets bottom="9.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <GridPane.margin>
-                  <Insets top="3.0" />
+                  <Insets top="5.0" />
                </GridPane.margin>
             </Button>
             <DatePicker fx:id="hdatefield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -109,9 +112,9 @@
                <GridPane.margin>
                   <Insets top="40.0" />
                </GridPane.margin></Separator>
-            <ImageView fitHeight="29.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="8">
+            <ImageView fitHeight="72.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="8">
                <GridPane.margin>
-                  <Insets bottom="8.0" left="2.0" />
+                  <Insets left="2.0" top="60.0" />
                </GridPane.margin>
                 <Image fx:id="img2" url="@/IMAGES/R.png" />
             </ImageView>
@@ -120,6 +123,8 @@
             <Label text="Salary:" GridPane.rowIndex="7" />
             <TextField fx:id="salfield" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="depfield" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#UpdateEmp" prefHeight="26.0" prefWidth="83.0" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Button mnemonicParsing="false" onAction="#DeleteEmp" prefHeight="26.0" prefWidth="83.0" text="Delete" GridPane.columnIndex="1" GridPane.rowIndex="10" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
