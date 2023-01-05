@@ -5,10 +5,10 @@ package ba.unsa.etf.rpr.dao;
  */
 public class DaoFactory {
 
-    private static final DepartmentsDao depDao=new DepartmentsDAOSQLImpl();
-    private static final EmployeeDao empDao=new EmployeeDAOSQLImpl();
-    private static final ProjectDao proDao=new ProjectDAOSQLImpl();
-    private static final UsersDao userDao=new UsersDAOSQLImpl();
+    private static final DepartmentsDao depDao=DepartmentsDAOSQLImpl.getInstance();
+    private static final EmployeeDao empDao=EmployeeDAOSQLImpl.getInstance();
+    private static final ProjectDao proDao=ProjectDAOSQLImpl.getInstance();
+    private static final UsersDao userDao=UsersDAOSQLImpl.getInstance();
     private DaoFactory(){}
 
     public static DepartmentsDao departmentDao(){
