@@ -167,4 +167,5 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             throw new EmployeeException("Not found!");
         }
     }
+
 }

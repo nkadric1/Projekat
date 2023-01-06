@@ -10,12 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -27,29 +25,19 @@ public class Controller {
     public PasswordField passfield;
     public Button bBtn;
 
-    @FXML
-    public void initialize() {
-
-     /*   fieldUser.getStyleClass().add("fieldisnotOK");
-        fieldUser.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-           public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if (fieldUser.getText().trim().isEmpty() || passfield.getText().trim().isEmpty()) {
-                    fieldUser.getStyleClass().removeAll("fieldisOK");
-                    fieldUser.getStyleClass().add("fieldisnotOK");
-                    passfield.getStyleClass().removeAll("fieldisOK");
-                    passfield.getStyleClass().add("fieldisnotOK");
-                } else {
-                    fieldUser.getStyleClass().removeAll("fieldisnotOK");
-                    fieldUser.getStyleClass().add("fieldisOK");
-                    passfield.getStyleClass().removeAll("fieldisnotOK");
-                    passfield.getStyleClass().add("fieldisOK");
-                }
-            }
-        });*/
+    private void openDialog(String title, String file, Object controller) {
+        try {
+            FXMLLoader l = new FXMLLoader(getClass().getResource(file));
+            l.setController(controller);
+            Stage s = new Stage();
+            s.setScene(new Scene(l.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            s.setTitle(title);
+            s.initStyle(StageStyle.UTILITY);
+            s.show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
-//kako popraviti ove boje da odmah oba textfielda budu crveni i da pozelene kada je sve tacno
-
     public void Click(ActionEvent actionEvent) throws IOException {
         //if usernamefield is empty then show an error
        if (fieldUser.getText().isEmpty() ) {
@@ -67,14 +55,17 @@ String us=fieldUser.getText();
             fieldUser.clear();
             passfield.clear();
         }else {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
-            PageController p = new PageController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
-            fxmlLoader.setController(p);
-            Parent root = fxmlLoader.load();
-            Stage stage=new Stage();
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setTitle("Company report!");
-            stage.show();
+            openDialog("Company report!", "/FXML/new.fxml", new PageController());
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
+//            PageController p = new PageController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
+//            fxmlLoader.setController(p);
+//            Parent root = fxmlLoader.load();
+//            Stage stage=new Stage();
+//            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+//            stage.setTitle();
+//            stage.setResizable(false);
+//            stage.show();
+//
         }
 
 }
