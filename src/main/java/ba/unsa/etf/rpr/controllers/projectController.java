@@ -2,9 +2,11 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.ProjectManager;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
+import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Project;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,16 +22,19 @@ public class projectController {
  private ProjectManager manager=new ProjectManager();
  @FXML
     public void initialize(){
-try{
- refreshProjects();
- listofprojects.getSelectionModel().selectedItemProperty().addListener((obs,o,n)->{
-  if(n!=null){
-   projectname.setText(n.getProject_name());
+  try{
+   refreshProjects();
+  listofprojects.getSelectionModel().selectedItemProperty().addListener((obs,o,n)->{
+
+ ProjectModel projectModel=new ProjectModel();
+   projectModel.fromProject(n);
+    projectname.textProperty().bindBidirectional(projectModel.pname);
+
+   });
+  } catch (EmployeeException e) {
+   new Alert(Alert.AlertType.NONE, e.getMessage(),ButtonType.OK).show();
+
   }
- });
-}catch (EmployeeException e){
- new Alert(Alert.AlertType.NONE,e.getMessage(),ButtonType.OK).show();
-}
  }
  @FXML
  public void addProject(ActionEvent actionEvent){
@@ -65,5 +70,25 @@ try{
  public void closeIt(ActionEvent actionEvent){
   Platform.exit();
   System.exit(0);
+ }
+ public class ProjectModel {
+  public SimpleStringProperty pname = new SimpleStringProperty("");
+
+
+
+  public void fromProject(Project p) {
+
+   this.pname.set(p.getProject_name());
+
+  }
+
+  public Project toProject() {
+   Project p=new Project();
+
+
+   p.setProject_name(this.pname.getName());
+
+   return p;
+  }
  }
 }

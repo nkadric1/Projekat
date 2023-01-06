@@ -3,8 +3,11 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.DepartmentManager;
 import ba.unsa.etf.rpr.domain.Departments;
 
+import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+
+import java.time.LocalDate;
 
 public class DepartmentController {
     private DepartmentManager manager=new DepartmentManager();
@@ -32,8 +37,11 @@ public class DepartmentController {
         try{
             refreshDepartment();
             departmentListView.getSelectionModel().selectedItemProperty().addListener((obs,o,n)->{
-if(n!=null){ depName.setText(n.getDepname());
-               hprice.setText(String.valueOf(n.getHourlypay()));}
+
+          DepartmentModel departmentModel=new DepartmentModel();
+                  departmentModel.fromDepartment(n);
+                    depName.textProperty().bindBidirectional(departmentModel.dname);
+                 hprice.textProperty().bindBidirectional(departmentModel.hprice);
             });
         } catch (EmployeeException e) {
           new Alert(Alert.AlertType.NONE, e.getMessage(),ButtonType.OK).show();
@@ -61,6 +69,7 @@ if(n!=null){ depName.setText(n.getDepname());
             d=manager.add(d);
             departmentListView.getItems().add(d);
             depName.setText("");
+            hprice.setText("");
         }catch (EmployeeException e){
             new Alert(Alert.AlertType.NONE, e.getMessage(),ButtonType.OK).show();
         }
@@ -80,4 +89,27 @@ if(n!=null){ depName.setText(n.getDepname());
         Platform.exit();
         System.exit(0);
     }
+    public class DepartmentModel {
+        public SimpleStringProperty hprice = new SimpleStringProperty("");
+        public SimpleStringProperty dname = new SimpleStringProperty("");
+
+
+
+        public void fromDepartment(Departments d) {
+            this.hprice.set(String.valueOf(d.getHourlypay()));
+            this.dname.set(d.getDepname());
+
+        }
+
+        public Departments toDepartment() {
+         Departments d=new Departments();
+
+            d.setHourlypay(Integer.parseInt(this.hprice.getValue()));
+
+            d.setDepname(this.dname.getName());
+
+            return d;
+        }
+    }
 }
+
