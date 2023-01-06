@@ -221,14 +221,20 @@ private EmployeeManager manager=new EmployeeManager();
     //ispraviti metodu za update
     @FXML
     public void UpdateEmp(ActionEvent actionEvent) throws  EmployeeException{
-//        Employee e=new Employee();
-//        e.setAddress(addressfield.getText());
-//        e.setPayoff(Integer.parseInt(salfield.getText()));
-//        employeeDAOSQL.update(e);
-
 try{
     Employee e= (Employee) emptab.getSelectionModel().getSelectedItem();
+    e.setFirst_name(fnamefield.getText());
+    e.setLast_name(lnamefield.getText());
     e.setAddress(addressfield.getText());
+    if (hdatefield.getValue() == null) {
+        e.setHire_date(LocalDate.now());
+    } else {
+        e.setHire_date(hdatefield.getValue());
+    }
+    e.setDepartment_id(Integer.parseInt(depfield.getText()));
+    e.setProject_id(Integer.parseInt(profield.getText()));
+    e.setEdu(edufield.getText());
+    e.setPayoff(Integer.parseInt(salfield.getText()));
     e=manager.update(e);
     refreshEmployees();
 }catch (EmployeeException ee){
