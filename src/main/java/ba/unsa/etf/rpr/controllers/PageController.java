@@ -158,10 +158,10 @@ private EmployeeManager manager=new EmployeeManager();
             lnamefield.textProperty().bindBidirectional(employeeModel.lname);
             addressfield.textProperty().bindBidirectional(employeeModel.address);
             hdatefield.valueProperty().bindBidirectional(employeeModel.hdate);
-            depfield.prefColumnCountProperty().bindBidirectional(employeeModel.did);
-            profield.prefColumnCountProperty().bindBidirectional(employeeModel.pid);
+            depfield.textProperty().bindBidirectional(employeeModel.did);
+            profield.textProperty().bindBidirectional(employeeModel.pid);
             edufield.textProperty().bindBidirectional(employeeModel.edu);
-            salfield.prefColumnCountProperty().bindBidirectional(employeeModel.sal);
+            salfield.textProperty().bindBidirectional(employeeModel.sal);
         });
         try {
             emptab.setItems(FXCollections.observableList(employeeDAOSQL.getAll()));
@@ -204,10 +204,11 @@ private EmployeeManager manager=new EmployeeManager();
         e.setPayoff(Integer.parseInt(salfield.getText()));
         e=manager.add(e);
         emptab.getItems().add(e);
+        emptab.refresh();
         fnamefield.setText("");
         lnamefield.setText("");
         addressfield.setText("");
-        hdatefield=null;
+        hdatefield.setValue(null);
         depfield.setText("");
         profield.setText("");
         edufield.setText("");
@@ -249,8 +250,7 @@ public void DeleteEmp(ActionEvent actionEvent) throws EmployeeException{
     try {
         Employee ee= (Employee) emptab.getSelectionModel().getSelectedItem();
         manager.delete(ee.getId());
-        //refreshCategories();
-        emptab.getItems().remove(ee); // perf optimization
+        emptab.getItems().remove(ee);
     }catch (EmployeeException e){
         new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
     }
@@ -267,13 +267,14 @@ emp.addAll(e);
     public PageController(EmployeeDAOSQLImpl employeeDAOSQL) {
         this.employeeDAOSQL = employeeDAOSQL;
     }
+    public PageController(){}
     private void refreshEmployees() throws EmployeeException{
         try{
             emptab.setItems(FXCollections.observableList(manager.getAll()));
             fnamefield.setText("");
             lnamefield.setText("");
             addressfield.setText("");
-            hdatefield=null;
+            hdatefield.setValue(null);
             depfield.setText("");
             profield.setText("");
             edufield.setText("");
@@ -289,22 +290,22 @@ emp.addAll(e);
         public SimpleStringProperty lname = new SimpleStringProperty("");
         public SimpleStringProperty address = new SimpleStringProperty("");
         public SimpleObjectProperty<LocalDate> hdate = new SimpleObjectProperty<LocalDate>();
-        public SimpleIntegerProperty did = new SimpleIntegerProperty(0);
-        public SimpleIntegerProperty pid=new SimpleIntegerProperty(0);
+        public SimpleStringProperty did = new SimpleStringProperty("");
+        public SimpleStringProperty pid=new SimpleStringProperty("");
         public SimpleStringProperty edu = new SimpleStringProperty("");
-        public SimpleIntegerProperty sal=new SimpleIntegerProperty(0);
+        public SimpleStringProperty sal=new SimpleStringProperty("");
 
-        //public SimpleIntegerProperty pay=new SimpleIntegerProperty();
+
         public void fromEmployee(Employee e) {
             this.fname.set(e.getFirst_name());
             this.lname.set(e.getLast_name());
             this.address.set(e.getAddress());
             this.hdate.set(e.getHire_date());
-            this.did.set(e.getDepartment_id());
-            this.pid.set(e.getProject_id());
+            this.did.set(String.valueOf(e.getDepartment_id()));
+            this.pid.set(String.valueOf(e.getProject_id()));
             this.edu.set(e.getEdu());
-            this.sal.set(e.getPayoff());
-            //   this.pay.set(e.getPayoff());
+            this.sal.set(String.valueOf(e.getPayoff()));
+
         }
 
         public Employee toEmployee() {
@@ -312,11 +313,11 @@ emp.addAll(e);
             e.setFirst_name(this.fname.getName());
             e.setLast_name(this.lname.getName());
             e.setAddress(this.address.getName());
-            e.setDepartment_id(this.did.getValue());
-            e.setProject_id(this.pid.getValue());
+            e.setDepartment_id(Integer.parseInt(this.did.getValue()));
+            e.setProject_id(Integer.parseInt(this.pid.getValue()));
             e.setHire_date(this.hdate.getValue());
             e.setEdu(this.edu.getName());
-            e.setPayoff(this.sal.getValue());
+            e.setPayoff(Integer.parseInt(this.sal.getValue()));
             return e;
         }
     }
