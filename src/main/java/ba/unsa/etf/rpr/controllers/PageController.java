@@ -65,13 +65,13 @@ public class PageController {
     private DepartmentsDAOSQLImpl depSql = new DepartmentsDAOSQLImpl();
     private TilePane t = new TilePane();
     private List<Departments> depList;
-    public TableView emptab;
+    public TableView<Employee> emptab;
     public TableColumn<Employee, Integer> empIdcol;
     public TableColumn<Employee, Integer> depemp;
     public TableColumn<Employee, String> empNamecol;
     public TableColumn<Employee, Date> emphdatecol;
     public TableColumn<Employee,Integer> procolumn;
-    public TableColumn<Employee,String> educolumn;
+public TableColumn<Employee,Integer> salcol;
     public MenuItem close;
 private EmployeeManager manager=new EmployeeManager();
     @FXML
@@ -149,9 +149,20 @@ private EmployeeManager manager=new EmployeeManager();
         empNamecol.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_name"));
         emphdatecol.setCellValueFactory(new PropertyValueFactory<Employee, Date>("Hire_date"));
         depemp.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("department_id"));
-      //  educolumn.setCellValueFactory(new PropertyValueFactory<Employee,String>("Education"));
+       salcol.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("payoff"));
         procolumn.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("project_id"));
-
+        emptab.getSelectionModel().selectedItemProperty().addListener((obs, oldEmployee, newEmployee) -> {
+            EmployeeModel employeeModel = new EmployeeModel();
+            employeeModel.fromEmployee(newEmployee);
+            fnamefield.textProperty().bindBidirectional(employeeModel.fname);
+            lnamefield.textProperty().bindBidirectional(employeeModel.lname);
+            addressfield.textProperty().bindBidirectional(employeeModel.address);
+            hdatefield.valueProperty().bindBidirectional(employeeModel.hdate);
+            depfield.prefColumnCountProperty().bindBidirectional(employeeModel.did);
+            profield.prefColumnCountProperty().bindBidirectional(employeeModel.pid);
+            edufield.textProperty().bindBidirectional(employeeModel.edu);
+            salfield.prefColumnCountProperty().bindBidirectional(employeeModel.sal);
+        });
         try {
             emptab.setItems(FXCollections.observableList(employeeDAOSQL.getAll()));
             emptab.refresh();
@@ -175,21 +186,7 @@ private EmployeeManager manager=new EmployeeManager();
 
     @FXML
     public void addNew(ActionEvent actionEvent) throws EmployeeException {
-//        Employee e = new Employee();
-//        e.setFirst_name(fnamefield.getText());
-//        e.setLast_name(lnamefield.getText());
-//        e.setAddress(addressfield.getText());
-//        if (hdatefield.getValue() == null) {
-//            e.setHire_date(LocalDate.now());
-//        } else {
-//            e.setHire_date(hdatefield.getValue());
-//        }
-//        e.setDepartment_id(Integer.parseInt(depfield.getText()));
-//        e.setProject_id(Integer.parseInt(profield.getText()));
-//        //dodati za choicebox
-//        e.setEdu(edufield.getText());
-//        e.setPayoff(Integer.parseInt(salfield.getText()));
-//        employeeDAOSQL.add(e);
+
         try{
             Employee e = new Employee();
         e.setFirst_name(fnamefield.getText());
@@ -292,8 +289,10 @@ emp.addAll(e);
         public SimpleStringProperty lname = new SimpleStringProperty("");
         public SimpleStringProperty address = new SimpleStringProperty("");
         public SimpleObjectProperty<LocalDate> hdate = new SimpleObjectProperty<LocalDate>();
-        public SimpleIntegerProperty did = new SimpleIntegerProperty();
+        public SimpleIntegerProperty did = new SimpleIntegerProperty(0);
+        public SimpleIntegerProperty pid=new SimpleIntegerProperty(0);
         public SimpleStringProperty edu = new SimpleStringProperty("");
+        public SimpleIntegerProperty sal=new SimpleIntegerProperty(0);
 
         //public SimpleIntegerProperty pay=new SimpleIntegerProperty();
         public void fromEmployee(Employee e) {
@@ -302,7 +301,9 @@ emp.addAll(e);
             this.address.set(e.getAddress());
             this.hdate.set(e.getHire_date());
             this.did.set(e.getDepartment_id());
+            this.pid.set(e.getProject_id());
             this.edu.set(e.getEdu());
+            this.sal.set(e.getPayoff());
             //   this.pay.set(e.getPayoff());
         }
 
@@ -312,8 +313,10 @@ emp.addAll(e);
             e.setLast_name(this.lname.getName());
             e.setAddress(this.address.getName());
             e.setDepartment_id(this.did.getValue());
+            e.setProject_id(this.pid.getValue());
             e.setHire_date(this.hdate.getValue());
             e.setEdu(this.edu.getName());
+            e.setPayoff(this.sal.getValue());
             return e;
         }
     }

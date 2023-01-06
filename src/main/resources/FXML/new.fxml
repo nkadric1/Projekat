@@ -159,7 +159,7 @@
                   <TableColumn fx:id="emphdatecol" prefWidth="71.19995880126953" text="Hire date" />
                   <TableColumn fx:id="depemp" prefWidth="77.59999084472656" text="Department" />
                   <TableColumn fx:id="procolumn" prefWidth="60.00001525878906" text="Project" />
-                  <TableColumn fx:id="educolumn" prefWidth="75.0" text="Education" />
+                  <TableColumn fx:id="salcol" prefWidth="75.0" text="Salary" />
               </columns>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
