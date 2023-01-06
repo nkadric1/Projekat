@@ -20,4 +20,5 @@ public interface EmployeeDao extends Dao<Employee> {
 
   public Employee getfromID(int id) throws EmployeeException;
 
+
 }
