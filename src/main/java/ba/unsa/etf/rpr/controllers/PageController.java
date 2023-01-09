@@ -1,12 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.EmployeeManager;
-import ba.unsa.etf.rpr.dao.AbstractDao;
-import ba.unsa.etf.rpr.dao.DaoFactory;
-import ba.unsa.etf.rpr.dao.DepartmentsDAOSQLImpl;
-import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
+import ba.unsa.etf.rpr.dao.*;
 import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Employee;
+import ba.unsa.etf.rpr.domain.Project;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -54,8 +52,9 @@ public class PageController {
     public TextField lnamefield;
     public TextField addressfield;
     public DatePicker hdatefield;
- //   public ChoiceBox<String> choiceB;
+   public ChoiceBox<String> choiceB;
     public TextField depfield;
+    int brojac = 0;
  public  TextField proid;
  //   public TextField adr;
     public TextField edufield;
@@ -151,6 +150,7 @@ private EmployeeManager manager=new EmployeeManager();
         depemp.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("department_id"));
        salcol.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("payoff"));
         procolumn.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("project_id"));
+
         emptab.getSelectionModel().selectedItemProperty().addListener((obs, oldEmployee, newEmployee) -> {
             EmployeeModel employeeModel = new EmployeeModel();
             employeeModel.fromEmployee(newEmployee);
@@ -170,18 +170,6 @@ private EmployeeManager manager=new EmployeeManager();
             e.printStackTrace();
         }
 
-//        try {
-//            depList = depSql.getAll();
-////            choiceB = new ChoiceBox<>(FXCollections.observableList(depList));
-////            t = new TilePane();
-////            t.getChildren().add(choiceB);
-//            choiceB = new ChoiceBox<>();
-//            choiceB.getItems().addAll("item1", "item2", "item3");
-////            choiceB.setValue(depList.get(0));
-////            Scene screen = new Scene(t, 400, 300);
-//        } catch (EmployeeException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @FXML
@@ -199,7 +187,6 @@ private EmployeeManager manager=new EmployeeManager();
         }
         e.setDepartment_id(Integer.parseInt(depfield.getText()));
         e.setProject_id(Integer.parseInt(profield.getText()));
-        //dodati za choicebox
         e.setEdu(edufield.getText());
         e.setPayoff(Integer.parseInt(salfield.getText()));
         e=manager.add(e);
@@ -222,7 +209,8 @@ private EmployeeManager manager=new EmployeeManager();
     @FXML
     public void UpdateEmp(ActionEvent actionEvent) throws  EmployeeException{
 try{
-    Employee e= (Employee) emptab.getSelectionModel().getSelectedItem();
+    Employee e= emptab.getSelectionModel().getSelectedItem();
+    emptab.getSelectionModel().select(null);
     e.setFirst_name(fnamefield.getText());
     e.setLast_name(lnamefield.getText());
     e.setAddress(addressfield.getText());
@@ -231,14 +219,28 @@ try{
     } else {
         e.setHire_date(hdatefield.getValue());
     }
-    e.setDepartment_id(Integer.parseInt(depfield.getText()));
-    e.setProject_id(Integer.parseInt(profield.getText()));
-    e.setEdu(edufield.getText());
-    e.setPayoff(Integer.parseInt(salfield.getText()));
-    e=manager.update(e);
-    refreshEmployees();
-}catch (EmployeeException ee){
-    new Alert(Alert.AlertType.NONE, ee.getMessage(), ButtonType.OK).show();
+    try{
+    DepartmentsDAOSQLImpl d=new DepartmentsDAOSQLImpl();
+    Departments dep=d.ReturnDepartmentForId(Integer.parseInt(depfield.getText()));
+        e.setDepartment_id(Integer.parseInt(depfield.getText()));
+        try{
+            ProjectDAOSQLImpl p=new ProjectDAOSQLImpl();
+            Project pro=p.getById(Integer.parseInt(profield.getText()));
+            e.setProject_id(Integer.parseInt(profield.getText()));
+            e.setEdu(edufield.getText());
+            e.setPayoff(Integer.parseInt(salfield.getText()));
+            e=manager.update(e);
+            refreshEmployees();
+        }
+    catch(Exception p){
+        new Alert(Alert.AlertType.NONE,"Project ID is not valid.",ButtonType.OK).show();;
+    }
+    }
+   catch (Exception d){
+        new Alert(Alert.AlertType.NONE,"Department ID is not valid.",ButtonType.OK).show();;
+   }
+} catch (Exception e) {
+    throw new RuntimeException(e);
 }
     }
 
