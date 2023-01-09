@@ -82,7 +82,7 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
                 if(e.getKey().equals("id")) continue;
                 s.setObject(c,e.getValue()); c++;
             }
-            s.setObject(c+1,i.getId());
+            s.setObject(c,i.getId());
             s.executeUpdate();
             return i;
         }catch(SQLException e){
@@ -118,16 +118,16 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
     private Map.Entry<String, String> prepareInsertParts(Map<String,Object> r){
         StringBuilder col=new StringBuilder();
         StringBuilder que=new StringBuilder();
-        int c=0;
+        int c=1;
         for(Map.Entry<String,Object> e: r.entrySet()){
-            c++;
             if(e.getKey().equals("id")) continue;
             col.append(e.getKey());
             que.append("?");
-            if(r.size()!=c){
+            if(r.size()-1!=c){
                 col.append(",");
                 que.append(",");
             }
+            c++;
         }
         return new AbstractMap.SimpleEntry<String,String>(col.toString(),que.toString());
     }
