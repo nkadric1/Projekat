@@ -26,7 +26,17 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             } catch (Exception e) {
                 System.out.println("Problem with DB");
                 e.printStackTrace();
-                System.exit(0);
+            }finally {
+                Runtime.getRuntime().addShutdownHook(new Thread(){
+                    @Override
+                    public void run(){
+                        try{
+                            con.close();
+                        }catch (SQLException e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         }
     }
