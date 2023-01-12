@@ -101,6 +101,7 @@ private EmployeeManager manager=new EmployeeManager();
             s.show();
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+            e.printStackTrace();
         }
     }
 
@@ -157,7 +158,8 @@ private EmployeeManager manager=new EmployeeManager();
 
         emptab.getSelectionModel().selectedItemProperty().addListener((obs, oldEmployee, newEmployee) -> {
             EmployeeModel employeeModel = new EmployeeModel();
-            employeeModel.fromEmployee(newEmployee);
+            Employee employee=newEmployee;
+            employeeModel.fromEmployee(employee);
             fnamefield.textProperty().bindBidirectional(employeeModel.fname);
             lnamefield.textProperty().bindBidirectional(employeeModel.lname);
             addressfield.textProperty().bindBidirectional(employeeModel.address);
@@ -169,7 +171,7 @@ private EmployeeManager manager=new EmployeeManager();
         });
         try {
             emptab.setItems(FXCollections.observableList(employeeDAOSQL.getAll()));
-            emptab.refresh();
+          refreshEmployees();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -227,18 +229,18 @@ try{
     DepartmentsDAOSQLImpl d=new DepartmentsDAOSQLImpl();
     Departments dep=d.ReturnDepartmentForId(Integer.parseInt(depfield.getText()));
         e.setDepartment_id(Integer.parseInt(depfield.getText()));
-        try{
-            ProjectDAOSQLImpl p=new ProjectDAOSQLImpl();
-            Project pro=p.getById(Integer.parseInt(profield.getText()));
+      //  try{
+//            ProjectDAOSQLImpl p=new ProjectDAOSQLImpl();
+//            Project pro=p.getById(Integer.parseInt(profield.getText()));
             e.setProject_id(Integer.parseInt(profield.getText()));
             e.setEdu(edufield.getText());
             e.setPayoff(Integer.parseInt(salfield.getText()));
             e=manager.update(e);
             refreshEmployees();
-        }
-    catch(Exception p){
-        new Alert(Alert.AlertType.NONE,"Project ID is not valid.",ButtonType.OK).show();;
-    }
+//        }
+//    catch(Exception p){
+//        new Alert(Alert.AlertType.NONE,"Project ID is not valid.",ButtonType.OK).show();;
+//    }
     }
    catch (Exception d){
         new Alert(Alert.AlertType.NONE,"Department ID is not valid.",ButtonType.OK).show();;
