@@ -33,7 +33,10 @@ private static EmployeeDAOSQLImpl instance=null;
         return executeQ("SELECT * FROM Employee WHERE department_id = ?",new Object[]{Id});
 //
     }
-
+    @Override
+    public int returnNumberofEmployees(int id) throws EmployeeException {
+        return executeQuery("SELECT COUNT(*) FROM Employee WHERE project_id = ?", new Object[]{id});
+    }
     /**
      * this method returns list of employees that works on project that is passed as parameter
      * @param id

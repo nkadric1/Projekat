@@ -13,6 +13,8 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
  */
 public interface EmployeeDao extends Dao<Employee> {
+    public int returnNumberofEmployees(int id) throws EmployeeException;
+
 
   public  List<Employee> searchByDepartment(int Id) throws EmployeeException;
  public   List<Employee> searchByProject(int id)throws EmployeeException;
