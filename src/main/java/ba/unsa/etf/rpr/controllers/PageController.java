@@ -82,6 +82,10 @@ private EmployeeManager manager=new EmployeeManager();
         openDialog("Manage projects", "/FXML/pro.fxml", new projectController());
     }
     @FXML
+    public void getStatisticofProjects(ActionEvent actionEvent){
+        openDialog("Statistics of projects", "/FXML/statistic.fxml", new StatisticofProController());
+    }
+    @FXML
     public void OnAbout(ActionEvent actionEvent){
         openDialog("About","/FXML/about.fxml",null);
     }

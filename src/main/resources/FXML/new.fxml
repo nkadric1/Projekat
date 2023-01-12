@@ -44,6 +44,12 @@
                   <MenuItem mnemonicParsing="false" onAction="#openEP" text="Projects" />
                </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Statistics">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#getStatisticofProjects" text="Projects statistic" />
+                  <MenuItem mnemonicParsing="false" text="Departments statistic" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#OnAbout" text="About" />
@@ -61,6 +67,7 @@
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.2000244140625" minWidth="10.0" prefWidth="76.3999755859375" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.60003662109375" minWidth="10.0" prefWidth="126.4000244140625" />
+            <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="100.4" minHeight="10.0" prefHeight="30.4" vgrow="SOMETIMES" />
