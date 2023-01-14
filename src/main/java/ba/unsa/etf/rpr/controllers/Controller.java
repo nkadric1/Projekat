@@ -57,16 +57,6 @@ String us=fieldUser.getText();
             passfield.clear();
         }else {
             openDialog("Company report!", "/FXML/new.fxml", new PageController());
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/new.fxml"));
-//            PageController p = new PageController((EmployeeDAOSQLImpl) DaoFactory.employeeDao());
-//            fxmlLoader.setController(p);
-//            Parent root = fxmlLoader.load();
-//            Stage stage=new Stage();
-//            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//            stage.setTitle();
-//            stage.setResizable(false);
-//            stage.show();
-//
         }
 
 }

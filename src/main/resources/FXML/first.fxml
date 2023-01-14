@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -11,38 +10,38 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane hgap="5.0" prefHeight="142.0" prefWidth="387.0" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="5.0" maxHeight="1.7976931348623157E308" prefHeight="153.0" prefWidth="243.0" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/CSS/b.css" />
     </stylesheets>
   <columnConstraints>
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="208.79998016357422" minWidth="10.0" prefWidth="118.80003662109375" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="175.40002441406253" minWidth="10.0" prefWidth="74.40002441406251" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="210.00003662109378" minWidth="111.00004882812499" prefWidth="183.9999755859375" />
-      <ColumnConstraints />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="280.0" minWidth="111.00004882812499" prefWidth="232.80002136230468" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="280.0" minWidth="111.00004882812499" prefWidth="232.80002136230468" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="120.20001220703125" minHeight="10.0" prefHeight="53.80000381469726" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="178.80001220703124" minHeight="10.0" prefHeight="56.79999389648438" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="173.40000000000003" minHeight="10.0" prefHeight="69.60000610351562" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="120.20001220703125" minHeight="10.0" prefHeight="54.40000610351562" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="178.80001220703124" minHeight="10.0" prefHeight="44.79999389648437" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="173.40000000000003" minHeight="10.0" prefHeight="47.59998779296876" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label prefHeight="68.0" prefWidth="235.0" text="Username:" GridPane.columnIndex="1" />
-      <TextField fx:id="fieldUser" GridPane.columnIndex="2" />
-      <Label prefHeight="84.0" prefWidth="232.0" text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <PasswordField fx:id="passfield" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Button fx:id="bBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Click" text="LOGIN" textAlignment="CENTER" textFill="#594e4e" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+      <TextField fx:id="fieldUser" promptText="Username" />
+      <PasswordField fx:id="passfield" promptText="Password" GridPane.rowIndex="1" />
+      <Button fx:id="bBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Click" prefHeight="30.0" prefWidth="118.0" text="LOGIN" textAlignment="CENTER" textFill="#594e4e" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin></Button>
-      <ImageView fitHeight="114.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.rowSpan="2">
-         <GridPane.margin>
-            <Insets bottom="60.0" left="5.0" right="10.0" top="10.0" />
+            <Insets />
          </GridPane.margin>
-          <image>
-              <Image fx:id="img" url="@/IMAGES/dev.png" />
-          </image>
+         <font>
+            <Font name="Rockwell" size="16.0" />
+         </font></Button>
+      <ImageView fitHeight="200.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="3">
+         <GridPane.margin>
+            <Insets bottom="25.0" left="5.0" right="10.0" top="5.0" />
+         </GridPane.margin>
+         <image>
+            <Image url="@../IMAGES/dev.png" />
+         </image>
       </ImageView>
    </children>
    <padding>
