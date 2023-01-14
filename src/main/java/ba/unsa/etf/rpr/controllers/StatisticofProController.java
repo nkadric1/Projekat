@@ -33,12 +33,14 @@ private EmployeeDAOSQLImpl employeeDAOSQL=new EmployeeDAOSQLImpl();
  catAxis=new CategoryAxis();
     List<Project> plist=projectDAOSQL.getAll();
     List<XYChart.Data<String,Number>> d=new ArrayList<>(plist.size());
+
     for(Project x:plist){
-        d.add(new XYChart.Data<>((String) x.getProject_name(), 20));
-       //projectNames.add(Arrays.asList(x.getProject_name()).toString());
-          }
+        projectNames.add(Arrays.asList(x.getProject_name()).toString());
+          } catAxis.setCategories(projectNames);
+    d.add(new XYChart.Data<>( catAxis.getAccessibleText(), 20));
     XYChart.Series<String,Number> series=new XYChart.Series<>(FXCollections.observableList(d));
    numAxis=new NumberAxis();
+
     barChart=new BarChart<>(catAxis,numAxis);
     barChart.setTitle("Statistics");
 
