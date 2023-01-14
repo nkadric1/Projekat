@@ -22,9 +22,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -46,13 +50,14 @@ import java.util.List;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class PageController {
+    public TextArea txtArea;
     private static final String filename = "ListOfEmployees.txt";
     public TextField empidfield;
     public TextField fnamefield;
     public TextField lnamefield;
     public TextField addressfield;
     public DatePicker hdatefield;
-   public ChoiceBox<String> choiceB;
+    public Button addempbttn;
     public TextField depfield;
     int brojac = 0;
  public  TextField proid;
@@ -65,6 +70,11 @@ public class PageController {
     private TilePane t = new TilePane();
     private List<Departments> depList;
     public TableView<Employee> emptab;
+ public javafx.scene.image.Image img = new Image("IMAGES/addimg.png");
+ public Image img2=new Image("IMAGES/updateimg.png");
+ public Image img3=new Image("IMAGES/delimg.png");
+ public Button upempbttn;
+ public Button delempbttn;
     public TableColumn<Employee, Integer> empIdcol;
     public TableColumn<Employee, Integer> depemp;
     public TableColumn<Employee, String> empNamecol;
@@ -98,6 +108,7 @@ private EmployeeManager manager=new EmployeeManager();
             s.setScene(new Scene(l.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             s.setTitle(title);
             s.initStyle(StageStyle.UTILITY);
+            s.setResizable(false);
             s.show();
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
@@ -149,6 +160,9 @@ private EmployeeManager manager=new EmployeeManager();
 
     @FXML
     public void initialize() {
+        addempbttn.setGraphic(new ImageView(img));
+        upempbttn.setGraphic(new ImageView(img2));
+        delempbttn.setGraphic(new ImageView(img3));
         empIdcol.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
         empNamecol.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_name"));
         emphdatecol.setCellValueFactory(new PropertyValueFactory<Employee, Date>("Hire_date"));
@@ -197,6 +211,7 @@ private EmployeeManager manager=new EmployeeManager();
         e.setPayoff(Integer.parseInt(salfield.getText()));
         e=manager.add(e);
         emptab.getItems().add(e);
+        txtArea.setText("A new employee has been added.");
         emptab.refresh();
         fnamefield.setText("");
         lnamefield.setText("");
@@ -236,6 +251,7 @@ try{
             e.setEdu(edufield.getText());
             e.setPayoff(Integer.parseInt(salfield.getText()));
             e=manager.update(e);
+            txtArea.setText("Employee" +e.getFirst_name()+" "+ e.getLast_name() +"\n  has been updated.");
             refreshEmployees();
 //        }
 //    catch(Exception p){
@@ -264,6 +280,7 @@ public void DeleteEmp(ActionEvent actionEvent) throws EmployeeException{
     try {
         Employee ee= (Employee) emptab.getSelectionModel().getSelectedItem();
         manager.delete(ee.getId());
+        txtArea.setText("Employee " +ee.getFirst_name()+ " " + ee.getLast_name() +"\n has been deleted.");
         emptab.getItems().remove(ee);
     }catch (EmployeeException e){
         new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
