@@ -33,6 +33,7 @@ public class Controller {
             s.setScene(new Scene(l.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             s.setTitle(title);
             s.initStyle(StageStyle.UTILITY);
+            s.setResizable(false);
             s.show();
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
