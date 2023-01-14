@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" prefHeight="173.0" prefWidth="448.0" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="5.0" prefHeight="142.0" prefWidth="387.0" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/CSS/b.css" />
     </stylesheets>
   <columnConstraints>
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="208.79998016357422" minWidth="10.0" prefWidth="182.40001678466797" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="175.40002441406253" minWidth="10.0" prefWidth="100.19997558593747" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="201.0" minWidth="111.00004882812499" prefWidth="138.6000244140625" />
+    <ColumnConstraints hgrow="ALWAYS" maxWidth="208.79998016357422" minWidth="10.0" prefWidth="118.80003662109375" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="175.40002441406253" minWidth="10.0" prefWidth="74.40002441406251" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="210.00003662109378" minWidth="111.00004882812499" prefWidth="183.9999755859375" />
       <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
@@ -36,7 +36,7 @@
          <GridPane.margin>
             <Insets right="5.0" />
          </GridPane.margin></Button>
-      <ImageView fitHeight="160.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <ImageView fitHeight="114.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets bottom="60.0" left="5.0" right="10.0" top="10.0" />
          </GridPane.margin>
