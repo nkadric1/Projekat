@@ -11,10 +11,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
@@ -23,6 +24,10 @@ public class DepartmentController {
     public ListView<Departments> departmentListView;
     public TextField depName;
     public TextField hprice;
+    public Button aDep;
+    public Button uDep;
+    public Button dDep;
+    public Button cDep;
     private void refreshDepartment() throws EmployeeException{
         try{
             departmentListView.setItems(FXCollections.observableList(manager.getAll()));
@@ -35,6 +40,10 @@ public class DepartmentController {
     @FXML
     public void initialize(){
         try{
+            aDep.setBackground(Background.fill(Color.web("darkseagreen")));
+            dDep.setBackground(Background.fill(Color.web("darkseagreen")));
+            uDep.setBackground(Background.fill(Color.web("darkseagreen")));
+            cDep.setBackground(Background.fill(Color.web("darkseagreen")));
             refreshDepartment();
             departmentListView.getSelectionModel().selectedItemProperty().addListener((obs,o,n)->{
 
@@ -86,8 +95,10 @@ public class DepartmentController {
     }
     @FXML
     public void closeIt(ActionEvent actionEvent){
-        Platform.exit();
-        System.exit(0);
+        Node n = (Node) actionEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
+
     }
     public class DepartmentModel {
         public SimpleStringProperty hprice = new SimpleStringProperty("");
