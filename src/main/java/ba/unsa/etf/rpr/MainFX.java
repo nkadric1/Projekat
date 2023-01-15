@@ -5,11 +5,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class MainFX extends Application {
+    public GridPane grid=new GridPane();
     public void start(Stage primarystage) throws Exception {
         try {
             FXMLLoader fl = new FXMLLoader(getClass().getResource("/FXML/first.fxml"));
@@ -17,7 +22,9 @@ public class MainFX extends Application {
             fl.setController(controller);
             Parent root = fl.load();
             primarystage.setTitle("DeveLoop");
-            primarystage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Scene scene=new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+//            grid.setBackground(Background.fill(Color.AZURE));
+            primarystage.setScene(scene);
             primarystage.setResizable(false); //iskljucivo se stavlja za dijaloske prozore
             primarystage.show();
         } catch (Exception e) {
