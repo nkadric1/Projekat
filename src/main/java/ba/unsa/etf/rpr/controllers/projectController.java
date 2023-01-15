@@ -10,19 +10,26 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class projectController {
 
  public TextField projectname;
  public ListView<Project> listofprojects;
  private ProjectManager manager=new ProjectManager();
+ public Button aPro;
+ public Button delPro;
+ public Button cPro;
  @FXML
     public void initialize(){
   try{
+   aPro.setBackground(Background.fill(Color.web("darkseagreen")));
+   delPro.setBackground(Background.fill(Color.web("darkseagreen")));
+   cPro.setBackground(Background.fill(Color.web("darkseagreen")));
    refreshProjects();
   listofprojects.getSelectionModel().selectedItemProperty().addListener((obs,o,n)->{
 
@@ -68,8 +75,10 @@ try{
  }
  @FXML
  public void closeIt(ActionEvent actionEvent){
-  Platform.exit();
-  System.exit(0);
+  Node n = (Node) actionEvent.getSource();
+  Stage stage = (Stage) n.getScene().getWindow();
+  stage.close();
+
  }
  public class ProjectModel {
   public SimpleStringProperty pname = new SimpleStringProperty("");
