@@ -29,7 +29,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -70,6 +72,8 @@ public class PageController {
     private TilePane t = new TilePane();
     private List<Departments> depList;
     public TableView<Employee> emptab;
+    public Button sEmp;
+    public Button getEmp;
  public javafx.scene.image.Image img = new Image("IMAGES/addimg.png");
  public Image img2=new Image("IMAGES/updateimg.png");
  public Image img3=new Image("IMAGES/delimg.png");
@@ -133,7 +137,7 @@ private EmployeeManager manager=new EmployeeManager();
                 bw.write(String.format("%s\t%s\t%s\t%s\t%s\t%s", temp.getFirst_name(), temp.getLast_name(), temp.getAddress(), temp.getHire_date(),temp.getEdu(),temp.getPayoff()));
                 bw.newLine();
             }
-
+ txtArea.setText("List of employees has been saved.");
         } finally {
             if (bw != null) {
                 bw.close();
@@ -153,6 +157,7 @@ private EmployeeManager manager=new EmployeeManager();
             Desktop desktop = Desktop.getDesktop();
             if (file.exists())
                 desktop.open(file);
+            txtArea.setText("File has been opened.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,9 +165,16 @@ private EmployeeManager manager=new EmployeeManager();
 
     @FXML
     public void initialize() {
+        txtArea.setBackground(Background.fill(Color.TRANSPARENT));
+        txtArea.setText("An insight into the administrative part of the company.");
+        sEmp.setBackground(Background.fill(Color.web("darkseagreen")));
+        getEmp.setBackground(Background.fill(Color.web("darkseagreen")));
         addempbttn.setGraphic(new ImageView(img));
+        addempbttn.setBackground(Background.fill(Color.web("darkseagreen")));
         upempbttn.setGraphic(new ImageView(img2));
+        upempbttn.setBackground(Background.fill(Color.web("darkseagreen")));
         delempbttn.setGraphic(new ImageView(img3));
+        delempbttn.setBackground(Background.fill(Color.web("darkseagreen")));
         empIdcol.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
         empNamecol.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_name"));
         emphdatecol.setCellValueFactory(new PropertyValueFactory<Employee, Date>("Hire_date"));
@@ -268,10 +280,16 @@ try{
 
     @FXML
     public void searchEmp(ActionEvent actionEvent) throws EmployeeException {
-        Employee e = employeeDAOSQL.getfromID(Integer.parseInt(empidfield.getText()));
-        ObservableList<Employee> emp = FXCollections.observableArrayList();
-        emp.add(e);
-        emptab.setItems(emp);
+     try   {
+            Employee e = employeeDAOSQL.getfromID(Integer.parseInt(empidfield.getText()));
+            ObservableList<Employee> emp = FXCollections.observableArrayList();
+            emp.add(e);
+         txtArea.setText("Search has been successful!");
+
+         emptab.setItems(emp);
+        }catch(EmployeeException e){
+         txtArea.setText("Employee with ID: " + Integer.parseInt(empidfield.getText())+ "\n is not available.");
+     }
     }
 
 
@@ -288,11 +306,16 @@ public void DeleteEmp(ActionEvent actionEvent) throws EmployeeException{
 }
 @FXML
   public void getListofemp(ActionEvent actionEvent) throws EmployeeException{
-List<Employee> e=employeeDAOSQL.searchByProject(Integer.parseInt(proid.getText()));
-ObservableList<Employee> emp=FXCollections.observableArrayList();
-emp.addAll(e);
-     emptab.setItems(emp);
+   try {
+        List<Employee> e = employeeDAOSQL.searchByProject(Integer.parseInt(proid.getText()));
+        ObservableList<Employee> emp = FXCollections.observableArrayList();
+        emp.addAll(e);
+       emptab.setItems(emp);
 
+   }
+     catch (EmployeeException e){
+       txtArea.setText("Project with ID "+ Integer.parseInt(proid.getText())+ "\n is not available.");
+     }
   }
 
     public PageController(EmployeeDAOSQLImpl employeeDAOSQL) {
