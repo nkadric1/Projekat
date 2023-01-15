@@ -1,7 +1,9 @@
 #bBtn{
 -fx-background-color: darkseagreen;
 }
-.fieldisnotOK{
--fx-background-color: bisque;}
-.fieldisOK{
--fx-background-color: azure;}
+#getEmp{
+-fx-background-color: darkseagreen;
+}
+#sEmp{
+-fx-background-color: darkseagreen;
+}
