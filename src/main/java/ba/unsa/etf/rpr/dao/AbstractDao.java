@@ -168,20 +168,7 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             throw new EmployeeException(e.getMessage(),e);
         }
     }
-    public int executeQuery(String q, Object[] p) throws EmployeeException{
-        try{
-            PreparedStatement tmp=getConnection().prepareStatement(q);
-            if(p!=null){
-                for(int i=1;i<=p.length;i++) tmp.setObject(i,p[i-1]);
-            }
-            ResultSet r=tmp.executeQuery();
-            ArrayList<tt> rlist=new ArrayList<>();
-            while(r.next()) rlist.add(rowtoobject(r));
-            return rlist.size();
-        }catch(SQLException e){
-            throw new EmployeeException(e.getMessage(),e);
-        }
-    }
+
     public tt executeQUq(String q, Object[] p) throws EmployeeException{
         List<tt> r=executeQ(q,p);
         if(r!=null && r.size()==1){

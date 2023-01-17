@@ -35,7 +35,20 @@ private static EmployeeDAOSQLImpl instance=null;
     }
     @Override
     public int returnNumberofEmployees(int id) throws EmployeeException {
-        return executeQuery("SELECT COUNT(*) FROM Employee WHERE project_id = ?", new Object[]{id});
+        String sq="SELECT COUNT(*) FROM Employee WHERE project_id = ?";
+        try{
+            PreparedStatement s=getConnection().prepareStatement(sq,Statement.RETURN_GENERATED_KEYS);
+            s.setObject(1,id);
+         ResultSet r=s.executeQuery();
+         int count=0;
+        while(r.next()){
+            count++;
+        }
+        int all= getInstance().getAll().size();
+        return count/all;
+        }catch (SQLException e){
+            throw new EmployeeException(e.getMessage(),e);
+        }
     }
     /**
      * this method returns list of employees that works on project that is passed as parameter
