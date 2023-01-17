@@ -29,7 +29,7 @@
     <RowConstraints maxHeight="541.8000030517578" minHeight="10.0" prefHeight="528.1999969482422" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <MenuBar fx:id="menu" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="674.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
+      <MenuBar fx:id="menu" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="674.0" style="-fx-background-color: transparent; -fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.columnSpan="2">
         <menus>
           <Menu fx:id="menufile" mnemonicParsing="false" text="File">
             <items>
@@ -87,48 +87,48 @@
             <Label text="Address:" GridPane.rowIndex="2" />
             <Label text="Hire date:" GridPane.rowIndex="3" />
             <Label text="Department:" GridPane.rowIndex="4" />
-            <TextField fx:id="fnamefield" maxHeight="-Infinity" prefHeight="27.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <TextField fx:id="fnamefield" maxHeight="-Infinity" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </TextField>
-            <TextField fx:id="lnamefield" prefHeight="27.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="lnamefield" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </TextField>
-            <TextField fx:id="addressfield" prefHeight="27.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="addressfield" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </TextField>
             <Label text="Education:" GridPane.rowIndex="5" />
-            <TextField fx:id="edufield" prefHeight="26.0" prefWidth="84.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <DatePicker fx:id="hdatefield" maxWidth="-Infinity" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="edufield" prefHeight="26.0" prefWidth="84.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <DatePicker fx:id="hdatefield" maxWidth="-Infinity" prefHeight="26.0" prefWidth="138.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="238.0" GridPane.columnSpan="2" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets top="70.0" />
                </GridPane.margin></Separator>
             <Label text="Project:" GridPane.rowIndex="6" />
-            <TextField fx:id="profield" prefHeight="26.0" prefWidth="83.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="profield" prefHeight="26.0" prefWidth="83.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label text="Salary:" GridPane.rowIndex="7" />
-            <TextField fx:id="salfield" prefHeight="26.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="depfield" maxWidth="-Infinity" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="salfield" prefHeight="26.0" prefWidth="70.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="depfield" maxWidth="-Infinity" prefHeight="26.0" prefWidth="138.0" style="-fx-border-color: darkseagreen;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="238.0" GridPane.columnSpan="2" GridPane.rowIndex="8">
                <children>
-                  <Button fx:id="addempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#addNew" prefHeight="46.0" prefWidth="80.0">
+                  <Button fx:id="addempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#addNew" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
-                        <Insets right="5.0" top="-10.0" />
+                        <Insets right="5.0" top="-15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="upempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#UpdateEmp" prefHeight="46.0" prefWidth="80.0">
+                  <Button fx:id="upempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#UpdateEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
-                        <Insets right="5.0" top="-10.0" />
+                        <Insets right="5.0" top="-15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="delempbttn" accessibleRole="IMAGE_VIEW" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#DeleteEmp" prefHeight="46.0" prefWidth="80.0">
+                  <Button fx:id="delempbttn" accessibleRole="IMAGE_VIEW" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#DeleteEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
-                        <Insets top="-10.0" />
+                        <Insets top="-15.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -139,7 +139,7 @@
                   <Insets bottom="-30.0" />
                </GridPane.margin>
             </HBox>
-            <TextArea fx:id="txtArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="234.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
+            <TextArea fx:id="txtArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="234.0" style="-fx-border-color: darkseagreen;" GridPane.columnSpan="2" GridPane.rowIndex="9">
                <GridPane.margin>
                   <Insets left="5.0" top="20.0" />
                </GridPane.margin>
@@ -167,44 +167,47 @@
             <RowConstraints maxHeight="423.0000061035156" minHeight="10.0" prefHeight="40.79997558593749" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="emptab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="448.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="emptab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="435.0" style="-fx-background-color: darkseagreen;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="empIdcol" prefWidth="40.80004835128784" text="ID" />
-                <TableColumn fx:id="empNamecol" prefWidth="69.5999755859375" text="Name" />
-                  <TableColumn fx:id="emphdatecol" prefWidth="73.5999755859375" text="Hire date" />
-                  <TableColumn fx:id="depemp" prefWidth="81.60003662109375" text="Department" />
-                  <TableColumn fx:id="procolumn" prefWidth="58.4000244140625" text="Project" />
-                  <TableColumn fx:id="salcol" prefWidth="71.2000732421875" text="Salary" />
+                <TableColumn fx:id="empIdcol" prefWidth="40.80004835128784" style="-fx-background-color: transparent;" text="ID" />
+                <TableColumn fx:id="empNamecol" prefWidth="69.5999755859375" style="-fx-background-color: transparent;" text="Name" />
+                  <TableColumn fx:id="emphdatecol" prefWidth="73.5999755859375" style="-fx-background-color: transparent;" text="Hire date" />
+                  <TableColumn fx:id="depemp" prefWidth="81.60003662109375" style="-fx-background-color: transparent;" text="Department" />
+                  <TableColumn fx:id="procolumn" prefWidth="77.5999755859375" style="-fx-background-color: transparent;" text="Project" />
+                  <TableColumn fx:id="salcol" prefWidth="77.5999755859375" style="-fx-background-color: transparent;" text="Salary" />
               </columns>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <GridPane.margin>
-                  <Insets bottom="6.0" left="10.0" right="10.0" />
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="5.0" />
                </GridPane.margin>
             </TableView>
-            <TextField fx:id="proid" prefHeight="26.0" prefWidth="101.0" promptText="Project ID" GridPane.rowIndex="2">
+            <TextField fx:id="proid" prefHeight="26.0" prefWidth="101.0" promptText="Project ID" style="-fx-border-color: darkseagreen;" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="200.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="getEmp" mnemonicParsing="false" onAction="#getListofemp" prefHeight="26.0" prefWidth="103.0" text="Get employees" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="getEmp" mnemonicParsing="false" onAction="#getListofemp" prefHeight="26.0" prefWidth="103.0" style="-fx-background-color: darkseagreen;" text="Get employees" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="3.0" right="8.0" />
                </GridPane.margin>
                <font>
-                  <Font size="10.0" />
+                  <Font name="SansSerif Regular" size="10.0" />
                </font>
             </Button>
-            <TextField fx:id="empidfield" prefHeight="26.0" prefWidth="192.0" promptText="Employee ID" GridPane.rowIndex="3">
+            <TextField fx:id="empidfield" prefHeight="26.0" prefWidth="192.0" promptText="Employee ID" style="-fx-border-color: darkseagreen;" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="200.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="sEmp" mnemonicParsing="false" onAction="#searchEmp" prefHeight="26.0" prefWidth="103.0" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="sEmp" mnemonicParsing="false" onAction="#searchEmp" prefHeight="26.0" prefWidth="103.0" style="-fx-background-color: darkseagreen;" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="3.0" right="8.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
             </Button>
          </children>
          <GridPane.margin>
