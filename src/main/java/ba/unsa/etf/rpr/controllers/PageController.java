@@ -61,9 +61,7 @@ public class PageController {
     public DatePicker hdatefield;
     public Button addempbttn;
     public TextField depfield;
-    int brojac = 0;
- public  TextField proid;
- //   public TextField adr;
+    public  TextField proid;
     public TextField edufield;
     public TextField profield;
     public TextField salfield;
@@ -74,19 +72,19 @@ public class PageController {
     public TableView<Employee> emptab;
     public Button sEmp;
     public Button getEmp;
- public javafx.scene.image.Image img = new Image("IMAGES/addimg.png");
- public Image img2=new Image("IMAGES/updateimg.png");
- public Image img3=new Image("IMAGES/delimg.png");
- public Button upempbttn;
- public Button delempbttn;
+    public javafx.scene.image.Image img = new Image("IMAGES/add.png");
+    public Image img2=new Image("IMAGES/update.png");
+    public Image img3=new Image("IMAGES/delete.png");
+    public Button upempbttn;
+    public Button delempbttn;
     public TableColumn<Employee, Integer> empIdcol;
     public TableColumn<Employee, Integer> depemp;
     public TableColumn<Employee, String> empNamecol;
     public TableColumn<Employee, Date> emphdatecol;
     public TableColumn<Employee,Integer> procolumn;
-public TableColumn<Employee,Integer> salcol;
+    public TableColumn<Employee,Integer> salcol;
     public MenuItem close;
-private EmployeeManager manager=new EmployeeManager();
+    private EmployeeManager manager=new EmployeeManager();
     @FXML
     public void openED(ActionEvent actionEvent) {
         openDialog("Manage departments", "/FXML/dep.fxml", new DepartmentController());
@@ -137,7 +135,7 @@ private EmployeeManager manager=new EmployeeManager();
                 bw.write(String.format("%s\t%s\t%s\t%s\t%s\t%s", temp.getFirst_name(), temp.getLast_name(), temp.getAddress(), temp.getHire_date(),temp.getEdu(),temp.getPayoff()));
                 bw.newLine();
             }
- txtArea.setText("List of employees has been saved.");
+    txtArea.setText("List of employees has been saved.");
         } finally {
             if (bw != null) {
                 bw.close();
@@ -165,8 +163,8 @@ private EmployeeManager manager=new EmployeeManager();
 
     @FXML
     public void initialize() {
-        txtArea.setBackground(Background.fill(Color.TRANSPARENT));
-        txtArea.setText("An insight into the administrative part of the company.");
+        txtArea.setBackground(Background.fill(Color.web("darkseagreen")));
+        txtArea.setText("An insight into the administrative \n part of the company.");
         sEmp.setBackground(Background.fill(Color.web("darkseagreen")));
         getEmp.setBackground(Background.fill(Color.web("darkseagreen")));
         addempbttn.setGraphic(new ImageView(img));
