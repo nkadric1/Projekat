@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="635.0" style="-fx-background-color: #EEE8AA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.20001220703125" minWidth="10.0" prefWidth="96.39996337890625" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="484.60003662109375" />
@@ -19,34 +20,40 @@
       <RowConstraints maxHeight="358.00000228881834" minHeight="10.0" prefHeight="36.59996337890624" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ListView fx:id="listofprojects" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+      <ListView fx:id="listofprojects" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </ListView>
-      <VBox prefHeight="334.0" prefWidth="122.0">
+      <VBox prefHeight="334.0" prefWidth="122.0" style="-fx-background-color: #EEE8AA;">
          <children>
-            <TextField fx:id="projectname" prefHeight="33.0" prefWidth="133.0" promptText="Project name">
+            <TextField fx:id="projectname" prefHeight="33.0" prefWidth="133.0" promptText="Project name" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;">
                <VBox.margin>
                   <Insets left="2.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="aPro" mnemonicParsing="false" onAction="#addProject" prefHeight="26.0" prefWidth="138.0" text="Add project">
+            <Button fx:id="aPro" mnemonicParsing="false" onAction="#addProject" prefHeight="26.0" prefWidth="138.0" style="-fx-background-color: darkseagreen;" text="Add project">
                <VBox.margin>
                   <Insets left="2.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="delPro" mnemonicParsing="false" onAction="#deleteProject" prefHeight="26.0" prefWidth="135.0" text="Delete project">
+            <Button fx:id="delPro" mnemonicParsing="false" onAction="#deleteProject" prefHeight="26.0" prefWidth="135.0" style="-fx-background-color: darkseagreen;" text="Delete project">
                <VBox.margin>
                   <Insets left="2.0" top="10.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
-      <Button fx:id="cPro" mnemonicParsing="false" onAction="#closeIt" prefHeight="26.0" prefWidth="60.0" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Button fx:id="cPro" mnemonicParsing="false" onAction="#closeIt" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: darkseagreen;" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="5.0" left="435.0" />
          </GridPane.margin>
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
       </Button>
    </children>
 </GridPane>
