@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
 
-<AnchorPane prefHeight="450.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BarChart fx:id="barChart" layoutX="-106.0" layoutY="-6.0" prefHeight="450.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <LineChart fx:id="Chart" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
         <xAxis>
-          <CategoryAxis fx:id="catAxis" prefHeight="39.0" prefWidth="564.0" side="BOTTOM" />
+          <CategoryAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis fx:id="numAxis" side="LEFT" />
+          <NumberAxis side="LEFT" />
         </yAxis>
-      </BarChart>
-   </children>
-</AnchorPane>
+      </LineChart>
+   </center>
+</BorderPane>
