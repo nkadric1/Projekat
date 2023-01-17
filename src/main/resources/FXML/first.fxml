@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -10,40 +11,55 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="grid" hgap="5.0" maxHeight="1.7976931348623157E308" prefHeight="153.0" prefWidth="243.0" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="grid" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="472.0" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/CSS/b.css" />
     </stylesheets>
   <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="280.0" minWidth="111.00004882812499" prefWidth="232.80002136230468" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="280.0" minWidth="111.00004882812499" prefWidth="232.80002136230468" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="280.0" minWidth="111.00004882812499" prefWidth="122.20003662109376" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="280.0" minWidth="111.00004882812499" prefWidth="277.39996337890625" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="120.20001220703125" minHeight="10.0" prefHeight="54.40000610351562" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="178.80001220703124" minHeight="10.0" prefHeight="44.79999389648437" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="183.39997406005858" minHeight="10.0" prefHeight="183.39997406005858" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="178.80001220703124" minHeight="10.0" prefHeight="30.60002593994139" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="173.40000000000003" minHeight="10.0" prefHeight="47.59998779296876" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="173.40000000000003" minHeight="10.0" prefHeight="47.59998779296876" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField fx:id="fieldUser" promptText="Username" />
-      <PasswordField fx:id="passfield" promptText="Password" GridPane.rowIndex="1" />
-      <Button fx:id="bBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Click" prefHeight="30.0" prefWidth="118.0" text="LOGIN" textAlignment="CENTER" textFill="#594e4e" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <font>
-            <Font name="Rockwell" size="16.0" />
-         </font></Button>
-      <ImageView fitHeight="200.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="3">
-         <GridPane.margin>
-            <Insets bottom="25.0" left="5.0" right="10.0" top="5.0" />
-         </GridPane.margin>
-         <image>
-            <Image url="@../IMAGES/dev.png" />
-         </image>
-      </ImageView>
+      <Pane prefHeight="459.0" prefWidth="258.0" style="-fx-background-color: #F5F5F5;" GridPane.columnIndex="1" GridPane.rowSpan="4">
+         <children>
+            <TextField fx:id="fieldUser" layoutX="53.0" layoutY="204.0" prefHeight="35.0" prefWidth="172.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="passfield" layoutX="53.0" layoutY="255.0" prefHeight="35.0" prefWidth="172.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="bBtn" defaultButton="true" layoutX="59.0" layoutY="339.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Click" prefHeight="31.0" prefWidth="160.0" style="-fx-background-color: #8FBC8F;" text="LOGIN" textFill="#594e4e">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="72.0" layoutY="105.0" prefHeight="31.0" prefWidth="122.0" text="   User Login" textAlignment="CENTER" textFill="#155b31">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane prefHeight="478.0" prefWidth="121.0" style="-fx-background-color: #EEE8AA;" GridPane.rowSpan="4">
+         <children>
+            <ImageView fitHeight="76.0" fitWidth="81.0" layoutX="51.0" layoutY="131.0" opacity="0.81" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../IMAGES/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="20.0" layoutY="233.0" prefHeight="35.0" prefWidth="138.0" text="    DeveLoop" textFill="#155b31">
+               <font>
+                  <Font name="SansSerif Regular" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
