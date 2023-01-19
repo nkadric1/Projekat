@@ -66,6 +66,7 @@ public class DepartmentController {
             d=manager.update(d);
             refreshDepartment();
         }catch(EmployeeException e){
+            e.printStackTrace();
             new Alert(Alert.AlertType.NONE,e.getMessage(),ButtonType.OK).show();
         }
     }
