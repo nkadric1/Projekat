@@ -63,7 +63,7 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
 
     public tt getById(int id) throws EmployeeException{
 
-        return executeQUq("SELECT * FROM" + this.name + " WHERE id = ?",new Object[]{id});
+        return executeQUq("SELECT * FROM " + this.name + " WHERE id = ?",new Object[]{id});
 
     }
     public List<tt> getAll() throws EmployeeException{
@@ -145,10 +145,10 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         StringBuilder col=new StringBuilder();
         int c=0;
         for(Map.Entry<String,Object> e: r.entrySet()){
-            c++;
             if(e.getKey().equals("id")) continue;
+            c++;
             col.append(e.getKey()).append("= ?");
-            if(r.size()!=c){
+            if(r.size()!= c + 1){
                 col.append(",");
             }
         }
