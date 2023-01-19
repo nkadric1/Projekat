@@ -117,7 +117,11 @@ public class PageController {
             e.printStackTrace();
         }
     }
-
+@FXML public void showall(ActionEvent actionEvent) throws EmployeeException {
+ refreshEmployees();
+        List<Employee> emlist=employeeDAOSQL.getAll();
+        emptab.getItems().addAll(emlist);
+}
     @FXML
     public void closeIt(ActionEvent actionEvent) {
         Platform.exit();
@@ -254,19 +258,13 @@ try{
     DepartmentsDAOSQLImpl d=new DepartmentsDAOSQLImpl();
     Departments dep=d.ReturnDepartmentForId(Integer.parseInt(depfield.getText()));
         e.setDepartment_id(Integer.parseInt(depfield.getText()));
-      //  try{
-//            ProjectDAOSQLImpl p=new ProjectDAOSQLImpl();
-//            Project pro=p.getById(Integer.parseInt(profield.getText()));
+
             e.setProject_id(Integer.parseInt(profield.getText()));
             e.setEdu(edufield.getText());
             e.setPayoff(Integer.parseInt(salfield.getText()));
             e=manager.update(e);
-            txtArea.setText("Employee" +e.getFirst_name()+" "+ e.getLast_name() +"\n  has been updated.");
+            txtArea.setText("Employee " +e.getFirst_name()+" "+ e.getLast_name() +"\n  has been updated.");
             refreshEmployees();
-//        }
-//    catch(Exception p){
-//        new Alert(Alert.AlertType.NONE,"Project ID is not valid.",ButtonType.OK).show();;
-//    }
     }
    catch (Exception d){
         new Alert(Alert.AlertType.NONE,"Department ID is not valid.",ButtonType.OK).show();;
