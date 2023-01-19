@@ -94,6 +94,7 @@ private static EmployeeDAOSQLImpl instance=null;
             emp.setEdu(r.getString("Education"));
             emp.setProject_id(r.getInt("project_id"));
             emp.setPayoff(r.getInt("payoff"));
+            emp.setDepartment(DaoFactory.departmentDao().getById(r.getInt("department_id")));
 
             return emp;
         }catch(SQLException e){
@@ -110,7 +111,7 @@ private static EmployeeDAOSQLImpl instance=null;
         r.put("Last_name", object.getLast_name());
         r.put("Address", object.getAddress());
         r.put("Hire_date", object.getHire_date());
-        r.put("department_id",object.getDepartment_id());
+        r.put("department_id",object.getDepartment().getId());
         r.put("Education", object.getEdu());
         r.put("project_id", object.getProject_id());
         r.put("payoff", object.getPayoff());

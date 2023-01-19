@@ -16,6 +16,16 @@ public class Employee implements Idable {
     private String address;
     private LocalDate hire_date;
     private int department_id;
+
+    public Departments getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Departments department) {
+        this.department = department;
+    }
+
+    private Departments department;
     private int project_id;
     private String edu;
     private int payoff;
