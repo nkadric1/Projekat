@@ -37,7 +37,6 @@ public class DepartmentManager {
         }catch (EmployeeException e){
             if(e.getMessage().contains("FOREIGN KEY")){
                 throw new EmployeeException("Cannot delete department which is related to employees. You must delete employees of that department first, then delete department.");
-
             }
             throw e;
         }
