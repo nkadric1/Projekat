@@ -2,7 +2,9 @@ package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
+import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Employee;
+import ba.unsa.etf.rpr.domain.Project;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
@@ -35,12 +37,16 @@ public class EmployeeManagerTest {
         e.setId(40);
         e.setPayoff(1000);
         e.setEdu("Bachelor");
-        e.setProject_id(200);
-        e.setDepartment_id(30);
+        Project p=new Project();
+        p.setId(200);
+        e.setProject(p);
+        Departments d=new Departments();
+        d.setId(30);
+        e.setDepartment(d);
         employeeDAOSQL=Mockito.mock(EmployeeDAOSQLImpl.class);
         employees=new ArrayList<>();
-        employees.addAll(Arrays.asList(new Employee(51,"Zana","Jack","street22.D",LocalDate.now(),30,202,"Master",2000),
-                new Employee(52,"Clare","Jade","street25.D",LocalDate.now(),20,202,"Master",2000)));
+        employees.addAll(Arrays.asList(new Employee(51,"Zana","Jack","street22.D",LocalDate.now(),new Departments(30),new Project(202),"Master",2000),
+                new Employee(52,"Clare","Jade","street25.D",LocalDate.now(),new Departments(20),new Project(202),"Master",2000)));
 
     }
     @Test
@@ -56,18 +62,13 @@ public class EmployeeManagerTest {
             Assertions.assertTrue(false);
         }
         String incorrectn = "A";
-        //Mockito.doCallRealMethod().when(employeeManager).validname(incorrectn);
         Assertions.assertThrows(EmployeeException.class, () -> {
             employeeManager.validname(incorrectn);
         }, "Name of employee must be between 2 and 45 chars");
-        //Assertions.assertEquals("Name of employee must be between 2 and 45 chars", exception.getMessage());
-
         String inc = RandomStringUtils.randomAlphabetic(50);
-        //Mockito.doCallRealMethod().when(employeeManager).validname(incorrectn);
         Assertions.assertThrows(EmployeeException.class, () -> {
             employeeManager.validname(inc);
         }, "Name of employee must be between 2 and 45 chars");
-        //Assertions.assertEquals("Name of employee must be between 2 and 45 chars", exception1.getMessage());
 
     }
     @Test
@@ -85,7 +86,7 @@ public class EmployeeManagerTest {
         }
         @Test
     void addNewEmp() throws EmployeeException{
-        Employee e=new Employee(55,"Zina","Marrs","street278.D",LocalDate.now(),10,201,"Bachelor",1000);
+        Employee e=new Employee(55,"Zina","Marrs","street278.D",LocalDate.now(),new Departments(10),new Project(201),"Bachelor",1000);
         e.setId(0);
 
         MockedStatic<DaoFactory> daoFactoryMockedStatic=Mockito.mockStatic(DaoFactory.class);
