@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.business;
 
+import ba.unsa.etf.rpr.dao.Dao;
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Employee;
@@ -48,6 +49,10 @@ public class EmployeeManager {
     }
     public List<Employee> getByProject(Integer projectId) throws EmployeeException {
         return DaoFactory.employeeDao().searchByProject(projectId);
+    }
+
+    public List<Employee> getByHireDate() throws EmployeeException {
+        return DaoFactory.employeeDao().getByHireDate();
     }
 }
 
