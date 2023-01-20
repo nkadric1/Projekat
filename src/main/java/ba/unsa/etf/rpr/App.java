@@ -1,7 +1,9 @@
 package ba.unsa.etf.rpr;
 
+import ba.unsa.etf.rpr.business.DepartmentManager;
 import ba.unsa.etf.rpr.business.EmployeeManager;
 import ba.unsa.etf.rpr.business.ProjectManager;
+import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Project;
 import org.apache.commons.cli.*;
 import java.sql.Date;
@@ -49,6 +51,13 @@ public static  Options addOptions(){
         return e;
 
     }
+    public static Departments searchThroughDepartments(List<Departments> listOfDep, String eName) {
+
+    Departments e = null;
+        e = listOfDep.stream().filter(emp -> emp.getDepname().toLowerCase().equals(eName.toLowerCase())).findAny().get();
+        return e;
+
+    }
     public static void main( String[] args ) throws Exception
     {
         Options options = addOptions();
@@ -61,11 +70,19 @@ public static  Options addOptions(){
         if((cl.hasOption(addEmployee.getOpt()) || cl.hasOption(addEmployee.getLongOpt())) ){
           EmployeeManager eManager = new EmployeeManager();
            ProjectManager pManager = new ProjectManager();
+            DepartmentManager departmentManager=new DepartmentManager();
             Project p = null;
             try {
               p = searchThroughProjects(pManager.getAll(), cl.getArgList().get(1));
             }catch(Exception e) {
                 System.out.println("There is no project in the list! Try again.");
+                System.exit(1);
+            }
+          Departments d = null;
+            try {
+                d = searchThroughDepartments(departmentManager.getAll(), cl.getArgList().get(1));
+            }catch(Exception e) {
+                System.out.println("There is no department in the list! Try again.");
                 System.exit(1);
             }
 
@@ -75,8 +92,8 @@ public static  Options addOptions(){
             e.setAddress(cl.getArgList().get(0));
                 e.setHire_date(Date.valueOf(LocalDate.now()).toLocalDate());
 
-            e.setDepartment_id(Integer.parseInt(cl.getArgList().get(0)));
-            e.setProject_id(p.getId());
+            e.setDepartment(d);
+            e.setProject(p);
             e.setEdu(cl.getArgList().get(0));
             e.setPayoff(Integer.parseInt(cl.getArgList().get(0)));
           eManager.add(e);
