@@ -9,7 +9,9 @@ public class Project implements Idable {
     public void setId(int id) {
 this.ID=id;
     }
-
+public Project(int id){
+        ID=id;
+}
 
     public int getId() {
         return ID;
@@ -45,10 +47,7 @@ this.ID=id;
 
     @Override
     public String toString() {
-        return "Project{" +
-                "ID=" + ID +
-                ", project_name='" + project_name + '\'' +
-                '}';
+        return project_name;
     }
 
 

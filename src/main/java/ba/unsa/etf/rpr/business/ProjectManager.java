@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
-import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Project;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
