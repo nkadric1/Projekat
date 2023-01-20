@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.DepartmentManager;
 import ba.unsa.etf.rpr.business.EmployeeManager;
-import ba.unsa.etf.rpr.dao.*;
+import ba.unsa.etf.rpr.business.ProjectManager;
 import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Project;
@@ -11,32 +11,21 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-
 import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -45,50 +34,44 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class PageController {
     public TextArea txtArea;
     private static final String filename = "ListOfEmployees.txt";
-
     private EmployeeModel employeeModel = new EmployeeModel();
-
-
     public TextField empidfield;
     public TextField fnamefield;
     public TextField lnamefield;
     public TextField addressfield;
     public DatePicker hdatefield;
-    public Button addempbttn;
     public ChoiceBox<Departments> depfield;
-    public TextField proid;
     public TextField edufield;
-    public TextField profield;
+    public ChoiceBox<Project> profield;
     public TextField salfield;
-    private TilePane t = new TilePane();
-    private List<Departments> depList;
+
     public TableView<Employee> emptab;
+    public TableColumn<Employee, Integer> empIdcol;
+    public TableColumn<Employee, String> empNamecol;
+    public TableColumn<Employee, Date> emphdatecol;
+    public TableColumn<Employee, Departments> depemp;
+    public TableColumn<Employee, Project> procolumn;
+    public TableColumn<Employee, Integer> salcol;
+    public TextField proid;
+    public Button addempbttn;
     public Button sEmp;
     public Button getEmp;
+    public Button upempbttn;
+    public Button delempbttn;
     public javafx.scene.image.Image img = new Image("IMAGES/add.png");
     public Image img2 = new Image("IMAGES/update.png");
     public Image img3 = new Image("IMAGES/delete.png");
-    public Button upempbttn;
-    public Button delempbttn;
-    public TableColumn<Employee, Integer> empIdcol;
-    public TableColumn<Employee, Departments> depemp;
-    public TableColumn<Employee, String> empNamecol;
-    public TableColumn<Employee, Date> emphdatecol;
-    public TableColumn<Employee, Integer> procolumn;
-    public TableColumn<Employee, Integer> salcol;
-    public MenuItem close;
     private EmployeeManager manager = new EmployeeManager();
     private DepartmentManager departmentManager = new DepartmentManager();
+    private ProjectManager projectManager=new ProjectManager();
 
     @FXML
     public void openED(ActionEvent actionEvent) {
@@ -100,10 +83,6 @@ public class PageController {
         openDialog("Manage projects", "/FXML/pro.fxml", new projectController());
     }
 
-    @FXML
-    public void getStatisticofProjects(ActionEvent actionEvent) {
-        openDialog("Statistics of projects", "/FXML/statistic.fxml", new StatisticofProController());
-    }
 
     @FXML
     public void OnAbout(ActionEvent actionEvent) {
@@ -138,11 +117,16 @@ public class PageController {
     }
 
     @FXML
-    public void saveIt(ActionEvent actionEvent) throws IOException, EmployeeException {
-        /*Path path = Paths.get(filename);
+    public void saveIt(ActionEvent actionEvent) throws IOException {
+        Path path = Paths.get(filename);
         BufferedWriter bw = Files.newBufferedWriter(path);
         try {
-            Iterator<Employee> iterator = employeeDAOSQL.getByHireDate().iterator();
+            Iterator<Employee> iterator = null;
+            try {
+                iterator = manager.getByHireDate().iterator();
+            } catch (EmployeeException e) {
+                e.printStackTrace();
+            }
             while (iterator.hasNext()) {
                 Employee temp = iterator.next();
                 bw.write(String.format("%s\t%s\t%s\t%s\t%s\t%s", temp.getFirst_name(), temp.getLast_name(), temp.getAddress(), temp.getHire_date(), temp.getEdu(), temp.getPayoff()));
@@ -153,7 +137,7 @@ public class PageController {
             if (bw != null) {
                 bw.close();
             }
-        }*/
+        }
     }
 
     @FXML
@@ -176,34 +160,31 @@ public class PageController {
 
     @FXML
     public void initialize() {
+
+
         try {
             depfield.setItems(FXCollections.observableList(departmentManager.getAll()));
+            profield.setItems(FXCollections.observableList(projectManager.getAll()));
         } catch (EmployeeException e) {
             throw new RuntimeException(e);
         }
-        txtArea.setBackground(Background.fill(Color.web("darkseagreen")));
         txtArea.setText("An insight into the administrative \n part of the company.");
-        sEmp.setBackground(Background.fill(Color.web("darkseagreen")));
-        getEmp.setBackground(Background.fill(Color.web("darkseagreen")));
         addempbttn.setGraphic(new ImageView(img));
-        addempbttn.setBackground(Background.fill(Color.web("darkseagreen")));
         upempbttn.setGraphic(new ImageView(img2));
-        upempbttn.setBackground(Background.fill(Color.web("darkseagreen")));
         delempbttn.setGraphic(new ImageView(img3));
-        delempbttn.setBackground(Background.fill(Color.web("darkseagreen")));
         empIdcol.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
         empNamecol.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_name"));
         emphdatecol.setCellValueFactory(new PropertyValueFactory<Employee, Date>("Hire_date"));
         depemp.setCellValueFactory(new PropertyValueFactory<Employee, Departments>("department"));
         salcol.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("payoff"));
-        procolumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("project_id"));
+        procolumn.setCellValueFactory(new PropertyValueFactory<Employee, Project>("project"));
 
         fnamefield.textProperty().bindBidirectional(employeeModel.fname);
         lnamefield.textProperty().bindBidirectional(employeeModel.lname);
         addressfield.textProperty().bindBidirectional(employeeModel.address);
         hdatefield.valueProperty().bindBidirectional(employeeModel.hdate);
         depfield.valueProperty().bindBidirectional(employeeModel.did);
-        profield.textProperty().bindBidirectional(employeeModel.pid);
+        profield.valueProperty().bindBidirectional(employeeModel.pid);
         edufield.textProperty().bindBidirectional(employeeModel.edu);
         salfield.textProperty().bindBidirectional(employeeModel.sal);
 
@@ -255,10 +236,9 @@ public class PageController {
     @FXML
     public void DeleteEmp(ActionEvent actionEvent) {
         try {
-            Employee ee = (Employee) emptab.getSelectionModel().getSelectedItem();
-            manager.delete(ee.getId());
-            txtArea.setText("Employee " + ee.getFirst_name() + " " + ee.getLast_name() + "\n has been deleted.");
-            emptab.getItems().remove(ee);
+            manager.delete(emptab.getSelectionModel().getSelectedItem().getId());
+            txtArea.setText("Employee which ID is " + emptab.getSelectionModel().getSelectedItem().getId() + "\n has been deleted.");
+            refreshEmployees();
         } catch (EmployeeException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
@@ -281,7 +261,7 @@ public class PageController {
             addressfield.setText("");
             hdatefield.setValue(null);
             depfield.setValue(null);
-            profield.setText("");
+            profield.setValue(null);
             edufield.setText("");
             salfield.setText("");
         } catch (EmployeeException e) {
@@ -298,7 +278,7 @@ public class PageController {
         public SimpleStringProperty address = new SimpleStringProperty("");
         public SimpleObjectProperty<LocalDate> hdate = new SimpleObjectProperty<LocalDate>();
         public SimpleObjectProperty<Departments> did = new SimpleObjectProperty();
-        public SimpleStringProperty pid = new SimpleStringProperty("");
+        public SimpleObjectProperty<Project> pid = new SimpleObjectProperty<>();
         public SimpleStringProperty edu = new SimpleStringProperty("");
         public SimpleStringProperty sal = new SimpleStringProperty("");
 
@@ -310,7 +290,7 @@ public class PageController {
             this.address.set(e.getAddress());
             this.hdate.set(e.getHire_date());
             this.did.set(e.getDepartment());
-            this.pid.set(String.valueOf(e.getProject_id()));
+            this.pid.set(e.getProject());
             this.edu.set(e.getEdu());
             this.sal.set(String.valueOf(e.getPayoff()));
 
@@ -322,9 +302,8 @@ public class PageController {
             e.setFirst_name(this.fname.getValue());
             e.setLast_name(this.lname.getValue());
             e.setAddress(this.address.getValue());
-            // e.setDepartment_id(this.did.getValue().getId());
             e.setDepartment(this.did.getValue());
-            e.setProject_id(Integer.parseInt(this.pid.getValue()));
+            e.setProject(this.pid.getValue());
             e.setHire_date(this.hdate.getValue());
             e.setEdu(this.edu.getValue());
             e.setPayoff(Integer.parseInt(this.sal.getValue()));
