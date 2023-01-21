@@ -1,21 +1,23 @@
 package ba.unsa.etf.rpr.domain;
-import ba.unsa.etf.rpr.dao.ProjectDAOSQLImpl;
 
 import java.util.Objects;
+
 public class Project implements Idable {
     private int ID;
     private String project_name;
 
     public void setId(int id) {
-this.ID=id;
+        this.ID = id;
     }
-public Project(int id){
-        ID=id;
-}
+
+    public Project(int id) {
+        ID = id;
+    }
 
     public int getId() {
         return ID;
     }
+
     public String getProject_name() {
         return project_name;
     }
@@ -49,7 +51,6 @@ public Project(int id){
     public String toString() {
         return project_name;
     }
-
 
 
 }
