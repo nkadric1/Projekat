@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
-public class Users implements Idable{
+public class Users implements Idable {
     private int ID;
     private String username;
     private String pass;
@@ -17,12 +17,12 @@ public class Users implements Idable{
     }
 
     public void setId(int id) {
-        this.ID=id;
+        this.ID = id;
     }
 
 
     public int getId() {
-      return ID;
+        return ID;
     }
 
 
