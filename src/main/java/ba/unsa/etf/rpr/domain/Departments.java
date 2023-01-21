@@ -11,8 +11,9 @@ public class Departments implements Idable {
 
     public Departments() {
     }
-    public Departments(int id){
-        ID=id;
+
+    public Departments(int id) {
+        ID = id;
     }
 
     public Departments(int ID, String depname, int hourlypay) {
@@ -48,7 +49,7 @@ public class Departments implements Idable {
 
     @Override
     public String toString() {
-        return  depname;
+        return depname;
     }
 
     @Override

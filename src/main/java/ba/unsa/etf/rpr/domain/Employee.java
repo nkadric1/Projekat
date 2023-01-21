@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.domain;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -15,8 +14,6 @@ public class Employee implements Idable {
     private String Last_name;
     private String address;
     private LocalDate hire_date;
- //   private int department_id;
-
     public Departments getDepartment() {
         return department;
     }
@@ -24,20 +21,25 @@ public class Employee implements Idable {
     public void setDepartment(Departments department) {
         this.department = department;
     }
-private Project project;
-    public Project getProject(){return project;}
-    public void setProject(Project project){
-        this.project=project;
+
+    private Project project;
+
+    public Project getProject() {
+        return project;
     }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
     private Departments department;
- //   private int project_id;
     private String edu;
     private int payoff;
 
 
-
     public Employee() {
     }
+
     public Employee(int ID, String first_name, String last_name, String address, LocalDate hire_date, Departments department, Project project, String edu, int payoff) {
         this.ID = ID;
         this.first_name = first_name;
@@ -50,28 +52,12 @@ private Project project;
         this.payoff = payoff;
 
     }
-
-
-
     public void setId(int id) {
-        this.ID=id;
+        this.ID = id;
     }
-
-
     public int getId() {
         return ID;
     }
-//    public int getProject_id() {
-//        return project_id;
-//    }
-//
-//    public void setProject_id(int project_id) {
-//        this.project_id = project_id;
-//    }
-
-
-
-
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
@@ -87,11 +73,6 @@ private Project project;
     public void setHire_date(LocalDate hire_date) {
         this.hire_date = hire_date;
     }
-
-//    public void setDepartment_id(int department_id) {
-//        this.department_id = department_id;
-//    }
-
     public void setEdu(String edu) {
         this.edu = edu;
     }
@@ -113,13 +94,8 @@ private Project project;
     }
 
     public LocalDate getHire_date() {
-        return  hire_date;
+        return hire_date;
     }
-
-//    public int getDepartment_id() {
-//        return department_id;
-//    }
-
     public String getEdu() {
         return edu;
     }
@@ -133,7 +109,7 @@ private Project project;
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return ID == employee.ID && department== employee.department && project== employee.project&& payoff == employee.payoff && first_name.equals(employee.first_name) && Last_name.equals(employee.Last_name) && address.equals(employee.address) && hire_date.equals(employee.hire_date) && edu.equals(employee.edu);
+        return ID == employee.ID && department == employee.department && project == employee.project && payoff == employee.payoff && first_name.equals(employee.first_name) && Last_name.equals(employee.Last_name) && address.equals(employee.address) && hire_date.equals(employee.hire_date) && edu.equals(employee.edu);
     }
 
     @Override
@@ -144,7 +120,7 @@ private Project project;
                 ", Last_name='" + Last_name + '\'' +
                 ", address='" + address + '\'' +
                 ", hire_date=" + hire_date +
-                ", department_id=" + department+
+                ", department_id=" + department +
                 ", project_id=" + project +
                 ", edu='" + edu + '\'' +
                 ", payoff=" + payoff +
