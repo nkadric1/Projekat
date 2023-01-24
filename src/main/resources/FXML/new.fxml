@@ -19,18 +19,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="225.59996337890624" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="545.6000366210938" minWidth="10.0" prefWidth="545.6000366210938" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.7999755859375" minWidth="10.0" prefWidth="284.6000122070312" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.8000122070313" minWidth="10.0" prefWidth="614.3999877929688" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="95.4" minHeight="0.0" prefHeight="41.000003051757815" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="541.8000030517578" minHeight="10.0" prefHeight="528.1999969482422" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="95.4" minHeight="0.0" prefHeight="60.00000076293945" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="603.1999992370605" minHeight="10.0" prefHeight="603.1999992370605" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <MenuBar fx:id="menu" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="674.0" style="-fx-background-color: transparent; -fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.columnSpan="2">
+      <MenuBar fx:id="menu" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="779.0" style="-fx-background-color: transparent; -fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.columnSpan="2">
         <menus>
           <Menu fx:id="menufile" mnemonicParsing="false" text="File">
             <items>
@@ -57,23 +57,23 @@
             <Insets bottom="10.0" />
          </GridPane.margin>
       </MenuBar>
-      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="244.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.2000244140625" minWidth="10.0" prefWidth="76.3999755859375" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.60003662109375" minWidth="10.0" prefWidth="122.79999999999998" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.2" minWidth="10.0" prefWidth="139.2" />
             <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="73.59998779296876" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="93.79995117187497" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="First name:" GridPane.rowIndex="1">
@@ -96,7 +96,7 @@
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
-            <TextField fx:id="fnamefield" maxHeight="-Infinity" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="fnamefield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -104,7 +104,7 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="lnamefield" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="lnamefield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -112,7 +112,7 @@
                   <Insets right="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="addressfield" prefHeight="27.0" prefWidth="100.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="addressfield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -124,15 +124,15 @@
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
-            <TextField fx:id="edufield" prefHeight="26.0" prefWidth="84.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <TextField fx:id="edufield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></TextField>
-            <DatePicker fx:id="hdatefield" maxWidth="-Infinity" prefHeight="26.0" prefWidth="138.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <DatePicker fx:id="hdatefield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></DatePicker>
-            <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="238.0" GridPane.columnSpan="2" GridPane.rowIndex="8">
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="276.0" GridPane.columnSpan="2" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets top="60.0" />
                </GridPane.margin></Separator>
@@ -144,11 +144,11 @@
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
-            <TextField fx:id="salfield" prefHeight="26.0" prefWidth="70.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <TextField fx:id="salfield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></TextField>
-            <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="238.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
+            <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="276.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
                <children>
                   <Button fx:id="addempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#addNew" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
@@ -157,12 +157,12 @@
                   </Button>
                   <Button fx:id="upempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#UpdateEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
-                        <Insets right="5.0" top="-8.0" />
+                        <Insets left="20.0" top="-8.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="delempbttn" accessibleRole="IMAGE_VIEW" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#DeleteEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
-                        <Insets top="-8.0" />
+                        <Insets left="20.0" top="-8.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -173,13 +173,16 @@
                   <Insets />
                </GridPane.margin>
             </HBox>
-            <TextArea fx:id="txtArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="49.0" prefWidth="234.0" style="-fx-border-color: darkseagreen;">
+            <TextArea fx:id="txtArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="276.0" style="-fx-border-color: darkseagreen;">
                <font>
                   <Font name="Calibri Italic" size="12.0" />
                </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </TextArea>
-            <ChoiceBox fx:id="depfield" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox fx:id="profield" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ChoiceBox fx:id="depfield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="profield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" top="5.0" />
@@ -200,30 +203,30 @@
             <RowConstraints maxHeight="423.0000061035156" minHeight="10.0" prefHeight="40.79997558593749" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="emptab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="514.0" style="-fx-background-color: darkseagreen;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="emptab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="574.0" style="-fx-background-color: darkseagreen;" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="empIdcol" prefWidth="40.80004835128784" style="-fx-background-color: transparent;" text="ID" />
-                <TableColumn fx:id="empNamecol" prefWidth="81.60003280639648" style="-fx-background-color: transparent;" text="Name" />
-                  <TableColumn fx:id="emphdatecol" prefWidth="97.5999755859375" style="-fx-background-color: transparent;" text="Hire date" />
-                  <TableColumn fx:id="depemp" prefWidth="118.40003967285156" style="-fx-background-color: transparent;" text="Department" />
-                  <TableColumn fx:id="procolumn" prefWidth="91.20001220703125" style="-fx-background-color: transparent;" text="Project" />
-                  <TableColumn fx:id="salcol" prefWidth="76.00003051757812" style="-fx-background-color: transparent;" text="Salary" />
+                <TableColumn fx:id="empNamecol" prefWidth="83.99994277954102" style="-fx-background-color: transparent;" text="Name" />
+                  <TableColumn fx:id="emphdatecol" prefWidth="92.0" style="-fx-background-color: transparent;" text="Hire date" />
+                  <TableColumn fx:id="depemp" prefWidth="144.00001525878906" style="-fx-background-color: transparent;" text="Department" />
+                  <TableColumn fx:id="procolumn" prefWidth="125.60003662109375" style="-fx-background-color: transparent;" text="Project" />
+                  <TableColumn fx:id="salcol" prefWidth="86.39990234375" style="-fx-background-color: transparent;" text="Salary" />
               </columns>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <GridPane.margin>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="5.0" />
+                  <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </TableView>
             <TextField fx:id="proid" prefHeight="26.0" prefWidth="101.0" promptText="Project ID" style="-fx-border-color: darkseagreen;" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="10.0" top="5.0" />
                </GridPane.margin>
             </TextField>
             <Button fx:id="getEmp" mnemonicParsing="false" onAction="#getListofemp" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #EEE8AA;" text="Get employees" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" right="8.0" />
+                  <Insets left="10.0" right="8.0" top="5.0" />
                </GridPane.margin>
                <font>
                   <Font name="SansSerif Regular" size="12.0" />
@@ -244,7 +247,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#showall" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #EEE8AA;" text="Get all" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="180.0" />
+                  <Insets left="180.0" top="5.0" />
                </GridPane.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#closeIt" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #EEE8AA;" text="Close" GridPane.columnIndex="1" GridPane.rowIndex="3">
