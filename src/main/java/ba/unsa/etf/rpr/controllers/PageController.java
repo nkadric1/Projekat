@@ -39,6 +39,10 @@ import java.util.Iterator;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/** @author Kadric Nerma
+ * Pagecontroller is controller about main page of this app. Adding, searching, deleting and more can be done in this controller.
+ *  It has two-way connection, the file of current employees can be saved and opened. Administrator have insight into departments and projects of this company.
+ */
 public class PageController {
     public TextArea txtArea;
     private static final String filename = "ListOfEmployees.txt";
@@ -62,8 +66,6 @@ public class PageController {
     public TableColumn<Employee, Integer> salcol;
     public TextField proid;
     public Button addempbttn;
-    public Button sEmp;
-    public Button getEmp;
     public Button upempbttn;
     public Button delempbttn;
     public javafx.scene.image.Image img = new Image("IMAGES/add.png");
@@ -73,11 +75,19 @@ public class PageController {
     private DepartmentManager departmentManager = new DepartmentManager();
     private ProjectManager projectManager=new ProjectManager();
 
+    /**
+     * This metod calls openDialog to open the new stage of departments and to manipulate them
+     * @param actionEvent
+     */
     @FXML
     public void openED(ActionEvent actionEvent) {
         openDialog("Manage departments", "/FXML/dep.fxml", new DepartmentController());
     }
 
+    /**
+     * This metod calls openDialog to open the new stage of projects and to manipulate them
+     * @param actionEvent
+     */
     @FXML
     public void openEP(ActionEvent actionEvent) {
         openDialog("Manage projects", "/FXML/pro.fxml", new projectController());
@@ -89,6 +99,12 @@ public class PageController {
         openDialog("About", "/FXML/about.fxml", null);
     }
 
+    /**
+     * This method is used to open a new stage, it is private and is used to open departments and projects stage.
+     * @param title - the title of new stage that we want to open
+     * @param file - the fxml file,which is linked to that new stage
+     * @param controller - the controller that will controle the new stage
+     */
     private void openDialog(String title, String file, Object controller) {
         try {
             FXMLLoader l = new FXMLLoader(getClass().getResource(file));
@@ -105,17 +121,32 @@ public class PageController {
         }
     }
 
+    /**
+     * This method calls refreshEmployees to display all employees in the table
+     * @param actionEvent
+     * @throws EmployeeException
+     */
     @FXML
     public void showall(ActionEvent actionEvent) throws EmployeeException {
         refreshEmployees();
     }
 
+    /**
+     * This method is used to exit of the application
+     * @param actionEvent
+     */
     @FXML
     public void closeIt(ActionEvent actionEvent) {
         Platform.exit();
         System.exit(0);
     }
 
+    /**
+     * It is located in File part
+     * It is used to save list of employees as .txt file
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void saveIt(ActionEvent actionEvent) throws IOException {
         Path path = Paths.get(filename);
@@ -140,6 +171,12 @@ public class PageController {
         }
     }
 
+    /**
+     * It is located in File part
+     * It is used to open list of employees as .txt file
+     * The administrator can enter some additional things related to employees
+     * @param actionEvent
+     */
     @FXML
     public void openFile(ActionEvent actionEvent) {
         try {
@@ -158,9 +195,16 @@ public class PageController {
         }
     }
 
+    /**
+     * The initialize method handles options passed to the class upon creation.
+     * It also handles any other setup that may be required when the class is created.
+     * Initialize is called automatically when we open the application so we won’t call it directly.
+     * This method places images to buttons, sets default text to the text area, populates the table and binds bidirectionally to the selected items.
+     */
     @FXML
     public void initialize() {
 
+        txtArea.setText("An insight into the administrative part of the company.");
 
         try {
             depfield.setItems(FXCollections.observableList(departmentManager.getAll()));
@@ -168,7 +212,6 @@ public class PageController {
         } catch (EmployeeException e) {
             throw new RuntimeException(e);
         }
-        txtArea.setText("An insight into the administrative \n part of the company.");
         addempbttn.setGraphic(new ImageView(img));
         upempbttn.setGraphic(new ImageView(img2));
         delempbttn.setGraphic(new ImageView(img3));
@@ -187,7 +230,6 @@ public class PageController {
         profield.valueProperty().bindBidirectional(employeeModel.pid);
         edufield.textProperty().bindBidirectional(employeeModel.edu);
         salfield.textProperty().bindBidirectional(employeeModel.sal);
-
         emptab.getSelectionModel().selectedItemProperty().addListener((obs, oldEmployee, newEmployee) -> {
             if (newEmployee != null) {
                 employeeModel.fromEmployee(newEmployee);
@@ -197,6 +239,10 @@ public class PageController {
         refreshEmployees();
     }
 
+    /** After filling the fields for new employee, we click on the add button and then this method is called.
+     * It is used to add a new employee to the database.
+     * @param actionEvent
+     */
     @FXML
     public void addNew(ActionEvent actionEvent) {
         try {
@@ -207,6 +253,11 @@ public class PageController {
         }
     }
 
+    /**
+     *  After filling the field which we want to update, we click on the update button and then this method is called.
+     *  It is used to update the employee.
+     * @param actionEvent
+     */
     @FXML
     public void UpdateEmp(ActionEvent actionEvent) {
         try {
@@ -219,6 +270,10 @@ public class PageController {
         }
     }
 
+    /**
+     *  This method is used to search for the employee, whose ID is passed as parameter to getById method, and displays it in the table
+     * @param actionEvent
+     */
     @FXML
     public void searchEmp(ActionEvent actionEvent) {
         try {
@@ -232,7 +287,10 @@ public class PageController {
         }
     }
 
-
+    /**
+     * This method is used to delete the employee that is selected in the table
+     * @param actionEvent
+     */
     @FXML
     public void DeleteEmp(ActionEvent actionEvent) {
         try {
@@ -244,6 +302,11 @@ public class PageController {
         }
     }
 
+    /**
+     * This method is used to display all employees working on the project whose ID is passed to the getByProject method.
+     * @param actionEvent
+     * @throws EmployeeException
+     */
     @FXML
     public void getListofemp(ActionEvent actionEvent) throws EmployeeException {
         try {
@@ -252,6 +315,10 @@ public class PageController {
             txtArea.setText("Project with ID " + Integer.parseInt(proid.getText()) + "\n is not available.");
         }
     }
+
+    /**
+     * This method is used to set all items in the table, and then clears all fields.
+     */
 
     private void refreshEmployees() {
         try {
@@ -269,7 +336,10 @@ public class PageController {
         }
     }
 
-
+    /** This is the inner class of employee model.
+     * Inner classes are a security mechanism in Java and it is also used to access the private members of a class.
+     * It suports two-way data binding with form for Employee management.
+     */
     public class EmployeeModel {
 
         public SimpleIntegerProperty id = new SimpleIntegerProperty();
