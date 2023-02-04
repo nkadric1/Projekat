@@ -40,13 +40,13 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#openED" text="Departments" />
-                  <MenuItem mnemonicParsing="false" onAction="#openEP" text="Projects" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEd" text="Departments" />
+                  <MenuItem mnemonicParsing="false" onAction="#openEp" text="Projects" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#OnAbout" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#onAbout" text="About" />
             </items>
           </Menu>
         </menus>
@@ -155,12 +155,12 @@
                         <Insets right="5.0" top="-8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="upempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#UpdateEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="upempbttn" accessibleRole="IMAGE_VIEW" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#updateEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
                         <Insets left="20.0" top="-8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="delempbttn" accessibleRole="IMAGE_VIEW" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#DeleteEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="delempbttn" accessibleRole="IMAGE_VIEW" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#deleteEmp" prefHeight="46.0" prefWidth="80.0" style="-fx-background-color: transparent;">
                      <HBox.margin>
                         <Insets left="20.0" top="-8.0" />
                      </HBox.margin>
@@ -224,7 +224,7 @@
                   <Insets left="10.0" top="5.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="getEmp" mnemonicParsing="false" onAction="#getListofemp" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #EEE8AA;" text="Get employees" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="getEmp" mnemonicParsing="false" onAction="#getListOfEmp" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #EEE8AA;" text="Get employees" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" right="8.0" top="5.0" />
                </GridPane.margin>
@@ -245,7 +245,7 @@
                   <Font name="SansSerif Regular" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#showall" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #EEE8AA;" text="Get all" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#showAll" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #EEE8AA;" text="Get all" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="180.0" top="5.0" />
                </GridPane.margin>
