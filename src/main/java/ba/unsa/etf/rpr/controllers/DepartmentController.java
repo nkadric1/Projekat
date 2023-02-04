@@ -11,7 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+/** @author Kadric Nerma
+ * Department-controller is controller about page of departments. Adding and deleting can be done in this controller.
+ *  Administrator have insight into departments of this company.
+ */
 
 public class DepartmentController {
     private DepartmentModel departmentModel = new DepartmentModel();
@@ -19,7 +22,9 @@ public class DepartmentController {
     public ListView<Departments> departmentListView;
     public TextField depName;
     public TextField hprice;
-
+    /**
+     * This method is used to set all items in the listview, and then clears all fields.
+     */
     private void refreshDepartment() throws EmployeeException {
         try {
             departmentListView.setItems(FXCollections.observableList(manager.getAll()));
@@ -29,7 +34,12 @@ public class DepartmentController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-
+    /**
+     * The initialize method handles options passed to the class upon creation.
+     * It also handles any other setup that may be required when the class is created.
+     * Initialize is called automatically when we open the application so we won’t call it directly.
+     * This method populates the listview and binds bidirectionally to the selected items.
+     */
     @FXML
     public void initialize() {
         try {
@@ -43,6 +53,12 @@ public class DepartmentController {
             if (n != null) departmentModel.fromDepartment(n);
         });
     }
+
+    /**
+     *  After filling the field which we want to update, we click on the update button and then this method is called.
+     *  It is used to update the department.
+     * @param actionEvent
+     */
     @FXML
     public void updateDep(ActionEvent actionEvent) {
         try {
@@ -53,6 +69,10 @@ public class DepartmentController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+    /** After filling the fields for new department, we click on the add button and then this method is called.
+     * It is used to add a new department to the database.
+     * @param actionEvent
+     */
     @FXML
     public void addDep(ActionEvent actionEvent) {
         try {
@@ -63,6 +83,10 @@ public class DepartmentController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+    /**
+     * This method is used to delete the department that is selected in the listview
+     * @param actionEvent
+     */
     @FXML
     public void deleteDep(ActionEvent actionEvent) {
         try {
@@ -72,12 +96,20 @@ public class DepartmentController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+    /**
+     * This method is used to close this stage
+     * @param actionEvent
+     */
     @FXML
     public void closeIt(ActionEvent actionEvent) {
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
+    /** This is the inner class of project model.
+     * Inner classes are a security mechanism in Java and it is also used to access the private members of a class.
+     * It suports two-way data binding with form for Department management.
+     */
     public class DepartmentModel {
         public SimpleIntegerProperty id = new SimpleIntegerProperty();
         public SimpleStringProperty hprice = new SimpleStringProperty("");
