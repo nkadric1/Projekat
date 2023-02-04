@@ -10,11 +10,19 @@ import javafx.scene.Scene;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
-
+/** @author Kadric Nerma
+ * Controller is controller about login page of this app.
+ * The administrator must enter a username and password.
+ */
 public class Controller {
     public TextField fieldUser;
     public PasswordField passfield;
-
+    /**
+     * This method is used to open a new stage, it is private and is used to open main stage.
+     * @param title - the title of new stage that we want to open
+     * @param file - the fxml file,which is linked to that new stage
+     * @param controller - the controller that will manage the new stage
+     */
     private void openDialog(String title, String file, Object controller) {
         try {
             FXMLLoader l = new FXMLLoader(getClass().getResource(file));
@@ -32,7 +40,12 @@ public class Controller {
         }
     }
 
-    public void Click(ActionEvent actionEvent) throws IOException {
+    /**
+     * This method checks the validity of the username and password and opens a new stage
+     * @param actionEvent
+     * @throws IOException
+     */
+    public void click(ActionEvent actionEvent) throws IOException {
         if (fieldUser.getText().isEmpty()) {
             new Alert(Alert.AlertType.NONE, "Please, enter username!", ButtonType.OK).show();
             return;
