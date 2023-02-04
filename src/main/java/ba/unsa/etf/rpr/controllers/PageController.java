@@ -40,7 +40,7 @@ import java.util.Iterator;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 /** @author Kadric Nerma
- * Pagecontroller is controller about main page of this app. Adding, searching, deleting and more can be done in this controller.
+ * Page-controller is controller about main page of this app. Adding, searching, deleting and more can be done in this controller.
  *  It has two-way connection, the file of current employees can be saved and opened. Administrator have insight into departments and projects of this company.
  */
 public class PageController {
@@ -76,26 +76,26 @@ public class PageController {
     private ProjectManager projectManager=new ProjectManager();
 
     /**
-     * This metod calls openDialog to open the new stage of departments and to manipulate them
+     * This method calls openDialog to open the new stage of departments and to manipulate them
      * @param actionEvent
      */
     @FXML
-    public void openED(ActionEvent actionEvent) {
+    public void openEd(ActionEvent actionEvent) {
         openDialog("Manage departments", "/FXML/dep.fxml", new DepartmentController());
     }
 
     /**
-     * This metod calls openDialog to open the new stage of projects and to manipulate them
+     * This method calls openDialog to open the new stage of projects and to manipulate them
      * @param actionEvent
      */
     @FXML
-    public void openEP(ActionEvent actionEvent) {
-        openDialog("Manage projects", "/FXML/pro.fxml", new projectController());
+    public void openEp(ActionEvent actionEvent) {
+        openDialog("Manage projects", "/FXML/pro.fxml", new ProjectController());
     }
 
 
     @FXML
-    public void OnAbout(ActionEvent actionEvent) {
+    public void onAbout(ActionEvent actionEvent) {
         openDialog("About", "/FXML/about.fxml", null);
     }
 
@@ -103,7 +103,7 @@ public class PageController {
      * This method is used to open a new stage, it is private and is used to open departments and projects stage.
      * @param title - the title of new stage that we want to open
      * @param file - the fxml file,which is linked to that new stage
-     * @param controller - the controller that will controle the new stage
+     * @param controller - the controller that will manage the new stage
      */
     private void openDialog(String title, String file, Object controller) {
         try {
@@ -127,7 +127,7 @@ public class PageController {
      * @throws EmployeeException
      */
     @FXML
-    public void showall(ActionEvent actionEvent) throws EmployeeException {
+    public void showAll(ActionEvent actionEvent) throws EmployeeException {
         refreshEmployees();
     }
 
@@ -259,7 +259,7 @@ public class PageController {
      * @param actionEvent
      */
     @FXML
-    public void UpdateEmp(ActionEvent actionEvent) {
+    public void updateEmp(ActionEvent actionEvent) {
         try {
             Employee e = employeeModel.toEmployee();
             manager.update(e);
@@ -292,7 +292,7 @@ public class PageController {
      * @param actionEvent
      */
     @FXML
-    public void DeleteEmp(ActionEvent actionEvent) {
+    public void deleteEmp(ActionEvent actionEvent) {
         try {
             manager.delete(emptab.getSelectionModel().getSelectedItem().getId());
             txtArea.setText("Employee which ID is " + emptab.getSelectionModel().getSelectedItem().getId() + "\n has been deleted.");
@@ -308,7 +308,7 @@ public class PageController {
      * @throws EmployeeException
      */
     @FXML
-    public void getListofemp(ActionEvent actionEvent) throws EmployeeException {
+    public void getListOfEmp(ActionEvent actionEvent) throws EmployeeException {
         try {
             emptab.setItems(FXCollections.observableList(manager.getByProject(Integer.parseInt(proid.getText()))));
         } catch (EmployeeException e) {
