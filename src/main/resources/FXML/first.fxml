@@ -34,7 +34,7 @@
          <children>
             <TextField fx:id="fieldUser" layoutX="53.0" layoutY="204.0" prefHeight="35.0" prefWidth="172.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="passfield" layoutX="53.0" layoutY="255.0" prefHeight="35.0" prefWidth="172.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="bBtn" defaultButton="true" layoutX="59.0" layoutY="339.0" mnemonicParsing="false" onAction="#Click" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #8FBC8F;" text="LOGIN" textFill="#594e4e">
+            <Button fx:id="bBtn" defaultButton="true" layoutX="59.0" layoutY="339.0" mnemonicParsing="false" onAction="#click" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #8FBC8F;" text="LOGIN" textFill="#594e4e">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
