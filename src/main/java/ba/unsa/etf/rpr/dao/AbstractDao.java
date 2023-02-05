@@ -6,6 +6,12 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * @author Kadric Nerma
+ * This is abstract class that implements DAO CRUD methods for every entity
+ * @param <tt>
+ */
+
 public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
     private static Connection con = null;
     private String name;
@@ -15,6 +21,9 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         if (con == null) createConnection();
     }
 
+    /**
+     * This method creates connection to database
+     */
     private static void createConnection() {
         if (AbstractDao.con == null) {
             try {
@@ -58,22 +67,25 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         return AbstractDao.con;
     }
 
-
+    /**
+     * This method is for mapping resultset into object
+     * @param r - it is result set from DB
+     * @return - the Bean object for table
+     * @throws EmployeeException - in case of error with DB
+     */
     public abstract tt rowtoobject(ResultSet r) throws EmployeeException;
 
+    /**
+     * This method is for mapping object into map
+     * @param object-the Bean object for table
+     * @return - (key,value) sorted map
+     */
     public abstract Map<String, Object> objecttorow(tt object);
-
     public tt getById(int id) throws EmployeeException {
-
-        return executeQUq("SELECT * FROM " + this.name + " WHERE id = ?", new Object[]{id});
-
-    }
-
+        return executeQUq("SELECT * FROM " + this.name + " WHERE id = ?", new Object[]{id});    }
     public List<tt> getAll() throws EmployeeException {
         return executeQ("SELECT * FROM " + name, null);
-
     }
-
     public void delete(int id) throws EmployeeException {
         String sq = "DELETE FROM " + name + " WHERE id = ?";
         try {
@@ -84,7 +96,6 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
             throw new EmployeeException(e.getMessage(), e);
         }
     }
-
     public tt update(tt i) throws EmployeeException {
         Map<String, Object> r = objecttorow(i);
         String ucol = prepareUpdateParts(r);
@@ -106,7 +117,6 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         }
 
     }
-
     public tt add(tt i) throws EmployeeException {
         Map<String, Object> r = objecttorow(i);
         Map.Entry<String, String> col = prepareInsertParts(r);
@@ -133,7 +143,10 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
 
     }
 
-
+    /**
+     * @param r - accepts KV storage of column names
+     * @return - CSV of columns and question marks for insert statement
+     */
     private Map.Entry<String, String> prepareInsertParts(Map<String, Object> r) {
         StringBuilder col = new StringBuilder();
         StringBuilder que = new StringBuilder();
@@ -151,6 +164,10 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         return new AbstractMap.SimpleEntry<String, String>(col.toString(), que.toString());
     }
 
+    /**
+     * @param r - row to be converted into string
+     * @return - string for update statement
+     */
     private String prepareUpdateParts(Map<String, Object> r) {
         StringBuilder col = new StringBuilder();
         int c = 0;
@@ -165,6 +182,13 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         return col.toString();
     }
 
+    /**
+     * Method for executing any kind of query
+     * @param q - SQL query
+     * @param p - params for query
+     * @return - list of objects from DB
+     * @throws EmployeeException - in case of error with DB
+     */
     public List<tt> executeQ(String q, Object[] p) throws EmployeeException {
         try {
             PreparedStatement tmp = getConnection().prepareStatement(q);
@@ -180,6 +204,13 @@ public abstract class AbstractDao<tt extends Idable> implements Dao<tt> {
         }
     }
 
+    /**
+     * Method for query execution that always return single record
+     * @param q - query that returns single record
+     * @param p - list of params for SQL query
+     * @return - object
+     * @throws EmployeeException - in case of error with DB
+     */
     public tt executeQUq(String q, Object[] p) throws EmployeeException {
         List<tt> r = executeQ(q, p);
         if (r != null && r.size() == 1) {
