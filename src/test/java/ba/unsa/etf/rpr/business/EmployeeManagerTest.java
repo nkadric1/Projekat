@@ -56,19 +56,19 @@ public class EmployeeManagerTest {
         String n1 = "Zana";
         String n2 = "Jack";
         try {
-            employeeManager.validname(n1);
-            employeeManager.validname(n2);
+            employeeManager.validName(n1);
+            employeeManager.validName(n2);
         } catch (EmployeeException e) {
             e.printStackTrace();
             Assertions.assertTrue(false);
         }
         String incorrectn = "A";
         Assertions.assertThrows(EmployeeException.class, () -> {
-            employeeManager.validname(incorrectn);
+            employeeManager.validName(incorrectn);
         }, "Name of employee must be between 2 and 45 chars");
         String inc = RandomStringUtils.randomAlphabetic(50);
         Assertions.assertThrows(EmployeeException.class, () -> {
-            employeeManager.validname(inc);
+            employeeManager.validName(inc);
         }, "Name of employee must be between 2 and 45 chars");
 
     }
