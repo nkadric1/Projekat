@@ -2,9 +2,11 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * @author Kadric Nerma
+ * List of possible departments for employee
+ */
 public class Departments implements Idable {
-
-
     private int ID;
     private String depname;
     private int hourlypay;

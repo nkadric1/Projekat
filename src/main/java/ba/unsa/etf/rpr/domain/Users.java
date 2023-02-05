@@ -2,6 +2,10 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * @author Kadric Nerma
+ * List of users of company
+ */
 public class Users implements Idable {
     private int ID;
     private String username;

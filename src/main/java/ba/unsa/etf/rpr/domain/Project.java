@@ -1,7 +1,10 @@
 package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
-
+/**
+ * @author Kadric Nerma
+ * List of possible projects for employee
+ */
 public class Project implements Idable {
     private int ID;
     private String project_name;

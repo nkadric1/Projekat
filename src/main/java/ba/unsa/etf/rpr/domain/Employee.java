@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * @author Kadrić Nerma
+ * @author Kadric Nerma
  * this is the bean for employee
  */
 public class Employee implements Idable {
