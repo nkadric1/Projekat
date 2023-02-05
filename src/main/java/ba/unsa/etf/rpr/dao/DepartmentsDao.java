@@ -5,7 +5,7 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
 /**
  * @author Kadric Nerma
- * DAO interface for Department domain bean
+ * DAO interface for Department domain bean.
  */
 public interface DepartmentsDao extends Dao<Departments> {
 

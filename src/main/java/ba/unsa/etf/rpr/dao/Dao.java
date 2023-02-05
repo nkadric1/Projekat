@@ -3,7 +3,7 @@ import java.util.List;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 /**
  * @author Kadric Nerma
- * Interface for all DAO classes
+ * Interface for all DAO classes.
  */
 public interface Dao<tt> {
     /**

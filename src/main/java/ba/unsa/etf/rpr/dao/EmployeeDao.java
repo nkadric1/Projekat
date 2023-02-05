@@ -8,11 +8,11 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
 /**
  * @Kadrić Nerma
- * DAO interface for Employee domain bean
- * three methods that helps user to get informations about employees
- * to search employees by department in which they work
- * to search employees by project on which they work
- * to get employees by date they started to work
+ * DAO interface for Employee domain bean;
+ * three methods that helps user to get informations about employees;
+ * to search employees by department in which they work;
+ * to search employees by project on which they work;
+ * to get employees by date they started to work;
  */
 public interface EmployeeDao extends Dao<Employee> {
     public int returnNumberofEmployees(int id) throws EmployeeException;
