@@ -52,6 +52,17 @@ public class Employee implements Idable {
         this.payoff = payoff;
 
     }
+    public Employee( String first_name, String last_name, String address, LocalDate hire_date, Departments department, Project project, String edu, int payoff) {
+        this.first_name = first_name;
+        this.Last_name = last_name;
+        this.address = address;
+        this.hire_date = hire_date;
+        this.department = department;
+        this.project = project;
+        this.edu = edu;
+        this.payoff = payoff;
+
+    }
     public void setId(int id) {
         this.ID = id;
     }
