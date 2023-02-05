@@ -65,8 +65,6 @@ public static  Options addOptions(){
         CommandLineParser commandLineParser = new DefaultParser();
 
         CommandLine cl = commandLineParser.parse(options, args);
-
-//        while(true) {
         if((cl.hasOption(addEmployee.getOpt()) || cl.hasOption(addEmployee.getLongOpt())) ){
           EmployeeManager eManager = new EmployeeManager();
            ProjectManager pManager = new ProjectManager();
@@ -98,11 +96,9 @@ public static  Options addOptions(){
             e.setPayoff(Integer.parseInt(cl.getArgList().get(0)));
           eManager.add(e);
             System.out.println("You successfully added employee to database!");
-//                break;
         } else if(cl.hasOption(getEmployees.getOpt()) || cl.hasOption(getEmployees.getLongOpt())){
            EmployeeManager eManager = new EmployeeManager();
             eManager.getAll().forEach(q -> System.out.println(q.getFirst_name()));
-//
         } else if(cl.hasOption(addProject.getOpt()) || cl.hasOption(addProject.getLongOpt())){
             try {
           ProjectManager pManager = new ProjectManager();
@@ -110,23 +106,18 @@ public static  Options addOptions(){
                 p.setProject_name(cl.getArgList().get(0));
              pManager.add(p);
                 System.out.println("Project has been added successfully");
-//
             }catch(Exception e) {
                 System.out.println("There is already project with same name in database! Try again");
                 System.exit(1);
-//
             }
 
         } else if(cl.hasOption(getProjects.getOpt()) || cl.hasOption(getProjects.getLongOpt())){
            ProjectManager p=new ProjectManager();
             p.getAll().forEach(c -> System.out.println(c.getProject_name()));
-//
         } else {
             printFormattedOptions(options);
             System.exit(-1);
-//
         }
-//        }
 
     }
 }
