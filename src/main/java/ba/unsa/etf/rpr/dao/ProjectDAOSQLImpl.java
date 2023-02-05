@@ -8,8 +8,8 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * @author Kadrić Nerma
- * class where is implementation of methods we will use to manipulate the projects
+ * @author Kadric Nerma
+ * MySQL implementation of the DAO
  */
 public class ProjectDAOSQLImpl extends AbstractDao<Project> implements ProjectDao {
     private static ProjectDAOSQLImpl instance = null;

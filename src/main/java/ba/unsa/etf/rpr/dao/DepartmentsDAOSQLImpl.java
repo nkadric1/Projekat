@@ -8,8 +8,8 @@ import java.util.*;
 
 
 /**
- * @author Kadrić Nerma
- * class where is implementation of methods we will use to manipulate the departments
+ * @author Kadric Nerma
+ * MySQL implementation of the DAO
  */
 public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements DepartmentsDao {
     private static DepartmentsDAOSQLImpl instance = null;
@@ -19,10 +19,9 @@ public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements D
     }
 
     /**
-     * this method return Departments whose ID is passed
-     *
+     * this method return entity whose ID is passed
      * @param id
-     * @return department
+     * @return - department
      */
     @Override
     public Departments ReturnDepartmentForId(int id) throws EmployeeException {

@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * @author Kadric Nerma
+ * MySQL implementation of the DAO
+ */
 public class UsersDAOSQLImpl extends AbstractDao<Users> implements UsersDao {
     private static UsersDAOSQLImpl instance = null;
 
@@ -24,6 +27,12 @@ public class UsersDAOSQLImpl extends AbstractDao<Users> implements UsersDao {
         super("Users");
     }
 
+    /**
+     * Validation method of username and password
+     * @param u - username
+     * @param p - password
+     * @return - true/false
+     */
     @Override
     public boolean validate(String u, String p) {
         String q = "SELECT * FROM Users WHERE username = ? AND password = ?";

@@ -6,9 +6,10 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import java.sql.*;
 import java.util.*;
 
+
 /**
- * @author Kadrić Nerma
- * class where is implementation of methods we will use to manipulate the employees
+ * @author Kadric Nerma
+ * MySQL implementation of the DAO
  */
 public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements EmployeeDao {
 
@@ -29,17 +30,17 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
 
 
     /**
-     * this method returns list of employees that works in department that is passed as parameter
-     *
-     * @param
-     * @return list of employees
+     * @param Id - PK of department
+     * @return - list of employees of that department
      */
     @Override
     public List<Employee> searchByDepartment(int Id) throws EmployeeException {
         return executeQ("SELECT * FROM Employee WHERE department_id = ?", new Object[]{Id});
-//
     }
-
+    /**
+     * @param id - PK of project
+     * @return - number of employees that works on that project
+     */
     @Override
     public int returnNumberofEmployees(int id) throws EmployeeException {
         String sq = "SELECT COUNT(*) FROM Employee WHERE project_id = ?";
@@ -59,10 +60,8 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
     }
 
     /**
-     * this method returns list of employees that works on project that is passed as parameter
-     *
-     * @param id
-     * @return list of employees
+     * @param id- PK of project
+     * @return - list of employees that works on project
      */
     @Override
     public List<Employee> searchByProject(int id) throws EmployeeException {
@@ -71,17 +70,17 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
 
 
     /**
-     * this method returns list of employees ordered by hire dates
-     *
-     * @return list of employees
+     * @return - list of employees ordered by hire date
      */
     @Override
     public List<Employee> getByHireDate() throws EmployeeException {
         return executeQ("SELECT * FROM Employee ORDER BY Hire_date", null);
-//
     }
 
-
+    /**
+     * @param id - PK of employee
+     * @return - employee whose id is passed as parameter
+     */
     @Override
     public Employee getfromID(int id) throws EmployeeException {
         return executeQUq("SELECT * FROM Employee WHERE id = ?", new Object[]{id});
