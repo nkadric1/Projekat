@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
-/**
- * singleton impl of DAOs
+/** @author Kadric Nerma
+ * Factory method for singleton implementation of DAOs
  */
 public class DaoFactory {
 
