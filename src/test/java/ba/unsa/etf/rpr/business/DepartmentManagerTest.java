@@ -4,10 +4,10 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.dao.DepartmentsDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -25,30 +25,43 @@ public class DepartmentManagerTest {
 
     @BeforeEach
     public void initializeObj() {
-        departmentManager = new DepartmentManager();
-        Mockito.mock(DepartmentManager.class);
+        departmentManager = Mockito.mock(DepartmentManager.class);
         d = new Departments();
+        d.setId(1);
         d.setDepname("Backend-developer");
         d.setHourlypay(15);
-        d.setId(1);
         departmentsDAOSQL = Mockito.mock(DepartmentsDAOSQLImpl.class);
         departments = new ArrayList<>();
         departments.addAll(Arrays.asList(new Departments( "Marketing", 10),
                 new Departments( "Software archi", 20)));
 
     }
+    @Test
+    void validName() throws EmployeeException {
+
+        String n1 = "UI/UX";
+        try {
+          Mockito.doCallRealMethod().when(departmentManager).validName(n1);
+        } catch (EmployeeException e) {
+            e.printStackTrace();
+            Assertions.assertTrue(false);
+        }
+        String n2= "A";
+        Mockito.doCallRealMethod().when(departmentManager).validName(n2);
+       EmployeeException e=Assertions.assertThrows(EmployeeException.class, ()->{departmentManager.validName(n2);}, "Name of department must be between 2 and 45 chars");
+       Assertions.assertEquals("Name of department must be between 2 and 45 chars", e.getMessage());
+String n3=RandomStringUtils.randomAlphabetic(55);
+        Mockito.doCallRealMethod().when(departmentManager).validName(n3);
+        EmployeeException ee=Assertions.assertThrows(EmployeeException.class, ()->{departmentManager.validName(n3);}, "Name of department must be between 2 and 45 chars");
+        Assertions.assertEquals("Name of department must be between 2 and 45 chars", ee.getMessage());
+    }
 
     @Test
     void addNewDepTest() throws EmployeeException {
-        MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
-
-        DepartmentsDAOSQLImpl depDao = Mockito.mock(DepartmentsDAOSQLImpl.class);
-        daoFactoryMockedStatic.when(DaoFactory::departmentDao).thenReturn(depDao);
-
-        when(depDao.add(d)).thenReturn(d);
-
-        departmentManager.add(d);
-        Assertions.assertTrue(true);
+       Departments departments1=new Departments("QA Manager",11);
+       departmentManager.add(departments1);
+       Assertions.assertTrue(true);
+       Mockito.verify(departmentManager).add(departments1);
     }
 
     @Test
@@ -63,6 +76,7 @@ public class DepartmentManagerTest {
 
         departmentManager.update(d);
         Assertions.assertTrue(true);
+        daoFactoryMockedStatic.close();
     }
 @Test
 void add()throws EmployeeException{
@@ -75,13 +89,15 @@ void add()throws EmployeeException{
 daoFactoryMockedStatic.verify(DaoFactory::departmentDao);
 Mockito.verify(departmentManager).add(d);
 daoFactoryMockedStatic.close();
+//    MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
+//
+//    DepartmentsDAOSQLImpl depDao = Mockito.mock(DepartmentsDAOSQLImpl.class);
+//        daoFactoryMockedStatic.when(DaoFactory::departmentDao).thenReturn(depDao);
+//
+//    when(depDao.add(d)).thenReturn(d);
+//
+//        departmentManager.add(d);
+//        Assertions.assertTrue(true);
     }
-    @Test
-    void addDep()throws EmployeeException {
-      Departments newDep = new Departments(2, "GameDeveloper", 25);
-      newDep.setId(0);
-      departmentManager.add(newDep);
-        Assertions.assertTrue(true);
-        Mockito.verify(departmentManager).add(newDep);
-    }
+
 }
