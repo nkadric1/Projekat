@@ -4,8 +4,8 @@ import ba.unsa.etf.rpr.domain.Project;
 
 
 /**
- * @Kadrić Nerma
- * Interface for Project domain bean as Dao
+ * @author Kadric Nerma
+ * DAO interface for Project domain bean
  */
 public interface ProjectDao extends Dao<Project> {
 }

@@ -8,7 +8,7 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
 /**
  * @Kadrić Nerma
- * Interface for Employee domain bean as Dao
+ * DAO interface for Employee domain bean
  * three methods that helps user to get informations about employees
  * to search employees by department in which they work
  * to search employees by project on which they work
