@@ -5,14 +5,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * @author Kadric Nerma
+ * Main class for working with JAVAFX framework
+ */
 public class MainFX extends Application {
     public void start(Stage primarystage) throws Exception {
         try {
@@ -23,7 +24,7 @@ public class MainFX extends Application {
             primarystage.setTitle("DeveLoop");
             Scene scene=new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
             primarystage.setScene(scene);
-            primarystage.setResizable(false); //iskljucivo se stavlja za dijaloske prozore
+            primarystage.setResizable(false);
             primarystage.show();
         } catch (Exception e) {
             System.out.println(e);
