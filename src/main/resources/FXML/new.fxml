@@ -51,10 +51,10 @@
           </Menu>
         </menus>
          <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
          <GridPane.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="10.0" top="5.0" />
          </GridPane.margin>
       </MenuBar>
       <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -92,7 +92,7 @@
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
-            <Label text="Department:" GridPane.rowIndex="5">
+            <Label text="Department:" GridPane.rowIndex="7">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
@@ -136,15 +136,15 @@
                <GridPane.margin>
                   <Insets top="60.0" />
                </GridPane.margin></Separator>
-            <Label text="Project:" GridPane.rowIndex="7">
+            <Label text="Project:" GridPane.rowIndex="8">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
-            <Label text="Salary:" GridPane.rowIndex="8">
+            <Label text="Salary:" GridPane.rowIndex="5">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></Label>
-            <TextField fx:id="salfield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <TextField fx:id="salfield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" style="-fx-border-color: darkseagreen; -fx-border-width: 0px 0px 2px 0px;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></TextField>
@@ -181,8 +181,8 @@
                   <Insets />
                </GridPane.margin>
             </TextArea>
-            <ChoiceBox fx:id="depfield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox fx:id="profield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ChoiceBox fx:id="depfield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ChoiceBox fx:id="profield" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" top="5.0" />
