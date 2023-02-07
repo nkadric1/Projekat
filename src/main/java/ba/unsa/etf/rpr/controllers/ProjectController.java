@@ -11,6 +11,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import net.bytebuddy.agent.VirtualMachine;
+
+import java.util.Collections;
+import java.util.List;
+
 /** @author Kadric Nerma
  * Project-controller is controller about page of projects. Adding and  deleting can be done in this controller.
 *  Administrator have insight into projects of this company.
@@ -32,7 +38,10 @@ public class ProjectController {
             refreshProjects();
             projectname.textProperty().bindBidirectional(projectModel.pname);
             listofprojects.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> {
-                if (n != null) projectModel.fromProject(n);
+                if (n != null) {
+                    projectModel.fromProject(n);
+
+                }
             });
         } catch (EmployeeException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
@@ -70,11 +79,14 @@ public class ProjectController {
      */
     private void refreshProjects() throws EmployeeException {
         try {
+
             listofprojects.setItems(FXCollections.observableList(manager.getAll()));
+
             projectname.setText("");
         } catch (EmployeeException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
+
     }
     /**
      * This method is used to close this stage
@@ -101,7 +113,7 @@ public class ProjectController {
         public Project toProject() {
             Project p = new Project();
             p.setId(this.id.getValue());
-            p.setProject_name(this.pname.getName());
+            p.setProject_name(this.pname.getValue());
             return p;
         }
     }

@@ -52,10 +52,12 @@ public class PageController {
     public TextField lnamefield;
     public TextField addressfield;
     public DatePicker hdatefield;
-    public ChoiceBox<Departments> depfield;
-    public TextField edufield;
-    public ChoiceBox<Project> profield;
     public TextField salfield;
+    public TextField edufield;
+
+    public ChoiceBox<Departments> depfield;
+
+    public ChoiceBox<Project> profield;
 
     public TableView<Employee> emptab;
     public TableColumn<Employee, Integer> empIdcol;
@@ -226,10 +228,11 @@ public class PageController {
         lnamefield.textProperty().bindBidirectional(employeeModel.lname);
         addressfield.textProperty().bindBidirectional(employeeModel.address);
         hdatefield.valueProperty().bindBidirectional(employeeModel.hdate);
+        salfield.textProperty().bindBidirectional(employeeModel.sal);
+        edufield.textProperty().bindBidirectional(employeeModel.edu);
         depfield.valueProperty().bindBidirectional(employeeModel.did);
         profield.valueProperty().bindBidirectional(employeeModel.pid);
-        edufield.textProperty().bindBidirectional(employeeModel.edu);
-        salfield.textProperty().bindBidirectional(employeeModel.sal);
+
         emptab.getSelectionModel().selectedItemProperty().addListener((obs, oldEmployee, newEmployee) -> {
             if (newEmployee != null) {
                 employeeModel.fromEmployee(newEmployee);
@@ -328,8 +331,8 @@ public class PageController {
             addressfield.setText("");
             hdatefield.setValue(null);
             depfield.setValue(null);
-            profield.setValue(null);
             edufield.setText("");
+            profield.setValue(null);
             salfield.setText("");
         } catch (EmployeeException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
@@ -372,11 +375,13 @@ public class PageController {
             e.setFirst_name(this.fname.getValue());
             e.setLast_name(this.lname.getValue());
             e.setAddress(this.address.getValue());
+
+            e.setHire_date(this.hdate.getValue());
+            e.setPayoff(Integer.parseInt(this.sal.getValue()));
+            e.setEdu(this.edu.getValue());
+
             e.setDepartment(this.did.getValue());
             e.setProject(this.pid.getValue());
-            e.setHire_date(this.hdate.getValue());
-            e.setEdu(this.edu.getValue());
-            e.setPayoff(Integer.parseInt(this.sal.getValue()));
             return e;
         }
     }
