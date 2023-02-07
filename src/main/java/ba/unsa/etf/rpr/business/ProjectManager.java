@@ -34,7 +34,18 @@ public class ProjectManager {
             throw e;
         }
     }
+public Project update(Project p) throws EmployeeException{
+        validName(p.getProject_name());
 
+    try {
+         return DaoFactory.projectDao().update(p);
+    } catch (EmployeeException e) {
+        if (e.getMessage().contains("UQ_NAME")) {
+            throw new EmployeeException("This project name already exists");
+        }
+        throw e;
+    }
+}
     public List<Project> getAll() throws EmployeeException {
         return DaoFactory.projectDao().getAll();
     }

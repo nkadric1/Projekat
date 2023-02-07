@@ -16,7 +16,7 @@ public class Project implements Idable {
     public Project(int id) {
         ID = id;
     }
-
+public Project(String s){project_name=s;}
     public int getId() {
         return ID;
     }
