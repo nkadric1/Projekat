@@ -98,7 +98,7 @@ public static  Options addOptions(){
             System.out.println("You successfully added employee to database!");
         } else if(cl.hasOption(getEmployees.getOpt()) || cl.hasOption(getEmployees.getLongOpt())){
            EmployeeManager eManager = new EmployeeManager();
-            eManager.getAll().forEach(q -> System.out.println(q.getFirst_name()));
+            eManager.getAll().forEach(q -> System.out.println(q.getFirst_name()+" "+ q.getLast_name()));
         } else if(cl.hasOption(addProject.getOpt()) || cl.hasOption(addProject.getLongOpt())){
             try {
           ProjectManager pManager = new ProjectManager();
