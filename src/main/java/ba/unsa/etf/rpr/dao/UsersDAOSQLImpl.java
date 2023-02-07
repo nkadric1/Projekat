@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Users;
+import ba.unsa.etf.rpr.exceptions.EmployeeException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,4 +76,9 @@ public class UsersDAOSQLImpl extends AbstractDao<Users> implements UsersDao {
         r.put("password", object.getPass());
         return r;
     }
+    @Override
+    public Users searchByPass(String p) throws EmployeeException{
+        return executeQUq("SELECT * FROM Users WHERE password = ?",new Object[]{p});
+    }
+
 }
