@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 /**
@@ -79,6 +80,10 @@ public class UsersDAOSQLImpl extends AbstractDao<Users> implements UsersDao {
     @Override
     public Users searchByPass(String p) throws EmployeeException{
         return executeQUq("SELECT * FROM Users WHERE password = ?",new Object[]{p});
+    }
+    @Override
+    public List<Users> searchByName(String name) throws  EmployeeException{
+        return executeQ("SELECT * FROM Users WHERE username = ?", new Object[]{name});
     }
 
 }

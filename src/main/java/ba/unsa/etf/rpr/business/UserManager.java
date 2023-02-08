@@ -1,8 +1,11 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
+import ba.unsa.etf.rpr.domain.Employee;
 import ba.unsa.etf.rpr.domain.Users;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
+
+import java.util.List;
 
 public class UserManager {
     public void validName(String name) throws EmployeeException {
@@ -17,5 +20,11 @@ public class UserManager {
         Users uu=DaoFactory.usersDao().searchByPass(p);
         if(uu.getUsername()!=u) return false;
         else return true;
+    }
+    public List<Users> getAll() throws EmployeeException {
+        return DaoFactory.usersDao().getAll();
+    }
+    public List<Users> searchByName(String n) throws  EmployeeException{
+        return DaoFactory.usersDao().searchByName(n);
     }
 }
