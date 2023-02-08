@@ -6,7 +6,6 @@ import ba.unsa.etf.rpr.domain.Users;
 import ba.unsa.etf.rpr.exceptions.EmployeeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 

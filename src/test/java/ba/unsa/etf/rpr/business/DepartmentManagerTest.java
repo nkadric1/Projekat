@@ -89,15 +89,15 @@ void add()throws EmployeeException{
 daoFactoryMockedStatic.verify(DaoFactory::departmentDao);
 Mockito.verify(departmentManager).add(d);
 daoFactoryMockedStatic.close();
-//    MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
-//
-//    DepartmentsDAOSQLImpl depDao = Mockito.mock(DepartmentsDAOSQLImpl.class);
-//        daoFactoryMockedStatic.when(DaoFactory::departmentDao).thenReturn(depDao);
-//
-//    when(depDao.add(d)).thenReturn(d);
-//
-//        departmentManager.add(d);
-//        Assertions.assertTrue(true);
     }
-
+@Test
+    void addTest() throws EmployeeException{
+        MockedStatic<DaoFactory> daoFactoryMockedStatic = Mockito.mockStatic(DaoFactory.class);
+        DepartmentsDAOSQLImpl depDao = Mockito.mock(DepartmentsDAOSQLImpl.class);
+        daoFactoryMockedStatic.when(DaoFactory::departmentDao).thenReturn(depDao);
+        when(depDao.add(d)).thenReturn(d);
+        departmentManager.add(d);
+        Assertions.assertTrue(true);
+        daoFactoryMockedStatic.close();
+}
 }
