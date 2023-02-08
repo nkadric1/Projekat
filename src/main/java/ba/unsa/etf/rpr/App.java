@@ -7,14 +7,9 @@ import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Project;
 import org.apache.commons.cli.*;
 import java.sql.Date;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Stream;
-import ba.unsa.etf.rpr.dao.EmployeeDAOSQLImpl;
 import ba.unsa.etf.rpr.domain.Employee;
 
 
