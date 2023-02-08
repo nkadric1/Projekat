@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -27,5 +29,12 @@ public class UserManagerTest {
         when(DaoFactory.usersDao()).thenReturn(Mockito.mock(UsersDao.class));
         when(DaoFactory.usersDao().searchByPass(password)).thenReturn(users);
         assertTrue(UserManager.validate(username,password));
+    }
+    @Test
+    void test() throws EmployeeException{
+        List<Users> list=userManager.searchByName("aaa");
+        assertTrue(list.isEmpty());
+
+
     }
 }
