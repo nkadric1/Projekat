@@ -34,6 +34,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -95,10 +96,14 @@ public class PageController {
         openDialog("Manage projects", "/FXML/pro.fxml", new ProjectController());
     }
 
-
+    /**
+     * This method calls openDialog to open the new stage of description of company and to manipulate them
+     * @param actionEvent
+     */
     @FXML
     public void onAbout(ActionEvent actionEvent) {
-        openDialog("About", "/FXML/about.fxml", null);
+
+        openDialog("About", "/FXML/about.fxml", new AboutController());
     }
 
     /**
@@ -325,6 +330,7 @@ public class PageController {
 
     private void refreshEmployees() {
         try {
+
             emptab.setItems(FXCollections.observableList(manager.getAll()));
             fnamefield.setText("");
             lnamefield.setText("");

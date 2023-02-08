@@ -16,7 +16,7 @@ public class ProjectManager {
      * @param name
      * @throws EmployeeException
      */
-    public void validName(String name) throws EmployeeException {
+    public  void validName(String name) throws EmployeeException {
         if (name.length() > 45 || name == null || name.length() < 2)
             throw new EmployeeException("Name of project must be between 2 and 45 chars");
 
@@ -34,7 +34,7 @@ public class ProjectManager {
             throw e;
         }
     }
-public Project update(Project p) throws EmployeeException{
+public  Project update(Project p) throws EmployeeException{
         validName(p.getProject_name());
 
     try {
@@ -46,7 +46,7 @@ public Project update(Project p) throws EmployeeException{
         throw e;
     }
 }
-    public List<Project> getAll() throws EmployeeException {
+    public  List<Project> getAll() throws EmployeeException {
         return DaoFactory.projectDao().getAll();
     }
 
