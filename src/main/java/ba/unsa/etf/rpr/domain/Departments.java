@@ -24,7 +24,6 @@ public class Departments implements Idable {
         this.hourlypay = hourlypay;
     }
     public Departments( String depname, int hourlypay) {
-        this.ID = ID;
         this.depname = depname;
         this.hourlypay = hourlypay;
     }
