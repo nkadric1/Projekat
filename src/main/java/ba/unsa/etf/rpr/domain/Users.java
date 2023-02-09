@@ -19,9 +19,12 @@ public class Users implements Idable {
         this.username = username;
         this.pass = pass;
     }
-public Users(String username, String pass) {
-    this.username = username;
-    this.pass = pass;}
+
+    public Users(String username, String pass) {
+        this.username = username;
+        this.pass = pass;
+    }
+
     public void setId(int id) {
         this.ID = id;
     }

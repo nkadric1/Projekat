@@ -20,6 +20,7 @@ public class DepartmentsDAOSQLImpl extends AbstractDao<Departments> implements D
 
     /**
      * this method return entity whose ID is passed
+     *
      * @param id
      * @return - department
      */

@@ -15,16 +15,16 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
  * to get employees by date they started to work;
  */
 public interface EmployeeDao extends Dao<Employee> {
-    public int returnNumberofEmployees(int id) throws EmployeeException;
+    int returnNumberofEmployees(int id) throws EmployeeException;
 
 
-    public List<Employee> searchByDepartment(int Id) throws EmployeeException;
+    List<Employee> searchByDepartment(int Id) throws EmployeeException;
 
-    public List<Employee> searchByProject(int id) throws EmployeeException;
+    List<Employee> searchByProject(int id) throws EmployeeException;
 
-    public List<Employee> getByHireDate() throws EmployeeException;
+    List<Employee> getByHireDate() throws EmployeeException;
 
-    public Employee getfromID(int id) throws EmployeeException;
+    Employee getfromID(int id) throws EmployeeException;
 
 
 }

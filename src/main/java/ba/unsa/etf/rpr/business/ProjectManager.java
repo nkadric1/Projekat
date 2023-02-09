@@ -8,15 +8,16 @@ import java.util.List;
 
 /**
  * @author Kadric Nerma
- *  Business Logic Layer for management of Projects
+ * Business Logic Layer for management of Projects
  */
 public class ProjectManager {
     /**
-     *A method to check the validity of a name
+     * A method to check the validity of a name
+     *
      * @param name
      * @throws EmployeeException
      */
-    public  void validName(String name) throws EmployeeException {
+    public void validName(String name) throws EmployeeException {
         if (name.length() > 45 || name == null || name.length() < 2)
             throw new EmployeeException("Name of project must be between 2 and 45 chars");
 
@@ -34,19 +35,21 @@ public class ProjectManager {
             throw e;
         }
     }
-public  Project update(Project p) throws EmployeeException{
+
+    public Project update(Project p) throws EmployeeException {
         validName(p.getProject_name());
 
-    try {
-         return DaoFactory.projectDao().update(p);
-    } catch (EmployeeException e) {
-        if (e.getMessage().contains("UQ_NAME")) {
-            throw new EmployeeException("This project name already exists");
+        try {
+            return DaoFactory.projectDao().update(p);
+        } catch (EmployeeException e) {
+            if (e.getMessage().contains("UQ_NAME")) {
+                throw new EmployeeException("This project name already exists");
+            }
+            throw e;
         }
-        throw e;
     }
-}
-    public  List<Project> getAll() throws EmployeeException {
+
+    public List<Project> getAll() throws EmployeeException {
         return DaoFactory.projectDao().getAll();
     }
 

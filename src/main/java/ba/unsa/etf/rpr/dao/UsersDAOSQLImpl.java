@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
 /**
  * @author Kadric Nerma
  * MySQL implementation of the DAO
@@ -31,6 +32,7 @@ public class UsersDAOSQLImpl extends AbstractDao<Users> implements UsersDao {
 
     /**
      * Validation method of username and password
+     *
      * @param u - username
      * @param p - password
      * @return - true/false
@@ -77,12 +79,14 @@ public class UsersDAOSQLImpl extends AbstractDao<Users> implements UsersDao {
         r.put("password", object.getPass());
         return r;
     }
+
     @Override
-    public Users searchByPass(String p) throws EmployeeException{
-        return executeQUq("SELECT * FROM Users WHERE password = ?",new Object[]{p});
+    public Users searchByPass(String p) throws EmployeeException {
+        return executeQUq("SELECT * FROM Users WHERE password = ?", new Object[]{p});
     }
+
     @Override
-    public List<Users> searchByName(String name) throws  EmployeeException{
+    public List<Users> searchByName(String name) throws EmployeeException {
         return executeQ("SELECT * FROM Users WHERE username = ?", new Object[]{name});
     }
 

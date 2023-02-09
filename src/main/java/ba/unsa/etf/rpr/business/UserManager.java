@@ -13,18 +13,22 @@ public class UserManager {
             throw new EmployeeException("Name of user must be between 2 and 45 chars");
 
     }
-    public Users searchByPass(String p) throws EmployeeException{
+
+    public Users searchByPass(String p) throws EmployeeException {
         return DaoFactory.usersDao().searchByPass(p);
     }
-    public static boolean validate(String u, String p) throws EmployeeException{
-        Users uu=DaoFactory.usersDao().searchByPass(p);
-        if(uu.getUsername()!=u) return false;
+
+    public static boolean validate(String u, String p) throws EmployeeException {
+        Users uu = DaoFactory.usersDao().searchByPass(p);
+        if (uu.getUsername() != u) return false;
         else return true;
     }
+
     public List<Users> getAll() throws EmployeeException {
         return DaoFactory.usersDao().getAll();
     }
-    public List<Users> searchByName(String n) throws  EmployeeException{
+
+    public List<Users> searchByName(String n) throws EmployeeException {
         return DaoFactory.usersDao().searchByName(n);
     }
 }

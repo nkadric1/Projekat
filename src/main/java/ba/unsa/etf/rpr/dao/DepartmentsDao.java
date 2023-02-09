@@ -9,5 +9,5 @@ import ba.unsa.etf.rpr.exceptions.EmployeeException;
  */
 public interface DepartmentsDao extends Dao<Departments> {
 
-    public Departments ReturnDepartmentForId(int id) throws EmployeeException;
+    Departments ReturnDepartmentForId(int id) throws EmployeeException;
 }

@@ -14,6 +14,7 @@ public class Employee implements Idable {
     private String Last_name;
     private String address;
     private LocalDate hire_date;
+
     public Departments getDepartment() {
         return department;
     }
@@ -52,7 +53,8 @@ public class Employee implements Idable {
         this.payoff = payoff;
 
     }
-    public Employee( String first_name, String last_name, String address, LocalDate hire_date, Departments department, Project project, String edu, int payoff) {
+
+    public Employee(String first_name, String last_name, String address, LocalDate hire_date, Departments department, Project project, String edu, int payoff) {
         this.first_name = first_name;
         this.Last_name = last_name;
         this.address = address;
@@ -63,12 +65,15 @@ public class Employee implements Idable {
         this.payoff = payoff;
 
     }
+
     public void setId(int id) {
         this.ID = id;
     }
+
     public int getId() {
         return ID;
     }
+
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
@@ -84,6 +89,7 @@ public class Employee implements Idable {
     public void setHire_date(LocalDate hire_date) {
         this.hire_date = hire_date;
     }
+
     public void setEdu(String edu) {
         this.edu = edu;
     }
@@ -107,6 +113,7 @@ public class Employee implements Idable {
     public LocalDate getHire_date() {
         return hire_date;
     }
+
     public String getEdu() {
         return edu;
     }

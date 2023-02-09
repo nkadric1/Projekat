@@ -8,19 +8,25 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.stage.StageStyle;
+
 import java.io.IOException;
+
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
-/** @author Kadric Nerma
+
+/**
+ * @author Kadric Nerma
  * Controller is controller about login page of this app.
  * The administrator must enter a username and password.
  */
 public class Controller {
     public TextField fieldUser;
     public PasswordField passfield;
+
     /**
      * This method is used to open a new stage, it is private and is used to open main stage.
-     * @param title - the title of new stage that we want to open
-     * @param file - the fxml file,which is linked to that new stage
+     *
+     * @param title      - the title of new stage that we want to open
+     * @param file       - the fxml file,which is linked to that new stage
      * @param controller - the controller that will manage the new stage
      */
     private void openDialog(String title, String file, Object controller) {
@@ -42,6 +48,7 @@ public class Controller {
 
     /**
      * This method checks the validity of the username and password and opens a new stage
+     *
      * @param actionEvent
      * @throws IOException
      */

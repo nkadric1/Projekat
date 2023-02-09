@@ -8,11 +8,12 @@ import java.util.List;
 
 /**
  * @author Kadric Nerma
- *  Business Logic Layer for management of Departments
+ * Business Logic Layer for management of Departments
  */
 public class DepartmentManager {
     /**
-     *A method to check the validity of a name
+     * A method to check the validity of a name
+     *
      * @param name
      * @throws EmployeeException
      */

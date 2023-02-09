@@ -26,6 +26,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -40,9 +41,10 @@ import java.util.Iterator;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-/** @author Kadric Nerma
+/**
+ * @author Kadric Nerma
  * Page-controller is controller about main page of this app. Adding, searching, deleting and more can be done in this controller.
- *  It has two-way connection, the file of current employees can be saved and opened. Administrator have insight into departments and projects of this company.
+ * It has two-way connection, the file of current employees can be saved and opened. Administrator have insight into departments and projects of this company.
  */
 public class PageController {
     public TextArea txtArea;
@@ -76,10 +78,11 @@ public class PageController {
     public Image img3 = new Image("IMAGES/delete.png");
     private EmployeeManager manager = new EmployeeManager();
     private DepartmentManager departmentManager = new DepartmentManager();
-    private ProjectManager projectManager=new ProjectManager();
+    private ProjectManager projectManager = new ProjectManager();
 
     /**
      * This method calls openDialog to open the new stage of departments and to manipulate them
+     *
      * @param actionEvent
      */
     @FXML
@@ -89,6 +92,7 @@ public class PageController {
 
     /**
      * This method calls openDialog to open the new stage of projects and to manipulate them
+     *
      * @param actionEvent
      */
     @FXML
@@ -98,6 +102,7 @@ public class PageController {
 
     /**
      * This method calls openDialog to open the new stage of description of company and to manipulate them
+     *
      * @param actionEvent
      */
     @FXML
@@ -108,8 +113,9 @@ public class PageController {
 
     /**
      * This method is used to open a new stage, it is private and is used to open departments and projects stage.
-     * @param title - the title of new stage that we want to open
-     * @param file - the fxml file,which is linked to that new stage
+     *
+     * @param title      - the title of new stage that we want to open
+     * @param file       - the fxml file,which is linked to that new stage
      * @param controller - the controller that will manage the new stage
      */
     private void openDialog(String title, String file, Object controller) {
@@ -130,6 +136,7 @@ public class PageController {
 
     /**
      * This method calls refreshEmployees to display all employees in the table
+     *
      * @param actionEvent
      * @throws EmployeeException
      */
@@ -140,6 +147,7 @@ public class PageController {
 
     /**
      * This method is used to exit of the application
+     *
      * @param actionEvent
      */
     @FXML
@@ -151,6 +159,7 @@ public class PageController {
     /**
      * It is located in File part
      * It is used to save list of employees as .txt file
+     *
      * @param actionEvent
      * @throws IOException
      */
@@ -182,8 +191,10 @@ public class PageController {
      * It is located in File part
      * It is used to open list of employees as .txt file
      * The administrator can enter some additional things related to employees
+     *
      * @param actionEvent
      */
+
     @FXML
     public void openFile(ActionEvent actionEvent) {
         try {
@@ -247,8 +258,10 @@ public class PageController {
         refreshEmployees();
     }
 
-    /** After filling the fields for new employee, we click on the add button and then this method is called.
+    /**
+     * After filling the fields for new employee, we click on the add button and then this method is called.
      * It is used to add a new employee to the database.
+     *
      * @param actionEvent
      */
     @FXML
@@ -262,8 +275,9 @@ public class PageController {
     }
 
     /**
-     *  After filling the field which we want to update, we click on the update button and then this method is called.
-     *  It is used to update the employee.
+     * After filling the field which we want to update, we click on the update button and then this method is called.
+     * It is used to update the employee.
+     *
      * @param actionEvent
      */
     @FXML
@@ -279,7 +293,8 @@ public class PageController {
     }
 
     /**
-     *  This method is used to search for the employee, whose ID is passed as parameter to getById method, and displays it in the table
+     * This method is used to search for the employee, whose ID is passed as parameter to getById method, and displays it in the table
+     *
      * @param actionEvent
      */
     @FXML
@@ -297,6 +312,7 @@ public class PageController {
 
     /**
      * This method is used to delete the employee that is selected in the table
+     *
      * @param actionEvent
      */
     @FXML
@@ -312,6 +328,7 @@ public class PageController {
 
     /**
      * This method is used to display all employees working on the project whose ID is passed to the getByProject method.
+     *
      * @param actionEvent
      * @throws EmployeeException
      */
@@ -345,7 +362,8 @@ public class PageController {
         }
     }
 
-    /** This is the inner class of employee model.
+    /**
+     * This is the inner class of employee model.
      * Inner classes are a security mechanism in Java and it is also used to access the private members of a class.
      * It suports two-way data binding with form for Employee management.
      */

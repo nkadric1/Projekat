@@ -22,7 +22,7 @@ public class MainFX extends Application {
             fl.setController(controller);
             Parent root = fl.load();
             primarystage.setTitle("DeveLoop");
-            Scene scene=new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            Scene scene = new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
             primarystage.setScene(scene);
             primarystage.setResizable(false);
             primarystage.show();
@@ -30,7 +30,8 @@ public class MainFX extends Application {
             System.out.println(e);
         }
     }
-    public static void main(String[] args){
-    launch(args);
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

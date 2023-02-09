@@ -23,10 +23,12 @@ public class Departments implements Idable {
         this.depname = depname;
         this.hourlypay = hourlypay;
     }
-    public Departments( String depname, int hourlypay) {
+
+    public Departments(String depname, int hourlypay) {
         this.depname = depname;
         this.hourlypay = hourlypay;
     }
+
     public void setId(int id) {
         this.ID = id;
     }

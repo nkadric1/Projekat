@@ -8,11 +8,12 @@ import java.util.List;
 
 /**
  * @author Kadric Nerma
- *  Business Logic Layer for management of Employees
+ * Business Logic Layer for management of Employees
  */
 public class EmployeeManager {
     /**
-     *A method to check the validity of a name
+     * A method to check the validity of a name
+     *
      * @param name
      * @throws EmployeeException
      */
@@ -21,11 +22,11 @@ public class EmployeeManager {
             throw new EmployeeException("Name of employee must be between 2 and 45 chars");
 
     }
+
     public static void validSalary(int s) throws EmployeeException {
-        if(s<=0) {
+        if (s <= 0) {
             throw new EmployeeException("Employee must have salary");
-        }
-        else if (s>10000) throw new EmployeeException("Employee cannot have salary greater than 10000");
+        } else if (s > 10000) throw new EmployeeException("Employee cannot have salary greater than 10000");
 
 
     }

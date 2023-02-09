@@ -37,6 +37,7 @@ public class EmployeeDAOSQLImpl extends AbstractDao<Employee> implements Employe
     public List<Employee> searchByDepartment(int Id) throws EmployeeException {
         return executeQ("SELECT * FROM Employee WHERE department_id = ?", new Object[]{Id});
     }
+
     /**
      * @param id - PK of project
      * @return - number of employees that works on that project
