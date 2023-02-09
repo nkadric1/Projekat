@@ -72,5 +72,5 @@ public class Departments implements Idable {
         return Objects.hash(ID, depname, hourlypay);
     }
 
-
+    
 }

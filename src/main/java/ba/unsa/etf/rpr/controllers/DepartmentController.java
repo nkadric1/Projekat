@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+
 /**
  * @author Kadric Nerma
  * Department-controller is controller about page of departments. Adding and deleting can be done in this controller.

@@ -7,7 +7,7 @@ import ba.unsa.etf.rpr.domain.Departments;
 import ba.unsa.etf.rpr.domain.Project;
 import org.apache.commons.cli.*;
 
-import java.sql.Date;
+
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.*;
@@ -24,6 +24,16 @@ public class App {
     private static final Option addProject = new Option("p", "add-project", false, "Adding new project to database of company");
     private static final Option getEmployees = new Option("getE", "get-employees", false, "Printing all employees from DB");
     private static final Option getProjects = new Option("getP", "get-projects", false, "Printing all projects from DB");
+    private static final Option updateDepartment = new Option("uD", "update", false, "Updating the hourly price of the department");
+    private static final Option deleteProject = new Option("d", "delete", false, "Deleting project");
+    private static final Option firstname = new Option("fn", "first-name", false, "Defining the employee first-name");
+    private static final Option lastname = new Option("ln", "last-name", false, "Defining the employee last-name");
+    private static final Option address = new Option("ad", "addressofemp", false, "Defining the employee address");
+    private static final Option hiredate = new Option("hd", "hire-date", false, "Defining the hire date when employee started to work");
+    private static final Option depID = new Option("dId", "departmentfk", false, "Defining the department where employee will work");
+    private static final Option proID = new Option("pId", "projectfk", false, "Defining the project on which employee will work");
+    private static final Option education = new Option("ed", "edustatus", false, "Defining the employee's status of education");
+    private static final Option salary = new Option("s", "sal", false, "Defining the employee's salary");
 
     public static void printFormattedOptions(Options options) {
         HelpFormatter helpFormatter = new HelpFormatter();
@@ -37,21 +47,31 @@ public class App {
         Options options = new Options();
         options.addOption(addEmployee);
         options.addOption(addProject);
+        options.addOption(updateDepartment);
+        options.addOption(deleteProject);
         options.addOption(getEmployees);
         options.addOption(getProjects);
+        options.addOption(firstname);
+        options.addOption(lastname);
+        options.addOption(address);
+        options.addOption(hiredate);
+        options.addOption(depID);
+        options.addOption(proID);
+        options.addOption(education);
+        options.addOption(salary);
         return options;
     }
 
     public static Project searchThroughProjects(List<Project> listOfPro, String eName) {
 
-        Project e = listOfPro.stream().filter(emp -> emp.getProject_name().toLowerCase().equals(eName.toLowerCase())).findAny().get();
+        Project e = listOfPro.stream().filter(p -> p.getProject_name().equals(eName.toLowerCase())).findAny().get();
         return e;
 
     }
 
-    public static Departments searchThroughDepartments(List<Departments> listOfDep, String eName) {
+    public static Departments searchThroughDepartments(List<Departments> listOfDep, int h) {
 
-        Departments e = listOfDep.stream().filter(emp -> emp.getDepname().toLowerCase().equals(eName.toLowerCase())).findAny().get();
+        Departments e = listOfDep.stream().filter(d -> d.getHourlypay() == h).findAny().orElse(null);
         return e;
 
     }
@@ -60,38 +80,13 @@ public class App {
         Options options = addOptions();
 
         CommandLineParser commandLineParser = new DefaultParser();
-
         CommandLine cl = commandLineParser.parse(options, args);
-        if ((cl.hasOption(addEmployee.getOpt()) || cl.hasOption(addEmployee.getLongOpt()))) {
-            EmployeeManager eManager = new EmployeeManager();
-            ProjectManager pManager = new ProjectManager();
-            DepartmentManager departmentManager = new DepartmentManager();
-            Project p = null;
-            try {
-                p = searchThroughProjects(pManager.getAll(), cl.getArgList().get(1));
-            } catch (Exception e) {
-                System.out.println("There is no project in the list! Try again.");
-                System.exit(1);
-            }
-            Departments d = null;
-            try {
-                d = searchThroughDepartments(departmentManager.getAll(), cl.getArgList().get(1));
-            } catch (Exception e) {
-                System.out.println("There is no department in the list! Try again.");
-                System.exit(1);
-            }
-
-            Employee e = new Employee();
-            e.setFirst_name(cl.getArgList().get(0));
-            e.setLast_name(cl.getArgList().get(0));
-            e.setAddress(cl.getArgList().get(0));
-            e.setHire_date(Date.valueOf(LocalDate.now()).toLocalDate());
-            e.setDepartment(d);
-            e.setProject(p);
-            e.setEdu(cl.getArgList().get(0));
-            e.setPayoff(Integer.parseInt(cl.getArgList().get(0)));
-            eManager.add(e);
-            System.out.println("You successfully added employee to database!");
+        if (cl.hasOption(addEmployee.getOpt()) || cl.hasOption(addEmployee.getLongOpt())) {
+            EmployeeManager employeeManager = new EmployeeManager();
+            LocalDate l = LocalDate.parse(cl.getArgList().get(3));
+            Employee e = new Employee(cl.getArgList().get(0), cl.getArgList().get(1), cl.getArgList().get(2), l, new Departments(Integer.parseInt(cl.getArgList().get(4))), new Project(Integer.parseInt(cl.getArgList().get(5))), cl.getArgList().get(6), Integer.parseInt(cl.getArgList().get(7)));
+            employeeManager.add(e);
+            System.out.println("You successfully added employee to the company DB!");
         } else if (cl.hasOption(getEmployees.getOpt()) || cl.hasOption(getEmployees.getLongOpt())) {
             EmployeeManager eManager = new EmployeeManager();
             eManager.getAll().forEach(q -> System.out.println(q.getFirst_name() + " " + q.getLast_name()));
@@ -110,6 +105,17 @@ public class App {
         } else if (cl.hasOption(getProjects.getOpt()) || cl.hasOption(getProjects.getLongOpt())) {
             ProjectManager p = new ProjectManager();
             p.getAll().forEach(c -> System.out.println(c.getProject_name()));
+        } else if (cl.hasOption("uD")) {
+            DepartmentManager d = new DepartmentManager();
+            int hpay = Integer.parseInt(cl.getArgList().get(0));
+            d.update(searchThroughDepartments(d.getAll(), hpay));
+            System.out.println("Department has been updated successfully");
+        } else if (cl.hasOption("d")) {
+            int pid = Integer.parseInt(cl.getArgList().get(0));
+            ProjectManager projectManager = new ProjectManager();
+            projectManager.delete(pid);
+            System.out.println("Project has been deleted successfully");
+
         } else {
             printFormattedOptions(options);
             System.exit(-1);

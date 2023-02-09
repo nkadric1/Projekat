@@ -11,11 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import net.bytebuddy.agent.VirtualMachine;
 
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @author Kadric Nerma
